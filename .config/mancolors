@@ -1,0 +1,10 @@
+# vim: ft=yaml
+
+# Bold effect
+LESS_TERMCAP_md: "\e[1;91m"
+
+# Underline effect
+LESS_TERMCAP_us: "\e[4;95m"
+
+# Stand-out effect
+LESS_TERMCAP_so: "\e[7m"
