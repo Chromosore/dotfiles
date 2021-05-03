@@ -7,7 +7,10 @@ execute 'source' stdpath('config') . '/plugins.vim'
 " {{{ Theme
 "     =====
 
-execute 'source' stdpath('config') . '/background.vim'
+if !empty(glob(stdpath('config') . '/background.vim'))
+	execute 'source' stdpath('config') . '/background.vim'
+endif
+
 if $TERM == "linux"
 	set background=dark
 endif

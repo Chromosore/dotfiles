@@ -1,1 +1,1 @@
-../../../Projects/ccutils/ccutils.fish
+/home/raphael/Projects/ccutils/ccutils.fish

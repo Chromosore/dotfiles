@@ -6,6 +6,19 @@ import sys
 import os
 import os.path
 
+
+def ifset(config, oldkey, newkey):
+    try:
+        config[newkey] = config[oldkey]
+        del config[oldkey]
+    except KeyError:
+        pass
+
+def update_conf(config):
+    ifset(config, 'bold', 'LESS_TERMCAP_md')
+    ifset(config, 'underline', 'LESS_TERMCAP_us')
+    ifset(config, 'stand-out', 'LESS_TERMCAP_so')
+
 end_seq = {'LESS_TERMCAP_me': '\x1b[0m',
            'LESS_TERMCAP_ue': '\x1b[0m',
            'LESS_TERMCAP_se': '\x1b[0m'}
@@ -15,6 +28,8 @@ config_folder = os.environ.get('XDG_CONFIG_HOME',
 
 with open(os.path.join(config_folder, 'mancolors'), 'r') as f:
     config = yaml.load(f, yaml.SafeLoader)
-    os.environ.update(config | end_seq)
+    update_conf(config)
+    config.update(end_seq)
+    os.environ.update(config)
 
 os.execv('/usr/bin/man', ['man',] + sys.argv[1:])
