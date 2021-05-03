@@ -163,3 +163,7 @@ set wildignore+=node_modules
 command -nargs=1 Confed execute 'e' system('confed -s <args>')
 
 " }}}
+
+if !empty(glob(stdpath('config') . '/local.vim'))
+	execute "source" stdpath('config') . '/local.vim'
+endif

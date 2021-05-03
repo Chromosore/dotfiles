@@ -12,9 +12,12 @@ if empty(glob(autoload_dir . '/autoload/plug.vim'))
 endif
 
 " Run PlugInstall if there are missing plugins
-autocmd VimEnter * ++once if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-	\| PlugInstall --sync | source $MYVIMRC
-\| endif
+augroup VimPlugAuto
+	autocmd!
+	autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+		\| PlugInstall --sync | source $MYVIMRC
+	\| endif | autocmd! VimPlugAuto
+augroup END
 " }}}
 " {{{ Python Host
 "     ===========
