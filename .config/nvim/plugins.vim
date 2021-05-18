@@ -1,13 +1,14 @@
 " {{{ Plug Autocmds
 "     =============
-" vim: foldmethod=marker
+" vim: foldmethod=marker ts=2
 
 " install vim-plug
-let data_dir = has('nvim') ? stdpath('data') : '~/.vim'
-let autoload_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(autoload_dir . '/autoload/plug.vim'))
+let s:config_dir = has('neovim') ? stdpath('config') : expand('~/.vim')
+let s:data_dir = has('nvim') ? stdpath('data') : '~/.vim'
+let s:autoload_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(s:autoload_dir . '/autoload/plug.vim'))
 	echo 'Installing Vim-Plug'
-	execute "!curl" "-fLo" autoload_dir . '/autoload/plug.vim' "--create-dirs"
+	execute "!curl" "-fLo" s:autoload_dir . '/autoload/plug.vim' "--create-dirs"
 	\ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
@@ -22,19 +23,29 @@ augroup END
 " {{{ Python Host
 "     ===========
 " Make sure the python host is installed
-if empty(glob(data_dir . '/pynvim'))
-	silent execute "!python3 -m venv" data_dir . '/pynvim'
-	execute "!" . data_dir . '/pynvim/bin/' . "pip install pynvim"
+if empty(glob(s:data_dir . '/pynvim'))
+	silent execute "!python3 -m venv" s:data_dir . '/pynvim'
+	execute "!" . s:data_dir . '/pynvim/bin/' . "pip install pynvim"
 endif
 " }}}
 " {{{ Cond
 function! Cond(cond, ...)
-  let opts = get(a:000, 0, {})
-  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+	let opts = get(a:000, 0, {})
+	return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
+function! And(...)
+	let new_cond = {}
+	for cond in a:000
+		call extend(new_cond, cond)
+	endfor
+	return new_cond
 endfunction
 " }}}
+let PlugGoneovim = Cond(exists('goneovim'))
+let PlugNoGoneovim = Cond(!exists('goneovim'))
 
-call plug#begin(data_dir . '/plugged')
+call plug#begin(s:data_dir . '/plugged')
 
 " Registers vim-plug as a plugin (for help)
 Plug 'junegunn/vim-plug'
@@ -46,7 +57,8 @@ Plug 'tpope/vim-sensible'
 " vim-polyglot: No more language plugin to install
 Plug 'sheerun/vim-polyglot'
 
-Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdcommenter', { 'on': '<Plug>NERDCommenterToggle' }
+"Plug 'tpope/vim-commentary'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -57,11 +69,19 @@ Plug 'ryanoasis/vim-devicons'
 
 "Plug 'mhinz/vim-startify'
 
-Plug 'akiyosi/gonvim-fuzzy', Cond(exists('goneovim'))
-"Plug 'nathanaelkane/vim-indent-guides', Cond(!exists('goneovim'))
-Plug 'Yggdroot/indentLine', Cond(!exists('goneovim') && has('conceal'))
+Plug 'akiyosi/gonvim-fuzzy', PlugGoneovim
+Plug 'junegunn/fzf', PlugNoGoneovim
 
-Plug 'preservim/nerdtree', Cond(!exists('goneovim'))
+Plug 'Yggdroot/indentLine', And(PlugNoGoneovim, Cond(has('conceal')))
+"Plug 'nathanaelkane/vim-indent-guides', PlugNoGoneovim
+
+Plug 'wincent/terminus', And(PlugNoGoneovim, Cond(!has('gui')))
+
+Plug 'preservim/nerdtree', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
+"Plug 'Xuyuanp/nerdtree-git-plugin', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
+
+"Plug 'airblade/vim-gitgutter'
 
 " {{{ deoplete
 "" deoplete.nvim - completion engine

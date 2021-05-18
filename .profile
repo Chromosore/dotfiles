@@ -50,7 +50,7 @@ export PROJ="/home/raphael/Projects"
 export COW="/usr/share/cowsay/cows"
 export CONF="$HOME/.config"
 export SCHOOL="/media/shared/Ecole"
-export EDITOR=$(which nvim)
+export EDITOR=$(which vim)
 export EMAIL="raphi@babinux.com"
 source "$HOME/.cargo/env"
 
