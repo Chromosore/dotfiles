@@ -51,8 +51,8 @@ colorscheme solarized
 set list
 set listchars=tab:\ \ 
 
-if exists("goneovim")
-	set guifont=Menlo
+if has("gui_running") || exists("goneovim")
+	set guifont=Menlo\ Nerd\ Font\ 12
 endif
 
 if !exists("goneovim")
@@ -90,6 +90,21 @@ set scrolloff=5
 "let g:airline_left_sep = ""
 "let g:airline_right_sep = ""
 
+" Window size
+if has('gui_running') || exists('goneovim')
+	set lines=42
+	set columns=132
+endif
+
+" Disable toolbar in gui
+set guioptions-=T
+
+" Remove scrollbars in gui
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
 set laststatus=2 " Always display statusline
 let &statusline = "%<%f %h%m%r%=%-14.(%y %l,%c%V%) %P"
 
@@ -104,7 +119,11 @@ set hlsearch
 set splitbelow
 set splitright
 set fillchars+=vert:│
-highlight VertSplit ctermfg=fg ctermbg=bg guifg=fg guibg=bg
+if has("gui_running")
+	highlight VertSplit guifg=fg guibg=bg
+else
+	highlight VertSplit ctermfg=fg ctermbg=bg
+endif
 
 " Faster Macros
 set lazyredraw
