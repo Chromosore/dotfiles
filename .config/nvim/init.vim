@@ -52,7 +52,11 @@ set list
 set listchars=tab:\ \ 
 
 if has("gui_running") || exists("goneovim")
-	set guifont=Menlo\ Nerd\ Font\ 12
+	if has('gui_gtk')
+		set guifont=Menlo\ Nerd\ Font\ 11
+	elseif has('gui_macvim')
+		set guifont=Menlo\ Nerd\ Font:h11
+	endif
 endif
 
 if !exists("goneovim")
