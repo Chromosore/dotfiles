@@ -1,7 +1,3 @@
-ccbegin confed
-
-ccdispatch -x
-ccdispatch -a '(for dir in $CONFED_PATH; ls $dir; end)'
-ccdispatch -a '(for file in $CONFED_SPECIAL; echo (basename $file); end)'
-
-ccend
+complete -c confed -x
+complete -c confed -a '(for dir in $CONFED_PATH; ls $dir; end)'
+complete -c confed -a '(for file in $CONFED_SPECIAL; echo (basename $file); end)'

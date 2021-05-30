@@ -1,11 +1,14 @@
 function confed
+	set -q EDITOR
+	or set -l EDITOR vi
+
 	argparse 'a/create' 'i/interactive' 's/search' -- $argv
 
 	if test (count $argv) -eq 0
 		if set -q _flag_search
 			echo $CONF/fish/config.fish
 		else
-			sensible-editor $CONF/fish/config.fish
+			$EDITOR $CONF/fish/config.fish
 		end
 		return 0
 	end
@@ -74,6 +77,6 @@ function confed
 	if set -q _flag_search
 		echo $dir/$file
 	else
-		sensible-editor $dir/$file
+		$EDITOR $dir/$file
 	end
 end
