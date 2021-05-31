@@ -14,6 +14,6 @@ end
 # (I might be its creator)
 # (but whatever)
 set CONFED_PATH $CONF/fish/functions $CONF/fish/completions
-set -a CONFED_PATH $CONF/nvim
+set -a CONFED_PATH $HOME/.vim
 
 set CONFED_SPECIAL $HOME/.profile $HOME/.bashrc
