@@ -9,7 +9,30 @@ execute 'source' s:config_dir . '/plugins.vim'
 " {{{ Theme
 "     =====
 
-if !empty(glob(s:config_dir . '/background.vim'))
+function! s:SetBackground(color)
+	if g:colors_name == 'solarized'
+		let &background = a:color
+	elseif g:colors_name =~ '^OceanicNext'
+		let l:theme = a:color == 'light' ? 'Light' : ''
+		let l:colorscheme = 'OceanicNext' . l:theme
+		execute 'colorscheme' l:colorscheme
+	endif
+endfunction
+
+if has('gui_macvim')
+	function! s:MacVimSetBackground()
+		if v:os_appearance == 0
+			call s:SetBackground('light')
+		else
+			call s:SetBackground('dark')
+		endif
+	endfunction
+
+	augroup MacVimThemeChange
+		autocmd!
+		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
+	augroup END
+elseif !empty(glob(s:config_dir . '/background.vim'))
 	execute 'source' s:config_dir . '/background.vim'
 endif
 
