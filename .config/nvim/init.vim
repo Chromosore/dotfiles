@@ -176,10 +176,6 @@ imap fd <esc>
 vmap fd <esc>
 omap fd <esc>
 
-"" j/k will move virtual lines (lines that wrap)
-"noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-"noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
 " Stay in visual mode when you indent
 vmap < <gv
 vmap > >gv
@@ -199,12 +195,6 @@ imap <right> <nop>
 nmap <C-c> "+yy
 vmap <C-c> "+y
 nmap <C-v> "+p
-
-"" Move between splits
-"nmap <C-J> <C-W><C-j>
-"nmap <C-K> <C-W><C-k>
-"nmap <C-L> <C-W><C-l>
-"nmap <C-H> <C-W><C-h>
 
 " }}}
 
@@ -242,10 +232,6 @@ let netrw_ghregex = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide .= ',' . netrw_ghregex
 let g:netrw_list_hide .= ',' . &wildignore
-
-" If another buffer tries to replace netrw, put it in the other window, and bring back netrw.
-autocmd BufEnter * if bufname('#') == 'NetrwTreeListing' && bufname('%') != 'NetrwTreeListing' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 " }}}
 
 " {{{ NerdTree
@@ -254,9 +240,6 @@ autocmd BufEnter * if bufname('#') == 'NetrwTreeListing' && bufname('%') != 'Net
 let NERDTreeMinimalUI = 1
 let NERDTreeBookmarksFile = s:config_dir . '/NERDTreeBookmarks'
 let g:NERDTreeGitStatusUseNerdFonts = 1
-
-" Open the existing NERDTree on each new tab.
-"autocmd BufWinEnter * silent NERDTreeMirror
 
 " Close vim if NERDTree is the only open buffer
 autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() |
