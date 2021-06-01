@@ -1,11 +1,11 @@
-function __raphi_complete_with --description 'Complete using all available commands'
+function __raphi_complete_with --description 'Complete using all available with handlers'
 	set cmds (commandline -poc)
 	set command (commandline -p)
 	set -e cmds[1]
 
 	if test (count $cmds) -eq 0
 		# Complete handler
-		functions -n | grep '^with_handler_' | string replace 'with_handler_' ''
+		complete -C 'with_handler_' | string match -r '(?<=with_handler_)\S+(?=_(?:before|after))'
 		return
 	end
 
