@@ -202,6 +202,7 @@ nmap <C-v> "+p
 " {{{ Misc
 "     ====
 set modeline
+set modelines=5
 set ttimeoutlen=100
 
 " LEADER KEY !!!
