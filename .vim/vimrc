@@ -68,6 +68,11 @@ function! s:SetBackground(color)
 	endif
 endfunction
 
+augroup ColorSchemeThemeChange
+	autocmd!
+	autocmd ColorScheme * call s:SetBackground(g:theme)
+augroup END
+
 if has('gui_macvim')
 	function! s:MacVimSetBackground()
 		if v:os_appearance == 0
