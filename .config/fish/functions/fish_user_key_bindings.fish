@@ -26,12 +26,15 @@ end
 function fish_user_key_bindings
 	bind -M insert ! bind_bang
 	bind -M insert '$' bind_dollar
-	bind -M insert fd 'set fish_bind_mode default'
 
-	## Vim - Semi Hard Mode
-	## no arrow key navigation
-	#for key in left right up down
-	#	bind --preset -k $key :
-	#	bind -M insert -k $key "commandline -i $key"
-	#end
+	bind -M insert fd 'set fish_bind_mode default'
+	bind -M visual fd 'set fish_bind_mode default'
+	bind -M replace fd 'set fish_bind_mode default'
+	bind -M replace_one fd 'set fish_bind_mode default'
+
+	# Vim - Semi Hard Mode
+	# no arrow key navigation
+	for key in A B C D
+		bind -M insert \e\[$key 'true'
+	end
 end
