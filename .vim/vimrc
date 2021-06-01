@@ -9,7 +9,35 @@ execute 'source' s:config_dir . '/plugins.vim'
 " {{{ Theme
 "     =====
 
+" Smol fix in solarized
+if has('termguicolors')
+	augroup SolarizedTermguicolorsAuCmd
+		autocmd!
+
+		function SetTermGuiColors()
+			if g:colors_name == "solarized"
+				set notermguicolors
+			else
+				set termguicolors
+			endif
+		endfunction
+		autocmd ColorScheme * call SetTermGuiColors()
+	augroup END
+endif
+
+if has('termguicolors')
+	set termguicolors
+endif
+
+"let g:lightline = { 'colorscheme': 'challenger_deep' }
+let g:badwolf_darkgutter=1
+"let g:solarized_termcolors=256
+
+colorscheme solarized
+
 function! s:SetBackground(color)
+	let g:theme = a:color
+
 	if g:colors_name == 'solarized'
 		let &background = a:color
 	elseif g:colors_name =~ '^OceanicNext'
@@ -37,35 +65,8 @@ elseif !empty(glob(s:config_dir . '/background.vim'))
 endif
 
 if $TERM == "linux"
-	set background=dark
+	call s:SetBackground('dark')
 endif
-
-" Smol fix in solarized
-"if has('termguicolors')
-	"if ! exists("g:colo_aucmd")
-		"let g:colo_aucmd = 1
-
-		"function SetTermGuiColors()
-			"if g:colors_name == "solarized"
-				"set notermguicolors
-			"else
-				"set termguicolors
-			"endif
-		"endfunction
-
-		"autocmd ColorScheme * call SetTermGuiColors()
-	"end
-"endif
-
-if has('termguicolors')
-	set termguicolors
-endif
-
-"let g:lightline = { 'colorscheme': 'challenger_deep' }
-let g:badwolf_darkgutter=1
-"let g:solarized_termcolors=256
-
-colorscheme solarized
 
 " }}}
 
