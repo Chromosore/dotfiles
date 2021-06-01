@@ -9,41 +9,62 @@ execute 'source' s:config_dir . '/plugins.vim'
 " {{{ Theme
 "     =====
 
-" Smol fix in solarized
+" Small fix in solarized
 if has('termguicolors')
 	augroup SolarizedTermguicolorsAuCmd
 		autocmd!
 
-		function SetTermGuiColors()
+		function s:SetTermGuiColors()
 			if g:colors_name == "solarized"
 				set notermguicolors
 			else
 				set termguicolors
 			endif
 		endfunction
-		autocmd ColorScheme * call SetTermGuiColors()
+		autocmd ColorScheme * call s:SetTermGuiColors()
 	augroup END
-endif
-
-if has('termguicolors')
-	set termguicolors
 endif
 
 "let g:lightline = { 'colorscheme': 'challenger_deep' }
 let g:badwolf_darkgutter=1
-"let g:solarized_termcolors=256
 
 colorscheme solarized
+
+
+let s:reversible_themes = [
+	\ 'solarized',
+	\ 'gruvbox',
+	\ 'snow',
+	\ ]
+let s:dark_to_light_theme = {
+	\ "OceanicNext": "OceanicNextLight",
+	\ }
+" {{{ Light & Dark themes setup
+let s:light_to_dark_theme = {}
+for s:key in keys(s:dark_to_light_theme)
+	let s:value = s:dark_to_light_theme[s:key]
+	let s:light_to_dark_theme[s:value] = s:key
+endfor
+" }}}
 
 function! s:SetBackground(color)
 	let g:theme = a:color
 
-	if g:colors_name == 'solarized'
+	if index(s:reversible_themes, g:colors_name) >= 0
 		let &background = a:color
-	elseif g:colors_name =~ '^OceanicNext'
-		let l:theme = a:color == 'light' ? 'Light' : ''
-		let l:colorscheme = 'OceanicNext' . l:theme
-		execute 'colorscheme' l:colorscheme
+	else
+		if a:color == 'dark'
+			let l:inverse_themes = s:light_to_dark_theme
+		else
+			let l:inverse_themes = s:dark_to_light_theme
+		endif
+
+		for l:theme in keys(l:inverse_themes)
+			if l:theme == g:colors_name
+				execute 'colorscheme' l:inverse_themes[l:theme]
+				break
+			endif
+		endfor
 	endif
 endfunction
 
@@ -62,6 +83,7 @@ if has('gui_macvim')
 	augroup END
 elseif !empty(glob(s:config_dir . '/background.vim'))
 	execute 'source' s:config_dir . '/background.vim'
+	call s:SetBackground(g:theme)
 endif
 
 if $TERM == "linux"
