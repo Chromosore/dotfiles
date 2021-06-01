@@ -1,8 +1,16 @@
 function confed
+	argparse 'a/create' 'i/interactive' 's/search' -- $argv
+
 	set -q EDITOR
 	or set -l EDITOR vi
 
-	argparse 'a/create' 'i/interactive' 's/search' -- $argv
+	set -q XDG_CONFIG_HOME
+	and set -l CONF $XDG_CONFIG_HOME
+	or set -l CONF $HOME/.config
+
+	if test "$CONFED_PICK_FIRST" != 1
+		set _flag_interactive ''
+	end
 
 	if test (count $argv) -eq 0
 		if set -q _flag_search
