@@ -11,7 +11,11 @@ function fish_mode_prompt --description 'Afficher le mode actuel'
 		return 0
 	end
 
-	set -l curpos (getCurPos | string split ";")
+	type -q 'getCurPos'
+	and set -l cursorPos 'getCurPos'
+	or set -l cursorPos 'printf' '0;0'
+
+	set -l curpos ($cursorPos | string split ";")
 	test "$curpos" = ""
 	and set curpos[1] 0
 
@@ -48,6 +52,15 @@ function fish_mode_prompt --description 'Afficher le mode actuel'
 end
 
 function fish_clear_mode_prompt --on-event fish_preexec
+	#type -q 'getCurPos'
+	#and set -l cursorPos 'getCurPos'
+	#or set -l cursorPos 'printf' '0;0'
+
+	#set -l curpos ($cursorPos | string split ";")
+
+	#test $curpos[1] -ne $LINES
+	#and return
+
 	show "\x1b[s"
 
 	show "\x1b[$LINES;0H"
