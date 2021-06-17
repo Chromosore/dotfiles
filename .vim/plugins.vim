@@ -42,8 +42,6 @@ function! And(...)
 	return new_cond
 endfunction
 " }}}
-let PlugGoneovim = Cond(exists('goneovim'))
-let PlugNoGoneovim = Cond(!exists('goneovim'))
 
 call plug#begin(s:data_dir . '/plugged')
 
@@ -69,17 +67,16 @@ Plug 'ryanoasis/vim-devicons'
 
 "Plug 'mhinz/vim-startify'
 
-Plug 'akiyosi/gonvim-fuzzy', PlugGoneovim
-Plug 'junegunn/fzf', PlugNoGoneovim
+"Plug 'junegunn/fzf'
 
-Plug 'Yggdroot/indentLine', And(PlugNoGoneovim, Cond(has('conceal')))
-"Plug 'nathanaelkane/vim-indent-guides', PlugNoGoneovim
+Plug 'Yggdroot/indentLine', Cond(has('conceal'))
+"Plug 'nathanaelkane/vim-indent-guides'
 
-Plug 'wincent/terminus', And(PlugNoGoneovim, Cond(!has('gui')))
+Plug 'wincent/terminus', Cond(!has('gui'))
 
-Plug 'preservim/nerdtree', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
-"Plug 'Xuyuanp/nerdtree-git-plugin', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', And(PlugNoGoneovim, { 'on': 'NERDTreeToggle' })
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 
 "Plug 'airblade/vim-gitgutter'
 
