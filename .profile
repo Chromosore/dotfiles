@@ -36,22 +36,16 @@ if [ -z "$XDG_DATA_HOME" ] ; then
     export XDG_DATA_HOME=$HOME/.local/share
 fi
 
-#PATH="$PATH:/usr/local/texlive/2020/bin/x86_64-linux"
-#export MANPATH="$MANPATH:/usr/local/texlive/2020/texmf-dist/doc/man"
-#export INFOPATH="$INFOPATH:/usr/local/texlive/2020/texmf-dist/doc/info"
-#PYTHONPATH="$PYTHONPATH:$HOME/.local/bin"
-#export PYTHONPATH="$PYTHONPATH:$HOME/Projects/Python"
-
-#PATH="$PATH:/home/raphael/.swift/usr/bin"
-PATH="$HOME/go/bin:$PATH"
 PATH=".:$PATH"
 
 export PROJ="/home/raphael/Projects"
-export COW="/usr/share/cowsay/cows"
 export CONF="$HOME/.config"
 export SCHOOL="/media/shared/Ecole"
 export EDITOR=$(which vim)
 export EMAIL="raphi@babinux.com"
-source "$HOME/.cargo/env"
 
+export GOPATH="$HOME/.go"
+PATH="$GOPATH/bin:$PATH"
+
+source "$HOME/.cargo/env"
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
