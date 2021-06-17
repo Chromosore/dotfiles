@@ -20,30 +20,18 @@ execute 'source' s:config_dir .. '/plugins.vim'
 " {{{ Theme
 "     =====
 
-" Small fix in solarized
-if has('termguicolors')
-	augroup SolarizedTermguicolorsAuCmd
-		autocmd!
-
-		function s:SetTermGuiColors()
-			if g:colors_name == "solarized"
-				set notermguicolors
-			else
-				set termguicolors
-			endif
-		endfunction
-		autocmd ColorScheme * call s:SetTermGuiColors()
-	augroup END
-endif
-
 "let g:lightline = { 'colorscheme': 'challenger_deep' }
 let g:badwolf_darkgutter=1
 
-colorscheme solarized
+if has('termguicolors')
+	set termguicolors
+endif
+
+let g:colors_name = 'solarized8'
 
 
 let s:reversible_themes = [
-	\ 'solarized',
+	\ 'solarized8',
 	\ 'gruvbox',
 	\ 'snow',
 	\ ]
@@ -58,11 +46,14 @@ for s:key in keys(s:dark_to_light_theme)
 endfor
 " }}}
 
-function! s:SetBackground(color)
+function! SetBackground(color)
 	let g:theme = a:color
 
 	if index(s:reversible_themes, g:colors_name) >= 0
-		let &background = a:color
+		if &background != a:color
+			let &background = a:color
+			execute 'colorscheme' g:colors_name
+		endif
 	else
 		if a:color == 'dark'
 			let l:inverse_themes = s:light_to_dark_theme
@@ -70,26 +61,19 @@ function! s:SetBackground(color)
 			let l:inverse_themes = s:dark_to_light_theme
 		endif
 
-		for l:theme in keys(l:inverse_themes)
-			if l:theme == g:colors_name
-				execute 'colorscheme' l:inverse_themes[l:theme]
-				break
-			endif
-		endfor
+		let l:themes = keys(l:inverse_themes)
+		if index(l:themes, g:colors_name) >= 0
+			execute 'colorscheme' l:inverse_themes[g:colors_name]
+		endif
 	endif
 endfunction
-
-augroup ColorSchemeThemeChange
-	autocmd!
-	autocmd ColorScheme * call s:SetBackground(g:theme)
-augroup END
 
 if has('gui_macvim')
 	function! s:MacVimSetBackground()
 		if v:os_appearance == 0
-			call s:SetBackground('light')
+			call SetBackground('light')
 		else
-			call s:SetBackground('dark')
+			call SetBackground('dark')
 		endif
 	endfunction
 
@@ -97,13 +81,14 @@ if has('gui_macvim')
 		autocmd!
 		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
 	augroup END
-	call s:SetBackground(g:theme)
 elseif !empty(glob(s:data_dir .. '/background.vim'))
 	execute 'source' s:data_dir .. '/background.vim'
+else
+	let g:theme = 'light'
 endif
 
-if $TERM == "linux"
-	call s:SetBackground('dark')
+if &term == "linux"
+	call SetBackground('dark')
 endif
 
 " }}}
@@ -345,3 +330,6 @@ endif
 if !empty(glob(s:config_dir .. '/local.vim'))
 	execute "source" s:config_dir .. '/local.vim'
 endif
+
+let &background = g:theme == 'light' ? 'dark' : 'light'
+call SetBackground(g:theme)
