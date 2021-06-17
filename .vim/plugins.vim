@@ -1,16 +1,7 @@
+" vim: foldmethod=marker ts=2
 " {{{ Plug Autocmds
 "     =============
-" vim: foldmethod=marker ts=2
-
-" install vim-plug
-let s:config_dir = has('neovim') ? stdpath('config') : expand('~/.vim')
-let s:data_dir = has('nvim') ? stdpath('data') : '~/.vim'
-let s:autoload_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(s:autoload_dir . '/autoload/plug.vim'))
-	echo 'Installing Vim-Plug'
-	execute "!curl" "-fLo" s:autoload_dir . '/autoload/plug.vim' "--create-dirs"
-	\ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-endif
+let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 
 " Run PlugInstall if there are missing plugins
 augroup VimPlugAuto
@@ -19,16 +10,10 @@ augroup VimPlugAuto
 		\| PlugInstall --sync | source $MYVIMRC
 	\| endif | autocmd! VimPlugAuto
 augroup END
-" }}}
-" {{{ Python Host
-"     ===========
-" Make sure the python host is installed
-if empty(glob(s:data_dir . '/pynvim'))
-	silent execute "!python3 -m venv" s:data_dir . '/pynvim'
-	execute "!" . s:data_dir . '/pynvim/bin/' . "pip install pynvim"
-endif
+
 " }}}
 " {{{ Cond
+
 function! Cond(cond, ...)
 	let opts = get(a:000, 0, {})
 	return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })

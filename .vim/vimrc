@@ -2,9 +2,17 @@
 if !has('nvim')
 	scriptversion 4
 endif
+
+" setup {{{
 " {{{ Compat
 let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 let s:data_dir =   has('nvim') ? stdpath('data')   : expand('~/.vim')
+" }}}
+
+if empty(glob(s:data_dir .. '/setup_done'))
+	execute 'source' s:config_dir .. '/setup.vim'
+	call writefile([], s:data_dir .. '/setup_done')
+endif
 " }}}
 
 execute 'source' s:config_dir .. '/plugins.vim'
@@ -254,6 +262,7 @@ if !has('nvim')
 	let &viminfofile = s:data_dir .. '/viminfo'
 end
 
+let &directory = s:data_dir .. '/swap//'
 " {{{ NetRW
 let g:netrw_banner = 0			" No annoying banner
 let g:netrw_browse_split = 4	" Open in prior window
