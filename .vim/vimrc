@@ -192,8 +192,24 @@ if exists("goneovim")
 	map <C-p> :GonvimFuzzyFiles<CR>
 	map <C-n> :GonvimFilerOpen<CR>
 else
-	map <C-n> :NERDTreeToggle<CR>
-	map <C-b> :NERDTreeFocus<CR>
+	function! LoadNerdTreeFocusAndToggle()
+		if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
+			call plug#load('nerdtree')
+		endif
+
+		nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
+		call NERDTreeFocusAndToggle()
+	endfunction
+
+	function! NERDTreeFocusAndToggle()
+		if g:NERDTree.IsOpen() && !exists('b:NERDTree')
+			call g:NERDTree.CursorToTreeWin(0)
+		else
+			call g:NERDTreeCreator.ToggleTabTree('')
+		endif
+	endfunction
+
+	nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
 endif
 
 map ++ <plug>NERDCommenterToggle
@@ -281,17 +297,18 @@ function BringBackNerdTree()
 	if bufname('%') =~ 'NERD_tree_\d\+' | return | endif
 	if winnr('$') <= 1 | return | endif
 
-	let new_buf = bufnr()
-	buffer #
-	if !exists('b:NERDTree') | return | endif
+	let l:save_hidden = &hidden
+	let &hidden = 1
 
-	if b:NERDTree.isWinTree()
-		buffer #
-		return
+	let l:new_buf = bufnr()
+	buffer #
+
+	if exists('b:NERDTree') && !b:NERDTree.isWinTree()
+		execute "normal! \<C-W>w"
 	endif
 
-	execute "normal! \<C-W>w"
-	execute 'buffer' . new_buf
+	execute 'buffer' . l:new_buf
+	let &hidden = l:save_hidden
 endfunction
 " }}}
 autocmd BufEnter * call BringBackNerdTree()
