@@ -1,10 +1,13 @@
 " vim: foldmethod=marker ts=2 sw=2
+if !has('nvim')
+	scriptversion 4
+endif
 " {{{ Compat
 let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 let s:data_dir =   has('nvim') ? stdpath('data')   : expand('~/.vim')
 " }}}
 
-execute 'source' s:config_dir . '/plugins.vim'
+execute 'source' s:config_dir .. '/plugins.vim'
 
 " {{{ Theme
 "     =====
@@ -86,9 +89,9 @@ if has('gui_macvim')
 		autocmd!
 		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
 	augroup END
-elseif !empty(glob(s:config_dir . '/background.vim'))
-	execute 'source' s:config_dir . '/background.vim'
 	call s:SetBackground(g:theme)
+elseif !empty(glob(s:data_dir .. '/background.vim'))
+	execute 'source' s:data_dir .. '/background.vim'
 endif
 
 if $TERM == "linux"
@@ -245,10 +248,10 @@ let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 let g:deoplete#enable_at_startup = 1
 
-let g:python3_host_prog = s:data_dir . '/pynvim/bin/python3'
+let g:python3_host_prog = s:data_dir .. '/pynvim/bin/python3'
 
 if !has('nvim')
-	execute "set viminfofile=" . s:data_dir . '/viminfo'
+	let &viminfofile = s:data_dir .. '/viminfo'
 end
 
 " {{{ NetRW
@@ -259,15 +262,15 @@ let g:netrw_liststyle = 3		" Tree view
 let g:netrw_winsize = 25		" Width: 25% of the page
 let netrw_ghregex = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_list_hide = netrw_gitignore#Hide()
-let g:netrw_list_hide .= ',' . netrw_ghregex
-let g:netrw_list_hide .= ',' . &wildignore
+let g:netrw_list_hide ..= ',' .. netrw_ghregex
+let g:netrw_list_hide ..= ',' .. &wildignore
 " }}}
 
 " {{{ NerdTree
 "let g:NERDTreeDirArrowExpandable = ''
 "let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeMinimalUI = 1
-let NERDTreeBookmarksFile = s:config_dir . '/NERDTreeBookmarks'
+let NERDTreeBookmarksFile = s:config_dir .. '/NERDTreeBookmarks'
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " Close vim if NERDTree is the only open buffer
@@ -313,10 +316,10 @@ autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
 
 " Rust tags
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-"autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+"autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" .. expand('%:p:h') .. "&" | redraw!
 
 if !exists(':Confed')
-	command -nargs=1 Confed execute 'e' system('confed -s <args>')
+	command -nargs=1 Confed execute 'e' s:config_dir .. '/<args>'
 endif
 
 if !exists(":DiffOrig")
@@ -326,6 +329,6 @@ endif
 
 " }}}
 
-if !empty(glob(s:config_dir . '/local.vim'))
-	execute "source" s:config_dir . '/local.vim'
+if !empty(glob(s:config_dir .. '/local.vim'))
+	execute "source" s:config_dir .. '/local.vim'
 endif
