@@ -27,11 +27,12 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-let g:colors_name = 'solarized8'
+colorscheme solarized8
 
 
 let s:reversible_themes = [
 	\ 'solarized8',
+	\ 'solarized8_flat',
 	\ 'gruvbox',
 	\ 'snow',
 	\ ]
@@ -50,10 +51,7 @@ function! SetBackground(color)
 	let g:theme = a:color
 
 	if index(s:reversible_themes, g:colors_name) >= 0
-		if &background != a:color
-			let &background = a:color
-			execute 'colorscheme' g:colors_name
-		endif
+		let &background = a:color
 	else
 		if a:color == 'dark'
 			let l:inverse_themes = s:light_to_dark_theme
@@ -68,6 +66,7 @@ function! SetBackground(color)
 	endif
 endfunction
 
+
 if has('gui_macvim')
 	function! s:MacVimSetBackground()
 		if v:os_appearance == 0
@@ -81,14 +80,18 @@ if has('gui_macvim')
 		autocmd!
 		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
 	augroup END
-elseif !empty(glob(s:data_dir .. '/background.vim'))
+else
+	autocmd VimEnter * call SetBackground(g:theme)
+endif
+	
+if !empty(glob(s:data_dir .. '/background.vim'))
 	execute 'source' s:data_dir .. '/background.vim'
 else
 	let g:theme = 'light'
 endif
 
 if &term == "linux"
-	call SetBackground('dark')
+	let g:theme = 'dark'
 endif
 
 " }}}
@@ -347,6 +350,3 @@ endif
 if !empty(glob(s:config_dir .. '/local.vim'))
 	execute "source" s:config_dir .. '/local.vim'
 endif
-
-let &background = g:theme == 'light' ? 'dark' : 'light'
-call SetBackground(g:theme)
