@@ -2,7 +2,7 @@
 # ----------
 #
 # A file to set universal variables,
-# abbrevations, vi like bindings
+# abbreviations, vi like bindings
 # and more for the first use
 
 fish_vi_key_bindings
@@ -58,7 +58,7 @@ set -U fish_color_search_match 'bryellow'  '--background=brblack'
 set -U fish_color_selection 'white'  '--bold'  '--background=brblack'
 
 
-### ABBREVATIONS
+### ABBREVIATIONS
 abbr -a -U -- ports 'netstat -tuplan'
 abbr -a -U -- pym 'python3 -m'
 
