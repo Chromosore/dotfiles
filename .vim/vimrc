@@ -35,9 +35,10 @@ let s:reversible_themes = [
 	\ 'solarized8_flat',
 	\ 'gruvbox',
 	\ 'snow',
+	\ 'one',
 	\ ]
 let s:dark_to_light_theme = {
-	\ "OceanicNext": "OceanicNextLight",
+	\ 'OceanicNext': 'OceanicNextLight',
 	\ }
 " {{{ Light & Dark themes setup
 let s:light_to_dark_theme = {}
@@ -80,15 +81,9 @@ if has('gui_macvim')
 		autocmd!
 		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
 	augroup END
-else
-	autocmd VimEnter * call SetBackground(g:theme)
 endif
 	
-if !empty(glob(s:data_dir .. '/background.vim'))
-	execute 'source' s:data_dir .. '/background.vim'
-else
-	let g:theme = 'light'
-endif
+let g:theme = 'light'
 
 if &term == "linux"
 	let g:theme = 'dark'
@@ -335,4 +330,8 @@ endif
 
 if !empty(glob(s:config_dir .. '/local.vim'))
 	execute "source" s:config_dir .. '/local.vim'
+endif
+
+if !has('gui_macvim')
+	call SetBackground(g:theme)
 endif
