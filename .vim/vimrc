@@ -27,7 +27,7 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-colorscheme solarized8
+colorscheme solarized8_flat
 
 
 let s:reversible_themes = [
@@ -98,9 +98,9 @@ let &listchars = 'tab:  '
 
 if has("gui_running")
 	if has('gui_gtk')
-		set guifont=Menlo\ Nerd\ Font\ 11
+		set guifont=Menlo\ Nerd\ Font\ 12
 	elseif has('gui_macvim')
-		set guifont=Menlo\ Nerd\ Font:h11
+		set guifont=Menlo\ Nerd\ Font:h12
 	endif
 endif
 
@@ -159,24 +159,28 @@ set guioptions-=l
 set guioptions-=L
 
 set laststatus=2 " Always display statusline
-let &statusline = "%<%f %h%m%r%=%-14.(%y %l,%c%V%) %P"
+let &statusline = "%<%f %h%m%r%=%-14.(%l/%L :%c%V%) %y %P"
 
-" Show Non Breakable Spaces
+" Whitespaces
 set listchars+=nbsp:█
 set tabstop=4
 
 set number
+if has('patch-8.1.1564') || has('nvim-0.5.0')
+	set signcolumn=number
+end
+
+" Search
 set hlsearch
+set incsearch
+set shortmess-=S
+
+set showcmd
 
 " Panes split
 set splitbelow
 set splitright
 set fillchars+=vert:│
-if has("gui_running")
-	highlight VertSplit guifg=fg guibg=bg
-else
-	highlight VertSplit ctermfg=fg ctermbg=bg
-endif
 
 " Faster Macros
 set lazyredraw
