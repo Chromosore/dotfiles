@@ -99,9 +99,9 @@ endif
 " {{{ UI
 "     ==
 set list
-set listchars=tab:\ \ 
+let &listchars = 'tab:  '
 
-if has("gui_running") || exists("goneovim")
+if has("gui_running")
 	if has('gui_gtk')
 		set guifont=Menlo\ Nerd\ Font\ 11
 	elseif has('gui_macvim')
@@ -109,23 +109,23 @@ if has("gui_running") || exists("goneovim")
 	endif
 endif
 
-if !exists("goneovim")
-	" indent guides
-	set listchars+=tab:\⎸\ 
-	let g:indentLine_char = '⎸'
-	"let g:indentLine_setColors = 0
+" indent guides
+let &listchars ..= ',tab:⎸ '
+let g:indentLine_char = '⎸'
+"let g:indentLine_setColors = 0
 
-	augroup ConcealHighlight
-		autocmd!
-		if has('nvim')
-			highlight! link Whitespace Conceal
-			autocmd ColorScheme * highlight! link Whitespace Conceal
-		else
-			highlight! link SpecialKey Conceal
-			autocmd ColorScheme * highlight! link SpecialKey Conceal
-		endif
-	augroup END
-endif
+augroup Highlights
+	autocmd!
+	if has('nvim')
+		highlight! link Whitespace Conceal
+		autocmd ColorScheme * highlight! link Whitespace Conceal
+		highlight! link Whitespace Conceal
+	else
+		highlight! link SpecialKey Conceal
+		autocmd ColorScheme * highlight! link SpecialKey Conceal
+		highlight! link SpecialKey Conceal
+	endif
+augroup END
 
 
 " Replaced by terminus
@@ -149,7 +149,7 @@ set scrolloff=5
 "let g:airline_right_sep = ""
 
 " Window size
-if has('gui_running') || exists('goneovim')
+if has('gui_running')
 	set lines=42
 	set columns=132
 endif
@@ -191,29 +191,24 @@ set lazyredraw
 " {{{ Bindings
 "     ========
 
-if exists("goneovim")
-	map <C-p> :GonvimFuzzyFiles<CR>
-	map <C-n> :GonvimFilerOpen<CR>
-else
-	function! LoadNerdTreeFocusAndToggle()
-		if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
-			call plug#load('nerdtree')
-		endif
+function! LoadNerdTreeFocusAndToggle()
+	if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
+		call plug#load('nerdtree')
+	endif
 
-		nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
-		call NERDTreeFocusAndToggle()
-	endfunction
+	nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
+	call NERDTreeFocusAndToggle()
+endfunction
 
-	function! NERDTreeFocusAndToggle()
-		if g:NERDTree.IsOpen() && !exists('b:NERDTree')
-			call g:NERDTree.CursorToTreeWin(0)
-		else
-			call g:NERDTreeCreator.ToggleTabTree('')
-		endif
-	endfunction
+function! NERDTreeFocusAndToggle()
+	if g:NERDTree.IsOpen() && !exists('b:NERDTree')
+		call g:NERDTree.CursorToTreeWin(0)
+	else
+		call g:NERDTreeCreator.ToggleTabTree('')
+	endif
+endfunction
 
-	nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
-endif
+nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
 
 map ++ <plug>NERDCommenterToggle
 "nmap ++ <plug>CommentaryLine
