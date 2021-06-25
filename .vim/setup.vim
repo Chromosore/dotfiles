@@ -13,7 +13,7 @@ if empty(glob(s:autoload_dir .. '/plug.vim'))
 endif
 
 " Make sure the python host is installed
-if empty(glob(s:data_dir .. '/pynvim'))
+if has('nvim') && empty(glob(s:data_dir .. '/pynvim'))
 	silent execute "!python3 -m venv" s:data_dir .. '/pynvim'
 	execute "!" .. s:data_dir .. '/pynvim/bin/' .. "pip install pynvim"
 endif
