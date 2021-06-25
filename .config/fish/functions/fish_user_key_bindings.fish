@@ -1,5 +1,3 @@
-fzf_key_bindings
-
 function bind_bang
 	switch (commandline -t)[-1]
 		case "!"
@@ -24,6 +22,8 @@ function bind_dollar
 end
 
 function fish_user_key_bindings
+	fzf_key_bindings
+
 	bind -M insert ! bind_bang
 	bind -M insert '$' bind_dollar
 
