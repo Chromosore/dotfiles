@@ -10,6 +10,9 @@
 [submodule "indentLine"]
 	path = .vim/pack/bundle/opt/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+[submodule "vim-indent-guides"]
+	path = .vim/pack/bundle/opt/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "terminus"]
 	path = .vim/pack/bundle/opt/terminus
 	url = https://github.com/wincent/terminus.git
@@ -19,6 +22,7 @@
 [submodule "vim-nerdtree-syntax-highlight"]
 	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+
 [submodule "language/vim-polyglot"]
 	path = .vim/pack/languages/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
@@ -28,6 +32,7 @@
 [submodule "language/vim-quicktask"]
 	path = .vim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
+
 [submodule "theme/badwolf"]
 	path = .vim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git
@@ -61,3 +66,6 @@
 [submodule "theme/vim-solarized8"]
 	path = .vim/pack/themes/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule ".vim/pack/bundle/opt/vim-indent-guides"]
+	path = .vim/pack/bundle/opt/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides
