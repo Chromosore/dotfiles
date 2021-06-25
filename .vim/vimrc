@@ -193,7 +193,7 @@ set lazyredraw
 
 function! LoadNerdTreeFocusAndToggle()
 	if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
-		call plug#load('nerdtree')
+		packadd nerdtree
 	endif
 
 	nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
@@ -210,9 +210,8 @@ endfunction
 
 nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
 
-map ++ <plug>NERDCommenterToggle
-"nmap ++ <plug>CommentaryLine
-"vmap ++ <plug>Commentary
+nmap ++ <plug>CommentaryLine
+vmap ++ <plug>Commentary
 
 imap fd <esc>
 vmap fd <esc>
@@ -256,6 +255,9 @@ set wildignore+=node_modules
 let g:indentLine_fileTypeExclude = ['text', 'nerdtree']
 let g:indentLine_bufTypeExclude = ['help', 'terminal', 'nofile', 'quickfix']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+
+let g:polyglot_disabled = ['sensible']
+packadd! vim-polyglot
 
 let g:deoplete#enable_at_startup = 1
 
@@ -310,17 +312,6 @@ function BringBackNerdTree()
 endfunction
 " }}}
 autocmd BufEnter * call BringBackNerdTree()
-
-" Lazy loading requires to reload the buffer when opening a netrw listing
-augroup nerd_loader
-  autocmd!
-  autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,BufNew *
-        \  if isdirectory(expand('<amatch>'))
-        \|   call plug#load('nerdtree')
-        \|   execute 'autocmd! nerd_loader'
-        \| endif
-augroup END
 " }}}
 
 " Close vim if a quickfix window is the only open buffer

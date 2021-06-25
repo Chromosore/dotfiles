@@ -1,0 +1,63 @@
+[submodule "vim-sensible"]
+	path = .vim/pack/bundle/opt/vim-sensible
+	url = https://tpope.io/vim/sensible.git
+[submodule "vim-commentary"]
+	path = .vim/pack/bundle/opt/vim-commentary
+	url = https://tpope.io/vim/commentary.git
+[submodule "vim-devicons"]
+	path = .vim/pack/bundle/opt/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
+[submodule "indentLine"]
+	path = .vim/pack/bundle/opt/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "terminus"]
+	path = .vim/pack/bundle/opt/terminus
+	url = https://github.com/wincent/terminus.git
+[submodule "nerdtree"]
+	path = .vim/pack/bundle/opt/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "vim-nerdtree-syntax-highlight"]
+	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "language/vim-polyglot"]
+	path = .vim/pack/languages/opt/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "language/tsuquyomi"]
+	path = .vim/pack/languages/opt/tsuquyomi
+	url = https://github.com/Quramy/tsuquyomi.git
+[submodule "language/vim-quicktask"]
+	path = .vim/pack/languages/opt/vim-quicktask
+	url = https://github.com/aaronbieber/vim-quicktask.git
+[submodule "theme/badwolf"]
+	path = .vim/pack/themes/start/badwolf
+	url = https://github.com/sjl/badwolf.git
+[submodule "theme/vim"]
+	path = .vim/pack/themes/start/vim
+	url = https://github.com/challenger-deep-theme/vim.git
+[submodule "theme/gruvbox"]
+	path = .vim/pack/themes/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "theme/jellybeans.vim"]
+	path = .vim/pack/themes/start/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "theme/molokai"]
+	path = .vim/pack/themes/start/molokai
+	url = https://github.com/tomasr/molokai.git
+[submodule "theme/oceanic-next"]
+	path = .vim/pack/themes/start/oceanic-next
+	url = https://github.com/mhartington/oceanic-next.git
+[submodule "theme/seti.vim"]
+	path = .vim/pack/themes/start/seti.vim
+	url = https://github.com/trusktr/seti.vim.git
+[submodule "theme/snow"]
+	path = .vim/pack/themes/start/snow
+	url = https://github.com/nightsense/snow.git
+[submodule "theme/vim-monokai"]
+	path = .vim/pack/themes/start/vim-monokai
+	url = https://github.com/sickill/vim-monokai.git
+[submodule "theme/vim-one"]
+	path = .vim/pack/themes/start/vim-one
+	url = https://github.com/rakr/vim-one.git
+[submodule "theme/vim-solarized8"]
+	path = .vim/pack/themes/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
