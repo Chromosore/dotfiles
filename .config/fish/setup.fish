@@ -77,7 +77,9 @@ function abbreviations
 	v abbr -a -U -- ports 'netstat -tuplan'
 	v abbr -a -U -- pym 'python3 -m'
 
-	v abbr -a -U -- sudo doas
+	if command -q doas
+		v abbr -a -U -- sudo doas
+	end
 	v abbr -a -U -- vi vim
 	v abbr -a -U -- nd nextd
 	v abbr -a -U -- pd prevd
