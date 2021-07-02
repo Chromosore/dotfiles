@@ -1,9 +1,4 @@
-" vim: foldmethod=marker ts=2 sw=2
-if !has('nvim')
-	scriptversion 4
-endif
-
-" setup {{{
+" vim: foldmethod=marker
 " {{{ Compat
 let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 let s:data_dir =   has('nvim') ? stdpath('data')   : expand('~/.vim')
@@ -17,112 +12,6 @@ endif
 
 execute 'source' s:config_dir .. '/plugins.vim'
 
-" {{{ Theme
-"     =====
-
-"let g:lightline = { 'colorscheme': 'challenger_deep' }
-let g:badwolf_darkgutter=1
-
-if has('termguicolors')
-	set termguicolors
-endif
-
-colorscheme solarized8_flat
-
-
-let s:reversible_themes = [
-	\ 'solarized8',
-	\ 'solarized8_flat',
-	\ 'gruvbox',
-	\ 'snow',
-	\ 'one',
-	\ ]
-let s:dark_to_light_theme = {
-	\ 'OceanicNext': 'OceanicNextLight',
-	\ }
-" {{{ Light & Dark themes setup
-let s:light_to_dark_theme = {}
-for s:key in keys(s:dark_to_light_theme)
-	let s:value = s:dark_to_light_theme[s:key]
-	let s:light_to_dark_theme[s:value] = s:key
-endfor
-" }}}
-
-function! SetBackground(color)
-	let g:theme = a:color
-
-	if index(s:reversible_themes, g:colors_name) >= 0
-		let &background = a:color
-	else
-		if a:color == 'dark'
-			let l:inverse_themes = s:light_to_dark_theme
-		else
-			let l:inverse_themes = s:dark_to_light_theme
-		endif
-
-		let l:themes = keys(l:inverse_themes)
-		if index(l:themes, g:colors_name) >= 0
-			execute 'colorscheme' l:inverse_themes[g:colors_name]
-		endif
-	endif
-endfunction
-
-
-if has('gui_macvim')
-	function! s:MacVimSetBackground()
-		if v:os_appearance == 0
-			call SetBackground('light')
-		else
-			call SetBackground('dark')
-		endif
-	endfunction
-
-	augroup MacVimThemeChange
-		autocmd!
-		autocmd OSAppearanceChanged * call s:MacVimSetBackground()
-	augroup END
-endif
-	
-let g:theme = 'light'
-
-if &term == "linux"
-	let g:theme = 'dark'
-endif
-
-" }}}
-
-" {{{ UI
-"     ==
-set list
-let &listchars = 'tab:  '
-
-if has("gui_running")
-	if has('gui_gtk')
-		set guifont=Menlo\ Nerd\ Font\ 12
-	elseif has('gui_macvim')
-		set guifont=Menlo\ Nerd\ Font:h12
-	endif
-endif
-
-" indent guides
-let &listchars ..= ',tab:⎸ '
-let g:indentLine_char = '⎸'
-"let g:indentLine_setColors = 0
-
-augroup Highlights
-	autocmd!
-	if has('nvim')
-		highlight! link Whitespace Conceal
-		autocmd ColorScheme * highlight! link Whitespace Conceal
-		highlight! link Whitespace Conceal
-	else
-		highlight! link SpecialKey Conceal
-		autocmd ColorScheme * highlight! link SpecialKey Conceal
-		highlight! link SpecialKey Conceal
-	endif
-augroup END
-
-
 " Replaced by terminus
 "if !has('nvim') && &term =~ "xterm"
 	"let &t_VS = "\<Esc>[1 q"
@@ -135,207 +24,35 @@ augroup END
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 
-" Show a few lines of context around the cursor.  Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
-set scrolloff=5
+let g:badwolf_darkgutter=1
 
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline_left_sep = ""
 "let g:airline_right_sep = ""
+" Tabline settings (WIP)
+let &tabline = &tabline
 
-" Window size
-if has('gui_running')
-	set lines=42
-	set columns=132
-endif
-
-" Disable toolbar in gui
-set guioptions-=T
-
-" Remove scrollbars in gui
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-
-set laststatus=2 " Always display statusline
 let &statusline = "%<%f %h%m%r%=%-14.(%l/%L :%c%V%) %y %P"
 
-" Whitespaces
-set listchars+=nbsp:█
-set tabstop=4
-
-set number
-if has('patch-8.1.1564') || has('nvim-0.5.0')
-	set signcolumn=number
-end
-
-" Search
-set hlsearch
-set incsearch
-set shortmess-=S
-
-set showcmd
-
-" Panes split
-set splitbelow
-set splitright
-set fillchars+=vert:│
-
-" Faster Macros
-set lazyredraw
-
-" }}}
-
-" {{{ Bindings
-"     ========
-
-function! LoadNerdTreeFocusAndToggle()
-	if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
-		packadd nerdtree
-	endif
-
-	nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
-	call NERDTreeFocusAndToggle()
-endfunction
-
-function! NERDTreeFocusAndToggle()
-	if g:NERDTree.IsOpen() && !exists('b:NERDTree')
-		call g:NERDTree.CursorToTreeWin(0)
-	else
-		call g:NERDTreeCreator.ToggleTabTree('')
-	endif
-endfunction
-
-nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
-
-nmap ++ <plug>CommentaryLine
-vmap ++ <plug>Commentary
-
-imap fd <esc>
-vmap fd <esc>
-omap fd <esc>
-
-" Stay in visual mode when you indent
-vmap < <gv
-vmap > >gv
-
-" Vim - Semi Hard Mode
-" no arrow key navigation
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" Familiar copy/cut/paste to clipboard shortcuts
-nmap <C-c> "+yy
-vmap <C-c> "+y
-nmap <C-v> "+p
-
-" }}}
-
-" {{{ Misc
-"     ====
-set modeline
-set modelines=5
-set ttimeoutlen=100
 
 " LEADER KEY !!!
-let mapleader=","
-
-" Find files
-set path+=**
-set wildignore+=node_modules
-
-let g:indentLine_fileTypeExclude = ['text', 'nerdtree']
-let g:indentLine_bufTypeExclude = ['help', 'terminal', 'nofile', 'quickfix']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
-
-let g:polyglot_disabled = ['sensible']
-packadd! vim-polyglot
+let mapleader=" "
 
 let g:deoplete#enable_at_startup = 1
 
 let g:python3_host_prog = s:data_dir .. '/pynvim/bin/python3'
 
-if !has('nvim')
-	let &viminfofile = s:data_dir .. '/viminfo'
-end
-
-let &directory = s:data_dir .. '/swap//'
-" {{{ NetRW
-let g:netrw_banner = 0			" No annoying banner
-let g:netrw_browse_split = 4	" Open in prior window
-let g:netrw_altv = 1			" Open splits to the right
-let g:netrw_liststyle = 3		" Tree view
-let g:netrw_winsize = 25		" Width: 25% of the page
-let netrw_ghregex = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_list_hide = netrw_gitignore#Hide()
-let g:netrw_list_hide ..= ',' .. netrw_ghregex
-let g:netrw_list_hide ..= ',' .. &wildignore
-" }}}
-
-" {{{ NerdTree
-"let g:NERDTreeDirArrowExpandable = ''
-"let g:NERDTreeDirArrowCollapsible = ''
-let NERDTreeMinimalUI = 1
-let NERDTreeBookmarksFile = s:config_dir .. '/NERDTreeBookmarks'
-let g:NERDTreeGitStatusUseNerdFonts = 1
-
-" Close vim if NERDTree is the only open buffer
-autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() |
-	\ quit | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" {{{ BringBackNerdTree()
-function BringBackNerdTree()
-	if bufname('#') !~ 'NERD_tree_\d\+' | return | endif
-	if bufname('%') =~ 'NERD_tree_\d\+' | return | endif
-	if winnr('$') <= 1 | return | endif
-
-	let l:save_hidden = &hidden
-	let &hidden = 1
-
-	let l:new_buf = bufnr()
-	buffer #
-
-	if exists('b:NERDTree') && !b:NERDTree.isWinTree()
-		execute "normal! \<C-W>w"
-	endif
-
-	execute 'buffer' . l:new_buf
-	let &hidden = l:save_hidden
-endfunction
-" }}}
-autocmd BufEnter * call BringBackNerdTree()
-" }}}
-
 " Close vim if a quickfix window is the only open buffer
 autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
 	\ quit | endif
 
-" Rust tags
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-"autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" .. expand('%:p:h') .. "&" | redraw!
-
-if !exists(':Confed')
-	command -nargs=1 Confed execute 'e' s:config_dir .. '/<args>'
-endif
-
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+			\ | wincmd p | diffthis
 endif
 
-" }}}
+autocmd BufWritePre /tmp/* setlocal noundofile
 
 if !empty(glob(s:config_dir .. '/local.vim'))
 	execute "source" s:config_dir .. '/local.vim'
-endif
-
-if !has('gui_macvim')
-	call SetBackground(g:theme)
 endif
