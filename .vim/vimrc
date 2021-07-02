@@ -4,12 +4,6 @@ let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 let s:data_dir =   has('nvim') ? stdpath('data')   : expand('~/.vim')
 " }}}
 
-if empty(glob(s:data_dir .. '/setup_done'))
-	execute 'source' s:config_dir .. '/setup.vim'
-	call writefile([], s:data_dir .. '/setup_done')
-endif
-" }}}
-
 execute 'source' s:config_dir .. '/plugins.vim'
 
 " Replaced by terminus
