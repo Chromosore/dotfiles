@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sensible-editor /usr/share/X11/locale/en_US.UTF-8/Compose

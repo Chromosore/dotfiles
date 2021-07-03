@@ -1,9 +1,0 @@
-#!/bin/bash
-
-distraction=$HOME/.local/bin/gnome-terminal
-
-cat > $distraction << EOF
-#!/bin/true
-EOF
-
-chmod a+x $distraction
