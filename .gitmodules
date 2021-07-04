@@ -1,9 +1,9 @@
 [submodule "vim-sensible"]
 	path = .vim/pack/bundle/opt/vim-sensible
-	url = https://tpope.io/vim/sensible.git
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "vim-commentary"]
 	path = .vim/pack/bundle/opt/vim-commentary
-	url = https://tpope.io/vim/commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim-devicons"]
 	path = .vim/pack/bundle/opt/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
@@ -22,6 +22,9 @@
 [submodule "vim-nerdtree-syntax-highlight"]
 	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "fzf"]
+	path = .vim/pack/bundle/opt/fzf
+	url = https://github.com/junegunn/fzf.git
 
 [submodule "language/vim-polyglot"]
 	path = .vim/pack/languages/opt/vim-polyglot
@@ -66,6 +69,3 @@
 [submodule "theme/vim-solarized8"]
 	path = .vim/pack/themes/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule ".vim/pack/bundle/opt/vim-indent-guides"]
-	path = .vim/pack/bundle/opt/vim-indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides

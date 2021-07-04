@@ -29,9 +29,6 @@ let &tabline = &tabline
 let &statusline = "%<%f %h%m%r%=%-14.(%l/%L :%c%V%) %y %P"
 
 
-" LEADER KEY !!!
-let mapleader=" "
-
 let g:deoplete#enable_at_startup = 1
 
 let g:python3_host_prog = s:data_dir .. '/pynvim/bin/python3'
