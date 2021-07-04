@@ -13,6 +13,8 @@ function v
 	$argv
 end
 
+set platform (uname)
+
 ### UNIVERSAL VARIABLES
 # Prompt config
 function prompt_chars
@@ -93,9 +95,16 @@ function abbreviations
 	v abbr -a -U -- cp 'cp -iv'
 	v abbr -a -U -- ln 'ln -v'
 	v abbr -a -U -- mv 'mv -iv'
-	v abbr -a -U -- rm 'rm -Iv'
 	v abbr -a -U -- mkdir 'mkdir -v'
-	v abbr -a -U -- rmdir 'rmdir -v'
+
+	if test $platform == 'Linux'
+		v abbr -a -U -- rm 'rm -Iv'
+		v abbr -a -U -- rmdir 'rmdir -v'
+	else
+		# macOS, other BSDs
+		v abbr -a -U -- rm 'rm -v'
+	end
+
 
 	# ls (exa) aliases
 	v abbr -a -U -- ls 'exa -F'
