@@ -1,8 +1,6 @@
 " Borrowed from fzf.vim
 let s:is_win = has('win32') || has('win64')
 
-echo expand('<SID>')
-
 function s:shortpath()
 	let short = fnamemodify(getcwd(), ':~:.')
 	if !has('win32unix')
