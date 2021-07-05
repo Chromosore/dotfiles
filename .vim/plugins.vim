@@ -15,7 +15,7 @@ if has('packages')
 
 	"packadd! vim-startify
 
-	"packadd! fzf
+	packadd! fzf
 
 	if has('conceal')
 		packadd! indentLine
