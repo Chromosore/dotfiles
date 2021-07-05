@@ -39,12 +39,12 @@
 [submodule "theme/badwolf"]
 	path = .vim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git
-[submodule "theme/vim"]
-	path = .vim/pack/themes/start/vim
+[submodule "theme/challenger_deep"]
+	path = .vim/pack/themes/start/challenger_deep
 	url = https://github.com/challenger-deep-theme/vim.git
 [submodule "theme/gruvbox"]
 	path = .vim/pack/themes/start/gruvbox
-	url = https://github.com/morhetz/gruvbox.git
+	url = https://github.com/gruvbox-community/gruvbox
 [submodule "theme/jellybeans.vim"]
 	path = .vim/pack/themes/start/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
