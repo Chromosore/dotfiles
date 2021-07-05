@@ -29,10 +29,6 @@ set laststatus=2 " Always display statusline
 set ruler
 
 " Whitespaces
-set list
-set listchars=
-set listchars+=tab:\ \ 
-set listchars+=nbsp:█
 set tabstop=4
 set shiftwidth=0
 
@@ -41,6 +37,9 @@ if has('conceal')
 	let g:indentLine_char = '⎸'
 	let g:indentLine_setColors = 0
 
+	set list
+	set listchars=
+	set listchars+=nbsp:█
 	execute 'set listchars+=tab:' .g:indentLine_char. '\ '
 else
 	let g:indent_guides_auto_colors = 0
