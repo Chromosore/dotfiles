@@ -28,5 +28,5 @@ endfunction
 
 augroup IndentGuides
 	autocmd!
-	autocmd BufWinEnter * call <SID>listchars_indentLine_exclude()
+	autocmd BufEnter * call <SID>listchars_indentLine_exclude()
 augroup END
