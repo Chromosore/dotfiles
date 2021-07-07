@@ -27,10 +27,14 @@ function fish_user_key_bindings
 	bind -M insert ! bind_bang
 	bind -M insert '$' bind_dollar
 
-	bind -M insert fd 'set fish_bind_mode default'
-	bind -M visual fd 'set fish_bind_mode default'
-	bind -M replace fd 'set fish_bind_mode default'
-	bind -M replace_one fd 'set fish_bind_mode default'
+	bind -M insert fd 'set fish_bind_mode default;
+		commandline -f backward-char repaint-mode'
+	bind -M visual fd 'set fish_bind_mode default;
+		commandline -f end-selection repaint-mode'
+	bind -M replace fd 'set fish_bind_mode default;
+		commandline -f cancel backward-char repaint-mode'
+	bind -M replace_one fd 'set fish_bind_mode default;
+		commandline -f cancel repaint-mode'
 
 	# Vim - Semi Hard Mode
 	# no arrow key navigation
