@@ -6,6 +6,7 @@ let mapleader = ' '
 nmap <silent> <leader><leader> :call chromosore#fzf#cmd()<CR>
 nmap <leader><tab> <C-^>
 nmap <leader>; <plug>Commentary
+nmap <leader>;<leader>; <plug>Commentary_
 vmap <leader>; <plug>Commentary
 
 " SPC f -> files
