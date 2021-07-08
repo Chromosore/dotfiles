@@ -1,8 +1,9 @@
 " Borrowed from fzf.vim
 let s:is_win = has('win32') || has('win64')
 
-function s:shortpath()
-	let short = fnamemodify(getcwd(), ':~:.')
+function s:shortpath(...)
+	let path = get(a:000, 0, getcwd())
+	let short = fnamemodify(path, ':~:.')
 	if !has('win32unix')
 		let short = pathshorten(short)
 	endif
@@ -10,14 +11,18 @@ function s:shortpath()
 	return empty(short) ? '~'.slash : short . (short =~ escape(slash, '\').'$' ? '' : slash)
 endfunction
 
-
-function chromosore#fzf#cwd()
+function chromosore#fzf#cwd(...)
 	let prompt = s:shortpath()
-	let prompt = strwidth(prompt) < &columns - 20 ? prompt : '> '
-	call fzf#run(fzf#wrap('FZF', {
-		\	'options': ['--prompt', prompt],
-		\}))
+	let prompt = strwidth(prompt) < &columns - 20 ? prompt : '…/'
+	let opts = { 'options': ['--prompt', prompt] }
+
+	if a:0 == 1
+		let opts = extend(opts, a:1)
+	endif
+
+	call fzf#run(fzf#wrap('FZF', opts))
 endfunction
+
 
 
 function s:uniq(list)
@@ -59,6 +64,7 @@ function chromosore#fzf#mru()
 endfunction
 
 
+
 function s:excommands()
 	if exists('s:excache')
 		return s:excache
@@ -93,4 +99,70 @@ function chromosore#fzf#cmd()
 		\	'sink': { cmd -> feedkeys(':' . cmd . ' ') },
 		\	'options': ['--prompt', ':'],
 		\}))
+endfunction
+
+
+
+function s:cmpfile(file_a, file_b)
+	let a_is_dot = a:file_a =~ '^\.'
+	let b_is_dot = a:file_b =~ '^\.'
+
+	if a_is_dot && !b_is_dot
+		return 1
+	elseif !a_is_dot && b_is_dot
+		return -1
+	elseif a:file_a == a:file_b
+		return 0
+	else
+		return a:file_a > a:file_b ? 1 : -1
+	end
+endfunction
+
+function s:filefound(path, filenames)
+	let slash = (s:is_win && !&shellslash) ? '\' : '/'
+
+	if a:filenames[0] == '..' . slash
+		let new_path = fnamemodify(a:path, ':h')
+	else
+		let new_path = a:path . slash . a:filenames[0]
+		let new_path = new_path[:-2]
+	endif
+
+	if isdirectory(new_path)
+		call chdir(new_path)
+		return chromosore#fzf#find(new_path)
+	else
+		execute 'edit' new_path
+	endif
+endfunction
+
+function s:prettydirs(path, idx, filename)
+	let slash = (s:is_win && !&shellslash) ? '\' : '/'
+	let new_path = a:path . slash . a:filename
+	if isdirectory(new_path)
+		return a:filename . slash
+	else
+		return a:filename
+	endif
+endfunction
+
+function chromosore#fzf#find(...)
+	let path = get(a:000, 0, getcwd())
+	let prompt = s:shortpath(path)
+	let prompt = strwidth(prompt) < &columns - 20 ? prompt : '…/'
+
+	let files = readdir(path, '1', { 'sort': 'none' })
+				\->add('..')
+				\->sort(function('s:cmpfile'))
+				\->map(function('s:prettydirs', [path]))
+
+	let spec = deepcopy(fzf#wrap('find', {
+		\	'source': files,
+		\	'window': ':',
+		\	'options': ['--prompt', prompt, '--expect=tab', '--reverse'],
+		\}))
+	let spec['_action'] = get(spec, '_action', {})
+	let spec['_action']['tab'] = function('s:filefound', [path])
+
+	return fzf#run(spec)
 endfunction

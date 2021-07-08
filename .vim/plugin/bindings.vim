@@ -18,9 +18,6 @@ endfunction
 
 nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
 
-nmap ++ <plug>CommentaryLine
-vmap ++ <plug>Commentary
-
 imap fd <esc>
 vmap fd <esc>
 omap fd <esc>
