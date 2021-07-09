@@ -50,14 +50,14 @@ if has('packages')
 else
 	let packpath_parts = split(&packpath, ',')
 	for archive in packpath_parts
-		let &rtp .= ','. join(glob(archive . '/pack/*/start/*', v:false, v:true), ',')
+		let &rtp .= ','. join(glob(archive . expand('/pack/*/start/*'), v:false, v:true), ',')
 	endfor
 
 	let user_packs = packpath_parts[0]
-	let &rtp .= ','. join(glob(user_packs . '/pack/*/opt/*', v:false, v:true), ',')
+	let &rtp .= ','. join(glob(user_packs . expand('/pack/*/opt/*'), v:false, v:true), ',')
 	unlet user_packs
 
 	for archive in packpath_parts
-		let &rtp .= ','. join(glob(archive . '/pack/*/after/*', v:false, v:true), ',')
+		let &rtp .= ','. join(glob(archive . expand('/pack/*/after/*'), v:false, v:true), ',')
 	endfor
 endif

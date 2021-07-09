@@ -1,10 +1,20 @@
 " vim: foldmethod=marker
+scriptencoding utf-8
+set encoding=utf-8
 " {{{ Compat
-let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
-let s:data_dir =   has('nvim') ? stdpath('data')   : expand('~/.vim')
+if has('nvim')
+	let s:config_dir = stdpath('config')
+	let s:data_dir = stdpath('data')
+elseif has('win16') || has('win32') || has('win64')
+	let s:config_dir = expand('~/vimfiles')
+	let s:data_dir =   expand('~/vimfiles')
+else
+	let s:config_dir = expand('~/.vim')
+	let s:data_dir =   expand('~/.vim')
+endif
 " }}}
 
-execute 'source' s:config_dir .. '/plugins.vim'
+execute 'source' s:config_dir .. expand('/plugins.vim')
 
 " Replaced by terminus
 "if !has('nvim') && &term =~ "xterm"
@@ -44,6 +54,6 @@ endif
 
 autocmd BufWritePre /tmp/* setlocal noundofile
 
-if !empty(glob(s:config_dir .. '/local.vim'))
-	execute "source" s:config_dir .. '/local.vim'
+if !empty(glob(s:config_dir .. expand('/local.vim')))
+	execute "source" s:config_dir .. expand('/local.vim')
 endif

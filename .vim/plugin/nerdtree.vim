@@ -3,7 +3,7 @@ let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
 "let g:NERDTreeDirArrowExpandable = ''
 "let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeMinimalUI = 1
-let NERDTreeBookmarksFile = s:config_dir .. '/NERDTreeBookmarks'
+let NERDTreeBookmarksFile = s:config_dir .. expand('/NERDTreeBookmarks')
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " Close vim if NERDTree is the only open buffer

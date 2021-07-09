@@ -1,9 +1,9 @@
 " Window settings
 if has('gui_running')
 	if has('gui_gtk')
-		set guifont=Menlo\ Nerd\ Font\ 12
-	elseif has('gui_macvim')
-		set guifont=Menlo\ Nerd\ Font:h12
+		set guifont=Menlo\ Nerd\ Font\ 12,Menlo\ 12
+	elseif has('gui_macvim') || has('gui_win32')
+		set guifont=Menlo\ Nerd\ Font:h12,Menlo:h12
 	endif
 
 	set lines=42
@@ -34,13 +34,17 @@ set shiftwidth=0
 
 " indent guides
 if has('conceal')
-	let g:indentLine_char = '⎸'
+	if !has('gui_win32')
+		let g:indentLine_char = '⎸'
+	else
+		let g:indentLine_char = '|'
+	end
 	let g:indentLine_setColors = 0
 
 	set list
 	set listchars=
 	set listchars+=nbsp:█
-	execute 'set listchars+=tab:' .g:indentLine_char. '\ '
+	execute 'set listchars+=tab:' .escape(g:indentLine_char, '|'). '\ '
 else
 	let g:indent_guides_auto_colors = 0
 	autocmd VimEnter,Colorscheme * highlight link IndentGuidesOdd  FoldColumn

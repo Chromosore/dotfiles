@@ -1,19 +1,25 @@
-let s:config_dir = has('nvim') ? stdpath('config') : expand('~/.vim')
+if has('nvim')
+	let s:config_dir = stdpath('config')
+elseif has('win16') || has('win32') || has('win64')
+	let s:config_dir = expand('~/vimfiles')
+else
+	let s:config_dir = expand('~/.vim')
+end
 
 " I hate these files so I throw them away :)
-let &directory = s:config_dir . '/swap//'
+let &directory = s:config_dir . expand('/swap//')
 
-let &backupdir = s:config_dir . '/backup//'
+let &backupdir = s:config_dir . expand('/backup//')
 
 if has('persistent_undo')
 	set undofile
-	let &undodir = s:config_dir . '/undo//'
+	let &undodir = s:config_dir . expand('/undo//')
 endif
 
 if has('viminfo')
-	let &viminfofile = s:config_dir . '/viminfo'
+	let &viminfofile = s:config_dir . expand('/viminfo')
 elseif has('shada')
-	let &shadafile = s:config_dir . '/shada'
+	let &shadafile = s:config_dir . expand('/shada')
 endif
 
 set autoread
