@@ -43,6 +43,10 @@ cmap <C-N> <Down>
 " Logical Y
 nmap Y y$
 
+nmap <expr> gm chromosore#mappings#move()
+nmap <expr> gmm chromosore#mappings#move() . '_'
+vmap <expr> gm chromosore#mappings#move_visual()
+
 " Familiar copy/cut/paste to clipboard shortcuts
 if has('clipboard')
 	nmap <C-C> "+yy
