@@ -91,18 +91,10 @@ let &t_Ce = "\e[4:0m"
 
 let g:badwolf_darkgutter=1
 
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_left_sep = ""
-"let g:airline_right_sep = ""
 " Tabline settings (WIP)
 let &tabline = &tabline
 
-let &statusline = "%<%f %h%m%r%=%-14.(%l/%L :%c%V%) %y %P"
-
-
 let g:deoplete#enable_at_startup = 1
-
-let g:python3_host_prog = s:data_dir .. '/pynvim/bin/python3'
 
 " Close vim if a quickfix window is the only open buffer
 autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
