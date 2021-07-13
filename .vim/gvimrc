@@ -1,0 +1,19 @@
+set mousefocus
+
+if has('gui_gtk')
+	set guifont=Menlo\ Nerd\ Font\ 12,Menlo\ 12
+elseif has('gui_macvim') || has('gui_win32')
+	set guifont=Menlo\ Nerd\ Font:h12,Menlo:h12
+endif
+
+set lines=42
+set columns=132
+
+" Disable toolbar
+set guioptions-=T
+
+" Remove scrollbars
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L

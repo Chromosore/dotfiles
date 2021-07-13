@@ -1,24 +1,4 @@
 " Window settings
-if has('gui_running')
-	if has('gui_gtk')
-		set guifont=Menlo\ Nerd\ Font\ 12,Menlo\ 12
-	elseif has('gui_macvim') || has('gui_win32')
-		set guifont=Menlo\ Nerd\ Font:h12,Menlo:h12
-	endif
-
-	set lines=42
-	set columns=132
-endif
-
-" Disable toolbar in gui
-set guioptions-=T
-
-" Remove scrollbars in gui
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-
 set scrolloff=5
 
 if has('termguicolors')
