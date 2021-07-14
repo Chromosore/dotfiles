@@ -1,7 +1,9 @@
 if !exists('g:colors_name')
 	" A colorscheme may have been loaded before in local.vim
-	colorscheme solarized8_flat
+	let g:colors_name = 'solarized8_flat'
 endif
+
+execute 'colorscheme' g:colors_name
 
 
 let s:reversible_themes = [
