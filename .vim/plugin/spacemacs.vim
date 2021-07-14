@@ -11,10 +11,12 @@ vmap <leader>; <plug>Commentary
 
 " SPC f -> files
 nmap <silent> <leader>ff :call chromosore#fzf#find()<CR>
-nmap <silent> <leader>fd :call chromosore#fzf#cwd()<CR>
 nmap <silent> <leader>fr :call chromosore#fzf#mru()<CR>
 nmap <leader>fs :write<CR>
 nmap <silent> <leader>fS :wall<CR>
+
+" SPC p -> project
+nmap <silent> <leader>pf :call chromosore#fzf#cwd()<CR>
 
 " SPC s -> search
 nmap <leader>sc :nohlsearch<CR>
