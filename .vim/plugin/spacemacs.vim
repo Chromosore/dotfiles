@@ -3,6 +3,8 @@
 
 let mapleader = ' '
 
+nmap <leader><leader> :call chromosore#fzf#cmd()<CR>
+
 nmap <silent> <leader><leader> :call chromosore#fzf#cmd()<CR>
 nmap <leader><tab> <C-^>
 nmap <leader>; <plug>Commentary
@@ -28,3 +30,7 @@ nmap <silent> <leader>au :UndotreeShow<CR>:UndotreeFocus<CR>
 " SPC e -> errors
 nmap <silent> <leader>en :cnext<CR>
 nmap <silent> <leader>ep :cprevious<CR>
+
+" SPC q -> quit
+nmap <silent> <leader>qq :confirm :qall<CR>
+nmap <silent> <leader>qQ :qall!<CR>
