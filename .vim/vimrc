@@ -106,7 +106,3 @@ if !exists(":DiffOrig")
 endif
 
 autocmd BufWritePre /tmp/* setlocal noundofile
-
-if !empty(glob(s:config_dir .. expand('/local.vim')))
-	execute "source" s:config_dir .. expand('/local.vim')
-endif
