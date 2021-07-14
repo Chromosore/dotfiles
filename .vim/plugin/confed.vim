@@ -16,7 +16,7 @@ function! s:CompleteConfed(ArgLead, CmdLine, CursorPos)
 
 	return join(paths, "\n")
 endfunction
-command! -complete=custom,s:CompleteConfed -nargs=1 Confed execute 'edit' findfile(<f-args>, s:confed_vim_path)
+command! -complete=custom,s:CompleteConfed -nargs=1 Confed execute 'edit' globpath(s:confed_vim_path, <f-args>)
 
 finish
 
