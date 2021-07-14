@@ -1,18 +1,6 @@
 " vim: foldmethod=marker
 scriptencoding utf-8
 set encoding=utf-8
-" {{{ Compat
-if has('nvim')
-	let s:config_dir = stdpath('config')
-	let s:data_dir = stdpath('data')
-elseif has('win16') || has('win32') || has('win64')
-	let s:config_dir = expand('~/vimfiles')
-	let s:data_dir =   expand('~/vimfiles')
-else
-	let s:config_dir = expand('~/.vim')
-	let s:data_dir =   expand('~/.vim')
-endif
-" }}}
 
 " {{{ Plugins
 if has('packages')
@@ -72,13 +60,6 @@ else
 	let &rtp .= ','. join(glob(user_packs . '/pack/*/opt/*', v:false, v:true), ',')
 	unlet user_packs
 
-" Replaced by terminus
-"if !has('nvim') && &term =~ "xterm"
-	"let &t_VS = "\<Esc>[1 q"
-	"let &t_SI = "\<Esc>[5 q"
-	"let &t_SR = "\<Esc>[3 q"
-	"let &t_EI = "\<Esc>[1 q"
-"endif
 	for archive in packpath_parts
 		let &rtp .= ','. join(glob(archive . '/pack/*/after/*', v:false, v:true), ',')
 	endfor
@@ -89,7 +70,7 @@ endif
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 
-let g:badwolf_darkgutter=1
+let g:badwolf_darkgutter = 1
 
 " Tabline settings (WIP)
 let &tabline = &tabline

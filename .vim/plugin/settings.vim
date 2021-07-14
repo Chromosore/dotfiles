@@ -46,6 +46,6 @@ set dictionary+=/usr/share/dict/words
 set thesaurus+=/usr/share/dict/thesaurus
 
 if has('wildmenu')
-	set  wildmenu
+	set wildmenu
 endif
 set wildmode=longest:full,full
