@@ -22,10 +22,13 @@ if has('conceal')
 	end
 	let g:indentLine_setColors = 0
 
-	set list
-	set listchars=
-	set listchars+=nbsp:█
-	execute 'set listchars+=tab:' .escape(g:indentLine_char, '|'). '\ '
+	if has('nvim')
+		" It looks too awful in vim
+		set list
+		set listchars=
+		set listchars+=nbsp:█
+		execute 'set listchars+=tab:' .g:indentLine_char. '\ '
+	endif
 else
 	let g:indent_guides_auto_colors = 0
 	autocmd VimEnter,Colorscheme * highlight link IndentGuidesOdd  FoldColumn
