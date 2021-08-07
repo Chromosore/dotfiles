@@ -1,25 +1,17 @@
-if has('nvim')
-	let s:config_dir = stdpath('config')
-elseif has('win16') || has('win32') || has('win64')
-	let s:config_dir = expand('~/vimfiles')
-else
-	let s:config_dir = expand('~/.vim')
-end
-
 " I hate these files so I throw them away :)
-let &directory = s:config_dir . expand('/swap//')
+let &directory = chromosore#config . expand('/swap//')
 
-let &backupdir = s:config_dir . expand('/backup//')
+let &backupdir = chromosore#config . expand('/backup//')
 
 if has('persistent_undo')
 	set undofile
-	let &undodir = s:config_dir . expand('/undo//')
+	let &undodir = chromosore#config . expand('/undo//')
 endif
 
 if has('viminfo')
-	let &viminfofile = s:config_dir . expand('/viminfo')
+	let &viminfofile = chromosore#config . expand('/viminfo')
 elseif has('shada')
-	let &shadafile = s:config_dir . expand('/shada')
+	let &shadafile = chromosore#config . expand('/shada')
 endif
 
 set autoread

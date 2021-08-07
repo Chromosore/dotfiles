@@ -25,13 +25,13 @@ function s:FindConfedProtocol()
 
 	let fname = substitute(expand('<amatch>'), '^c:', '', '')
 
-	if filereadable(s:config_dir . fname . '.vim')
+	if filereadable(chromosore#config . fname . '.vim')
 		let suffix = '.vim'
 	else
 		let suffix = ''
 	endif
 
-	return s:config_dir . fname . suffix
+	return chromosore#config . fname . suffix
 endfunction
 
 augroup ConfedProtocol
