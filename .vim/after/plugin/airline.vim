@@ -1,4 +1,4 @@
-if chromosore#has_powerline
+if chromosore#has_nerdfont
 	let g:airline_powerline_fonts = 1
 endif
 

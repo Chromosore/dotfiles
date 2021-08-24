@@ -1,8 +1,8 @@
-let chromosore#has_powerline = 0
+let chromosore#has_nerdfont = 0
 
-if has('gui_running')
+if has('gui_running') && exists('&guifont')
 	if &guifont =~ 'Nerd Font\(:h\d\+\| \d\+\)\?$'
-		let chromosore#has_powerline = 1
+		let chromosore#has_nerdfont = 1
 	endif
 endif
 
