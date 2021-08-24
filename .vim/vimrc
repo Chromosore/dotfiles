@@ -35,13 +35,7 @@ if has('packages')
 	augroup nerd_loader
 		autocmd!
 		autocmd VimEnter * silent! autocmd! FileExplorer
-		autocmd BufEnter,BufNew *
-					\		if isdirectory(expand('<amatch>'))
-					\|		packadd vim-nerdtree-syntax-highlight
-					\|		packadd nerdtree
-					"\		packadd nerdtree-git-plugin
-					\|		autocmd! nerd_loader
-					\|	endif
+		autocmd BufEnter,BufNew * call chromosore#nerdtree#load()
 	augroup END
 
 
