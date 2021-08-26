@@ -1,8 +1,9 @@
 function confed
 	argparse 'a/create' 'i/interactive' 's/search' -- $argv
 
-	set -q EDITOR
-	or set -l EDITOR vi
+	set -q EDITOR && command -q $EDITOR
+	or command -q vi && set -l EDITOR vi
+	or set -l EDITOR nano
 
 	set -q XDG_CONFIG_HOME
 	and set -l CONF $XDG_CONFIG_HOME
@@ -23,13 +24,14 @@ function confed
 
 	set -l file $argv[1]
 
-	set -l existing
-	set -l missing
 
-	set -l dirs
-	set -l dir
+	for file_path in $CONFED_SPECIAL
+		if test (basename $file_path) = $file
+			set -p special_path (dirname $file_path)
+		end
+	end
 
-	for conf_dir in $CONFED_PATH
+	for conf_dir in $special_path $CONFED_PATH
 		if test -e $conf_dir/$file
 			set -a existing $conf_dir
 		else
@@ -46,23 +48,11 @@ function confed
 	end
 
 	if test (count $dirs) -eq 0
-		set -l found_special false
-
-		for file_path in $CONFED_SPECIAL
-			if test (basename $file_path) = $file
-				set dir (dirname $file_path)
-				set found_special true
-				break
-			end
-		end
-
-		if not $found_special
-			printf $err_msg
-			return 1
-		end
-	else
-		set dir $dirs[1]
+		printf $err_msg
+		return 1
 	end
+
+	set dir $dirs[1]
 
 	if set -q _flag_interactive && test (count $dirs) -gt 1
 		set i 1
