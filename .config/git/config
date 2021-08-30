@@ -1,0 +1,29 @@
+[user]
+	signingKey = 7552E5E0B05E6AC2
+	name = Chromosore
+	email = konrad.blanchard@gmail.com
+
+
+[pull]
+	ff = only
+
+[init]
+	defaultBranch = master
+
+
+[alias]
+	committed = diff HEAD^ HEAD --
+
+
+[pager]
+	log = less -X
+
+[format]
+	pretty = oneline
+
+[status]
+	short = true
+	branch = true
+
+[log]
+	abbrevCommit = true
