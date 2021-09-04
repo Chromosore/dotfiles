@@ -31,7 +31,13 @@ set ttimeoutlen=100
 " Find files
 set path+=**
 
+" PLEASE - STOP - SETTING - THIS - OPTION
 set formatoptions-=o
+augroup FormatOption
+	autocmd!
+	autocmd OptionSet * set formatoptions-=o
+	autocmd VimEnter  * set formatoptions-=o
+augroup END
 
 " Dictionnaries for completion with CTRL-X CTRL-K and CTRL-X CTRL-T
 set dictionary+=/usr/share/dict/words
