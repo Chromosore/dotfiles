@@ -19,6 +19,11 @@ set autoread
 " Faster Macros
 set lazyredraw
 
+set ignorecase
+set smartcase
+
+set textwidth=76
+
 if has('balloon_eval_term')
 	set balloonevalterm
 endif
