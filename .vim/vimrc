@@ -57,6 +57,7 @@ else
 	for archive in packpath_parts
 		let &rtp .= ','. join(glob(archive . '/pack/*/after/*', v:false, v:true), ',')
 	endfor
+	packadd! vim-quicktask
 endif
 " }}}
 
