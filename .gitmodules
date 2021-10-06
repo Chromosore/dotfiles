@@ -39,6 +39,9 @@
 	path = .vim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
 
+[submodule "theme/vim-inkpot-refilled"]
+	path = .vim/pack/themes/start/vim-inkpot-refilled
+	url = https://github.com/Chromosore/vim-inkpot-refilled.git
 [submodule "theme/badwolf"]
 	path = .vim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git
