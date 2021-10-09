@@ -39,30 +39,30 @@
 	path = .vim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
 
+[submodule "theme/vim-solarized8"]
+	path = .vim/pack/themes/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
 [submodule "theme/vim-inkpot-refilled"]
 	path = .vim/pack/themes/start/vim-inkpot-refilled
 	url = https://github.com/Chromosore/vim-inkpot-refilled.git
 [submodule "theme/badwolf"]
 	path = .vim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git
+[submodule "theme/oceanic-next"]
+	path = .vim/pack/themes/start/oceanic-next
+	url = https://github.com/mhartington/oceanic-next.git
+[submodule "theme/jellybeans.vim"]
+	path = .vim/pack/themes/start/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
 [submodule "theme/challenger_deep"]
 	path = .vim/pack/themes/start/challenger_deep
 	url = https://github.com/challenger-deep-theme/vim.git
 [submodule "theme/gruvbox"]
 	path = .vim/pack/themes/start/gruvbox
 	url = https://github.com/gruvbox-community/gruvbox
-[submodule "theme/jellybeans.vim"]
-	path = .vim/pack/themes/start/jellybeans.vim
-	url = https://github.com/nanotech/jellybeans.vim.git
 [submodule "theme/molokai"]
 	path = .vim/pack/themes/start/molokai
 	url = https://github.com/tomasr/molokai.git
-[submodule "theme/oceanic-next"]
-	path = .vim/pack/themes/start/oceanic-next
-	url = https://github.com/mhartington/oceanic-next.git
-[submodule "theme/seti.vim"]
-	path = .vim/pack/themes/start/seti.vim
-	url = https://github.com/trusktr/seti.vim.git
 [submodule "theme/snow"]
 	path = .vim/pack/themes/start/snow
 	url = https://github.com/nightsense/snow.git
@@ -72,6 +72,6 @@
 [submodule "theme/vim-one"]
 	path = .vim/pack/themes/start/vim-one
 	url = https://github.com/rakr/vim-one.git
-[submodule "theme/vim-solarized8"]
-	path = .vim/pack/themes/start/vim-solarized8
-	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule "theme/seti.vim"]
+	path = .vim/pack/themes/start/seti.vim
+	url = https://github.com/trusktr/seti.vim.git
