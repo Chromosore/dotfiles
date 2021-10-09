@@ -39,12 +39,19 @@
 	path = .vim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
 
-[submodule "theme/vim-solarized8"]
-	path = .vim/pack/themes/start/vim-solarized8
-	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule "theme/vim-wwdc17"]
+	path = .vim/pack/themes/start/vim-wwdc17
+	url = https://github.com/lifepillar/vim-wwdc17-theme.git
 [submodule "theme/vim-inkpot-refilled"]
 	path = .vim/pack/themes/start/vim-inkpot-refilled
 	url = https://github.com/Chromosore/vim-inkpot-refilled.git
+
+[submodule "theme/vim-wwdc16"]
+	path = .vim/pack/themes/start/vim-wwdc16
+	url = https://github.com/lifepillar/vim-wwdc16-theme.git
+[submodule "theme/vim-solarized8"]
+	path = .vim/pack/themes/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
 [submodule "theme/badwolf"]
 	path = .vim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git

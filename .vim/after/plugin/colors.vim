@@ -15,6 +15,7 @@ let s:reversible_themes = [
 	\ ]
 let s:dark_to_light_theme = {
 	\ 'OceanicNext': 'OceanicNextLight',
+	\ 'wwdc16': 'wwdc17',
 	\ }
 " {{{ Light & Dark themes setup
 let s:light_to_dark_theme = {}
