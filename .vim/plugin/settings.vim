@@ -37,11 +37,11 @@ set ttimeoutlen=100
 set path+=**
 
 " PLEASE - STOP - SETTING - THIS - OPTION
-set formatoptions-=o
+set formatoptions-=o formatoptions+=r
 augroup FormatOption
 	autocmd!
-	autocmd OptionSet * set formatoptions-=o
-	autocmd VimEnter  * set formatoptions-=o
+	autocmd OptionSet * set formatoptions-=o formatoptions+=r
+	autocmd VimEnter  * set formatoptions-=o formatoptions+=r
 augroup END
 
 " Dictionnaries for completion with CTRL-X CTRL-K and CTRL-X CTRL-T
