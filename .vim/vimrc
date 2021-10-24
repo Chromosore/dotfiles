@@ -65,6 +65,10 @@ endif
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 
+filetype plugin indent on
+syntax enable
+" }}}
+
 let g:badwolf_darkgutter = 1
 
 " Tabline settings (WIP)
