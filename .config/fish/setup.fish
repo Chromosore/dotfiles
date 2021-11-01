@@ -78,11 +78,19 @@ end
 function abbreviations
 	v abbr -a -U -- ports 'netstat -tuplan'
 	v abbr -a -U -- pym 'python3 -m'
+	v abbr -a -U -- pydoc 'python3 -m pydoc'
 
 	if command -q doas
 		v abbr -a -U -- sudo doas
 	end
-	v abbr -a -U -- vi vim
+
+	if test (basename "$EDITOR") = nvim
+		v abbr -a -U -- vi nvim
+		v abbr -a -U -- vim nvim
+	else
+		v abbr -a -U -- vi vim
+	end
+
 	v abbr -a -U -- nd nextd
 	v abbr -a -U -- pd prevd
 
@@ -90,29 +98,38 @@ function abbreviations
 	v abbr -a -U -- shutdown ' shutdown'
 	v abbr -a -U -- clear ' clear'
 	v abbr -a -U -- reboot ' reboot'
+	v abbr -a -U -- history ' history'
 
 	# Verbose & confirm
 	v abbr -a -U -- cp 'cp -iv'
 	v abbr -a -U -- ln 'ln -v'
 	v abbr -a -U -- mv 'mv -iv'
 	v abbr -a -U -- mkdir 'mkdir -v'
+	v abbr -a -U -- diff 'diff -s'
 
-	if test $platform == 'Linux'
-		v abbr -a -U -- rm 'rm -Iv'
+	v abbr -a -U -- gzip 'gzip -v'
+	v abbr -a -U -- gunzip 'gunzip -vf'
+	v abbr -a -U -- cpio 'cpio -v'
+	v abbr -a -U -- pax 'pax -v'
+
+	if test $platform = 'Linux'
+		v abbr -a -U -- rm 'rm -iv'
+		v abbr -a -U -- rmr 'rm -Iv -r'
 		v abbr -a -U -- rmdir 'rmdir -v'
 	else
 		# macOS, other BSDs
-		v abbr -a -U -- rm 'rm -v'
+		v abbr -a -U -- rm 'rm -iv'
+		v abbr -a -U -- rmr 'rm -v -r'
 	end
 
 
 	# ls (exa) aliases
-	v abbr -a -U -- ls 'exa -F'
-	v abbr -a -U -- la 'exa -Fa'
-	v abbr -a -U -- ld 'exa -FD'
-	v abbr -a -U -- ll 'exa -GlhF'
-	v abbr -a -U -- lll 'exa -lhF'
-	v abbr -a -U -- tree 'exa -T'
+	v abbr -a -U -- ls   'ls -F'
+	v abbr -a -U -- la   'ls -Fa'
+	v abbr -a -U -- ld   'ls -FD'
+	v abbr -a -U -- ll   'ls -GlhF'
+	v abbr -a -U -- lll  'ls -lhF'
+	v abbr -a -U -- tree 'ls -T'
 end
 
 set -- options --prompt-chars --prompt-colours \
