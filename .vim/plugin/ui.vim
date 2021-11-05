@@ -16,7 +16,7 @@ set shiftwidth=0
 " indent guides
 if has('conceal')
 	if !has('gui_win32')
-		let g:indentLine_char = '⎸'
+		let g:indentLine_char = '🭰'
 	else
 		let g:indentLine_char = '|'
 	end
