@@ -43,29 +43,6 @@ end
 
 if has('linebreak')
 	set linebreak
-	augroup ShowBreakStyle
-		autocmd!
-		function s:SetShowBreak()
-			let new_showbreak = repeat(' ', &numberwidth - 1) . '↳'
-			if v:option_type == 'local'
-				let &l:showbreak = new_showbreak
-			else
-				let &showbreak = new_showbreak
-			endif
-		endfunction
-
-		autocmd OptionSet numberwidth call <SID>SetShowBreak()
-		autocmd BufWinEnter * if !&number | setlocal showbreak=NONE | endif
-		call s:SetShowBreak()
-		set cpoptions+=n
-
-		if has('nvim')
-			autocmd WinNew set winhighlight+=NonText:LineNr
-			set winhighlight+=NonText:LineNr
-		else
-			set highlight+=@:LineNr
-		endif
-	augroup END
 endif
 
 " Search
