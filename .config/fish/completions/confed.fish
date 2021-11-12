@@ -6,14 +6,19 @@ complete -c confed -s 1 -l pick-first  -d 'Always pick the first choice when mul
 complete -c confed -s s -l search      -d 'Only print the path of the configuration file'
 
 function __confed_list_config_files
+	set realhome ~
+
 	for dir in $CONFED_PATH
+		set shortdir (string replace -r '^'"$realhome" '~' $dir)
+
 		find $dir/ -mindepth 1 -maxdepth 1 -print0 |
 			string split0 |
-			string replace -r '.*/' ''
+			string replace -r '^.*/([^/]+)$' '$1'\t"$shortdir"
 	end
 
 	for file in $CONFED_SPECIAL
-		echo (basename $file)
+		printf '%s\t%s\n' (basename $file) \
+			(dirname $file | string replace -r '^'"$realhome" '~')
 	end
 end
 
