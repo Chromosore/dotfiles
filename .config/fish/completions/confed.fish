@@ -22,5 +22,6 @@ function __confed_list_config_files
 	end
 end
 
-complete -c confed -n 'not __fish_seen_argument -s a -l create' \
-   -a '(__confed_list_config_files)'
+complete -c confed \
+	-n '__fish_use_subcommand && not __fish_seen_argument -s a -l create' \
+	-a '(__confed_list_config_files)'

@@ -1,6 +1,6 @@
 function confed
 	set options 'a/create' 'i/interactive' 's/search' '1/pick-first'
-	argparse -x i,1 $options -- $argv
+	argparse --max-args=1 --exclusive i,1 $options -- $argv
 	or return $status
 
 	set -q EDITOR && command -q $EDITOR
