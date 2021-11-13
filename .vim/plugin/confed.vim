@@ -12,12 +12,15 @@ function! s:CompleteConfed(ArgLead, CmdLine, CursorPos)
 					\ {idx, filename -> dirs_comps . filename}),
 					\ {idx, file -> isdirectory(dir . '/' . file) ? file . '/' : file})
 
-		let paths = add(paths, join(all_files, "\n"))
+		let paths = extend(paths, all_files)
 	endfor
 
-	return join(paths, "\n")
+	return join(uniq(sort(paths)), "\n")
 endfunction
-command! -complete=custom,s:CompleteConfed -nargs=1 Confed execute 'edit' globpath(s:confed_vim_path, <f-args>)
+command! -complete=custom,s:CompleteConfed -nargs=1 Confed execute 'args' join(
+			\ map(globpath(s:confed_vim_path, <f-args>, v:false, v:true),
+			\	    'fnameescape(v:val)'),
+			\ ' ')
 
 finish
 
