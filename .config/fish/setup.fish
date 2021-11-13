@@ -168,12 +168,15 @@ end
 for option in $argv
 	if set opt_name (string replace -r -- '^--' '' $option)
 		set func_name (string replace '-' '_' $opt_name)
-		if contains -- $option $options
-			$func_name
-		else
+		if not contains -- $option $options
 			error $option
 		end
 	else
 		error $option
 	end
+end
+
+for option in $argv
+	set func_name (string replace -r -- '^--' '' $option | string replace '-' '_')
+	$func_name
 end
