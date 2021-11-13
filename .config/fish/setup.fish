@@ -1,3 +1,4 @@
+#!/usr/bin/fish
 # setup.fish
 # ----------
 #
