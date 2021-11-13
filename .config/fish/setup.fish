@@ -113,16 +113,8 @@ function abbreviations
 	v abbr -a -U -- cpio 'cpio -v'
 	v abbr -a -U -- pax 'pax -v'
 
-	if test $platform = 'Linux'
-		v abbr -a -U -- rm 'rm -iv'
-		v abbr -a -U -- rmr 'rm -Iv -r'
-		v abbr -a -U -- rmdir 'rmdir -v'
-	else
-		# macOS, other BSDs
-		v abbr -a -U -- rm 'rm -iv'
-		v abbr -a -U -- rmr 'rm -v -r'
-	end
-
+	v abbr -a -U -- rm 'del -iv'
+	v abbr -a -U -- rmdir 'rmdir -v'
 
 	# ls (exa) aliases
 	v abbr -a -U -- ls   'ls -F'
