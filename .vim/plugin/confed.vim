@@ -7,11 +7,12 @@ function! s:CompleteConfed(ArgLead, CmdLine, CursorPos)
 	for dir in split(s:confed_vim_path, ',')
 		if !isdirectory(dir . '/' . dirs_comps) | continue | endif
 
-		let all_files = readdir(dir . '/' . dirs_comps)
-					\->map({idx, filename -> dirs_comps . filename})
-					\->map({idx, file -> isdirectory(dir . '/' . file) ? file . '/' : file})
+		let all_files = map(map(
+					\ readdir(dir . '/' . dirs_comps),
+					\ {idx, filename -> dirs_comps . filename}),
+					\ {idx, file -> isdirectory(dir . '/' . file) ? file . '/' : file})
 
-		let paths = paths->add(join(all_files, "\n"))
+		let paths = add(paths, join(all_files, "\n"))
 	endfor
 
 	return join(paths, "\n")
