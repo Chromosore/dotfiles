@@ -50,7 +50,7 @@ function confed
 	end
 
 	if test (count $dirs) -eq 0
-		printf $err_msg
+		printf $err_msg >&2
 		return 1
 	end
 
@@ -59,15 +59,15 @@ function confed
 	if set -q _flag_interactive && test (count $dirs) -gt 1
 		set i 1
 
-		echo "Choose a folder:"
+		echo "Choose a folder:" >&2
 		for choice in $dirs
-			echo [$i]: $choice
+			echo [$i]: $choice >&2
 			set i (math $i + 1)
 		end
 
 		set choice (read -p 'echo "> "')
 		if test $choice -lt 1 || test $choice -gt (count $dirs)
-			echo "You must choose a number between 1 and "(count $dirs)
+			echo "You must choose a number between 1 and "(count $dirs) >&2
 			return 1
 		end
 
