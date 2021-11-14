@@ -7,13 +7,13 @@ complete -c confed -s s -l search      -d 'Only print the path of the configurat
 
 function __confed_list_config_files
 	set realhome ~
+	set token (commandline -t)
 
 	for dir in $CONFED_PATH
 		set shortdir (string replace -r '^'"$realhome" '~' $dir)
 
-		find $dir/ -mindepth 1 -maxdepth 1 -print0 |
-			string split0 |
-			string replace -r '^.*/([^/]+)$' '$1'\t"$shortdir"
+		__fish_complete_path $dir/$token $shortdir |
+			string replace -r "^$dir/" ''
 	end
 
 	for file in $CONFED_SPECIAL
