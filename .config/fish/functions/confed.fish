@@ -7,19 +7,15 @@ function confed
 	or command -q vi && set -l EDITOR vi
 	or set -l EDITOR nano
 
-	set -q XDG_CONFIG_HOME
-	and set -l CONF $XDG_CONFIG_HOME
-	or set -l CONF $HOME/.config
-
 	if test "$CONFED_PICK_FIRST" != 1 && not set -q _flag_pick_first
 		set _flag_interactive ''
 	end
 
 	if test (count $argv) -eq 0
 		if set -q _flag_search
-			echo $CONF/fish/config.fish
+			echo $__fish_config_dir/config.fish
 		else
-			$EDITOR $CONF/fish/config.fish
+			$EDITOR $__fish_config_dir/config.fish
 		end
 		return 0
 	end
