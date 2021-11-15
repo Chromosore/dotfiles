@@ -1,5 +1,5 @@
 function dotadd
-	argparse 'd/dot-home=' 'm/no-link' -- $argv
+	argparse 'd/dot-home=' 'm/no-link' 'v/verbose' -- $argv
 	or return $status
 
 	set -q _flag_dot_home
@@ -17,9 +17,12 @@ function dotadd
 
 		set path (string replace -r '^'$realhome/ '' (realpath $file))
 
-		mv ~/$path $dothome/$path
+		set -q _flag_verbose
+			and set flags --verbose
+
+		mv $flags ~/$path $dothome/$path
 
 		not set -q _flag_no_link
-			and dotlink --dot-home $dothome $path
+			and dotlink $flags --dot-home $dothome $path
 	end
 end

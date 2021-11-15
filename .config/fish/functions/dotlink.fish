@@ -1,5 +1,5 @@
 function dotlink
-	argparse 'd/dot-home=' -- $argv
+	argparse 'd/dot-home=' 'v/verbose' -- $argv
 	or return $status
 
 	set -q _flag_dot_home
@@ -18,6 +18,9 @@ function dotlink
 		end
 
 
-		ln -s $dothome/$path ~/$path
+		set -q _flag_verbose
+			and set flags --verbose
+
+		ln $flags -s $dothome/$path ~/$path
 	end
 end

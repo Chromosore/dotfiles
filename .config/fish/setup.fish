@@ -116,6 +116,9 @@ function abbreviations
 	v abbr -a -U -- rm 'del -iv'
 	v abbr -a -U -- rmdir 'rmdir -v'
 
+	v abbr -a -U -- dotadd  'dotadd -v'
+	v abbr -a -U -- dotlink 'dotlink -v'
+
 	# ls (exa) aliases
 	v abbr -a -U -- ls   'ls -F'
 	v abbr -a -U -- la   'ls -Fa'
