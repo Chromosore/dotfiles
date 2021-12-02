@@ -22,7 +22,11 @@ function prompt_chars
 	v set -U prompt_prefix ''
 	v set -U prompt_sep1 '@'
 	v set -U prompt_sep2 ' '
-	v set -U prompt_postfix ' '(set_color -o)'>_ '
+
+	v set -U prompt_postfix '-+ '
+	v set -U prompt_postfix_level '-'
+	v set -U prompt_postfix_level_zero 1
+
 	v set -U prompt_status_chars '(' ') ' '|'
 end
 
