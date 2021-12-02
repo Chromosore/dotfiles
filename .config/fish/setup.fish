@@ -144,8 +144,9 @@ function abbreviations
 	v abbr -a -U -- tree 'ls -T'
 end
 
-set -- options --prompt-chars --prompt-colours \
-	--mode-cursor --fish-colours --abbreviations
+set -- options \
+	--prompt-chars --prompt-colours --mode-cursor --fish-colours \
+	--abbreviations --git-prompt
 
 
 function error
@@ -163,6 +164,7 @@ function usage
 
 	string join -- \n --all $options
 end
+
 
 if test (count $argv) -eq 0
 	usage
