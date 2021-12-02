@@ -30,6 +30,18 @@ function prompt_chars
 	v set -U prompt_status_chars '(' ') ' '|'
 end
 
+# Git prompt config
+function git_prompt
+	v set -U __fish_git_prompt_showcolorhints
+	v set -U __fish_git_prompt_showdirtystate
+
+	# Hack so it shows the number of commits ahead and behind but spaced
+	v set -U __fish_git_prompt_showupstream informative
+	v set -U __fish_git_prompt_char_upstream_ahead ' +'
+	v set -U __fish_git_prompt_char_upstream_behind ' -'
+	v set -U __fish_git_prompt_char_upstream_diverged ' +-'
+end
+
 # Prompt colours
 function prompt_colours
 	v set -U fish_color_user	-o yellow
