@@ -13,6 +13,7 @@ function dotadd
 			printf (_ "%ls: '%ls' is not a file\n") \
 			   (status current-function) \
 			   (string replace -r '^'$realhome '' $file)
+			continue
 		end
 
 		set path (string replace -r '^'$realhome/ '' (realpath $file))
