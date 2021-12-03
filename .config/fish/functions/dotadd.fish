@@ -19,7 +19,7 @@ function dotadd
 		set path (string replace -r '^'$realhome/ '' (realpath $file))
 
 		set -q _flag_verbose
-			and set flags --verbose
+			and set flags -v
 
 		mv $flags ~/$path $dothome/$path
 

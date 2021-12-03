@@ -19,7 +19,7 @@ function dotlink
 
 
 		set -q _flag_verbose
-			and set flags --verbose
+			and set flags -v
 
 		ln $flags -s $dothome/$path ~/$path
 	end
