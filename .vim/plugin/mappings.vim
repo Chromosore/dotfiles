@@ -1,45 +1,5 @@
-function! LoadNerdTreeFocusAndToggle()
-	if !exists('loaded_nerd_tree') || loaded_nerd_tree != 1
-		packadd vim-nerdtree-syntax-highlight
-		packadd nerdtree
-	endif
-
-	nmap <C-n> :call NERDTreeFocusAndToggle()<CR>
-	call NERDTreeFocusAndToggle()
-endfunction
-
-function! NERDTreeFocusAndToggle()
-	if g:NERDTree.IsOpen() && !exists('b:NERDTree')
-		call g:NERDTree.CursorToTreeWin(0)
-	else
-		call g:NERDTreeCreator.ToggleTabTree('')
-	endif
-endfunction
-
-function s:go_up()
-	if exists('b:NERDTree')
-		normal u
-	else
-		let file = expand('%:p')
-		let directory = fnamemodify(file, ':h')
-
-		if !isdirectory(directory)
-			edit .
-			return
-		endif
-
-		execute 'edit' directory
-		try
-			let node = b:NERDTree.root.reveal(g:NERDTreePath.New(file))
-			call b:NERDTree.render()
-			call node.putCursorHere(1, 0)
-		catch /^NERDTree.InvalidArgumentsError: .*$/
-		endtry
-	endif
-endfun
-
-nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
-nmap - <Cmd>call <SID>go_up()<CR>
+nmap <C-n>	<Cmd>call chromosore#nerdtree#focus_and_toggle()<CR>
+nmap -			<Cmd>call chromosore#nerdtree#go_up()<CR>
 
 imap fd <esc>
 vmap fd <esc>
