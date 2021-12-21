@@ -35,10 +35,5 @@ function fish_user_key_bindings
 		commandline -f cancel backward-char repaint-mode'
 	bind -M replace_one fd 'set fish_bind_mode default;
 		commandline -f cancel repaint-mode'
-
-	# Vim - Semi Hard Mode
-	# no arrow key navigation
-	for key in A B C D
-		bind -M insert \e\[$key 'true'
 	end
 end
