@@ -16,7 +16,30 @@ function! NERDTreeFocusAndToggle()
 	endif
 endfunction
 
+function s:go_up()
+	if exists('b:NERDTree')
+		normal u
+	else
+		let file = expand('%:p')
+		let directory = fnamemodify(file, ':h')
+
+		if !isdirectory(directory)
+			edit .
+			return
+		endif
+
+		execute 'edit' directory
+		try
+			let node = b:NERDTree.root.reveal(g:NERDTreePath.New(file))
+			call b:NERDTree.render()
+			call node.putCursorHere(1, 0)
+		catch /^NERDTree.InvalidArgumentsError: .*$/
+		endtry
+	endif
+endfun
+
 nmap <C-n> :call LoadNerdTreeFocusAndToggle()<CR>
+nmap - <Cmd>call <SID>go_up()<CR>
 
 imap fd <esc>
 vmap fd <esc>
