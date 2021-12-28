@@ -8,7 +8,9 @@ if has('packages')
 
 	packadd! vim-commentary
 
-	packadd! vim-devicons
+	if chromosore#has_nerdfont
+		packadd! vim-devicons
+	endif
 
 	packadd! fzf
 
