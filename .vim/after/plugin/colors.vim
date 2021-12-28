@@ -1,3 +1,8 @@
+" vim: foldmethod=marker
+" Colorscheme-specific settings {{{
+let g:badwolf_darkgutter = 1
+" }}}
+
 if !exists('g:colors_name')
 	" A colorscheme may have been loaded before in local.vim
 	let g:colors_name = 'solarized8_flat'
