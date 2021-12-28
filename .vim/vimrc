@@ -27,7 +27,11 @@ if has('packages')
 	augroup nerd_loader
 		autocmd!
 		autocmd VimEnter * silent! autocmd! FileExplorer
-		autocmd BufEnter,BufNew * call chromosore#nerdtree#load()
+		autocmd BufEnter,BufNew *
+					\		if isdirectory(expand('<amatch>'))
+					\|		call chromosore#nerdtree#load()
+					\|		autocmd! nerd_loader
+					\|	endif
 	augroup END
 
 
