@@ -3,16 +3,17 @@
 	name = Chromosore
 	email = konrad.blanchard@gmail.com
 
+[alias]
+	committed = diff HEAD^ HEAD --
+	ahead = log origin..HEAD
+	behind = log HEAD..origin
+
 
 [pull]
 	ff = only
 
 [init]
 	defaultBranch = master
-
-
-[alias]
-	committed = diff HEAD^ HEAD --
 
 
 [pager]
