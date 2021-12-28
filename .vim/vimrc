@@ -2,7 +2,6 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-" {{{ Plugins
 if has('packages')
 	" sensible.vim : a universal set of defaults
 	packadd! vim-sensible
@@ -10,13 +9,6 @@ if has('packages')
 	packadd! vim-commentary
 
 	packadd! vim-devicons
-
-	" packadd! vim-airline
-	" packadd! vim-airline-themes
-
-	" packadd! lightline.vim
-
-	"packadd! vim-startify
 
 	packadd! fzf
 
@@ -29,8 +21,6 @@ if has('packages')
 	if !has('gui_running')
 		packadd! terminus
 	endif
-
-	"packadd! vim-gitgutter
 
 	augroup nerd_loader
 		autocmd!
@@ -45,6 +35,7 @@ if has('packages')
 					\ packadd tsuquyomi
 	augroup END
 else
+	" Not on Vim8 {{{
 	let packpath_parts = split(&packpath, ',')
 	for archive in packpath_parts
 		let &rtp .= ','. join(glob(archive . '/pack/*/start/*', v:false, v:true), ',')
@@ -58,31 +49,22 @@ else
 		let &rtp .= ','. join(glob(archive . '/pack/*/after/*', v:false, v:true), ',')
 	endfor
 	packadd! vim-quicktask
+	" }}}
 endif
-" }}}
+
+filetype plugin indent on
+syntax enable
+
+let g:badwolf_darkgutter = 1
 
 " undercurl (spell)
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 
-filetype plugin indent on
-syntax enable
-" }}}
-
-let g:badwolf_darkgutter = 1
-
-" Tabline settings (WIP)
-let &tabline = &tabline
-
-let g:deoplete#enable_at_startup = 1
-
+" Miscellaneous {{{
 " Close vim if a quickfix window is the only open buffer
 autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
 	\ quit | endif
 
-if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-			\ | wincmd p | diffthis
-endif
-
 autocmd BufWritePre /tmp/* setlocal noundofile
+" }}}
