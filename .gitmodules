@@ -31,7 +31,7 @@
 
 [submodule "language/vim-polyglot"]
 	path = .vim/pack/languages/opt/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/tsuquyomi"]
 	path = .vim/pack/languages/opt/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
@@ -66,7 +66,7 @@
 	url = https://github.com/challenger-deep-theme/vim.git
 [submodule "theme/gruvbox"]
 	path = .vim/pack/themes/start/gruvbox
-	url = https://github.com/gruvbox-community/gruvbox
+	url = https://github.com/gruvbox-community/gruvbox.git
 [submodule "theme/molokai"]
 	path = .vim/pack/themes/start/molokai
 	url = https://github.com/tomasr/molokai.git
