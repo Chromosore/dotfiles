@@ -22,7 +22,8 @@ function bind_dollar
 end
 
 function fish_user_key_bindings
-	fzf_key_bindings
+	type -q fzf_key_bindings
+	and fzf_key_bindings
 
 	bind -M insert ! bind_bang
 	bind -M insert '$' bind_dollar
