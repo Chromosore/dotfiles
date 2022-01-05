@@ -1,33 +1,29 @@
-ccbegin signify
+set -- subcommands -C -G -S -V
 
-ccdispatch -x
+complete -c signify -x -a -C -n "not __fish_seen_subcommand_from $subcommands" -d "Verify a signed checksum list"
+complete -c signify -x -a -G -n "not __fish_seen_subcommand_from $subcommands" -d "Generate a new key pair"
+complete -c signify -x -a -S -n "not __fish_seen_subcommand_from $subcommands" -d "Sign specified message"
+complete -c signify -x -a -V -n "not __fish_seen_subcommand_from $subcommands" -d "Verify a signed message and sig"
 
-ccsub -C "Verify a signed checksum list"
-ccsub -G "Generate a new key pair"
-ccsub -S "Sign specified message"
-ccsub -V "Verify a signed message and sig"
+complete -c signify -s c -x -d "add a comment during key generation"
+complete -c signify -s q -d "quiet mode"
 
-cconce -c "add a comment during key generation"
-cconce -q "quiet mode"
+complete -c signify -s e -n '__fish_seen_argument -s S' -d "embed the message after the sig"
+complete -c signify -s e -n '__fish_seen_argument -s V' -d "extract the message from the sig"
 
-ccif -S -e "embed the message after the sig"
-ccif -V -e "extract the message from the sig"
+complete -c signify -s m -n '__fish_seen_argument -s S' -d "the file containing the message to sign"
+complete -c signify -s m -n '__fish_seen_argument -s V' -d "the file containing the message to verify"
 
-ccif -S -m "the file containing the message to sign"
-ccif -V -m "the file containing the message to verify"
+complete -c signify -s n -n '__fish_seen_argument -s G' -d "do not ask for a passphrase"
+complete -c signify -s n -n '__fish_seen_argument -s z' -d "store a zero time stamp in the gzip header"
 
-ccif -G -n "do not ask for a passphrase"
-ccif -z -n "store a zero time stamp in the gzip header"
+complete -c signify -s p -n '__fish_seen_argument -s G' -d "public key"
+complete -c signify -s p -n '__fish_seen_argument -s V' -d "key to use to check the sig"
 
-ccif -G -p "public key"
-ccif -V -p "key to use to check the sig"
+complete -c signify -s s -n '__fish_seen_argument -s G' -d "private key"
+complete -c signify -s s -n '__fish_seen_argument -s S' -d "key to use to sign the message"
 
-ccif -G -s "private key"
-ccif -S -s "key to use to sign the message"
+complete -c signify -s x -n '__fish_seen_argument -s S' -d "the signature file to create"
+complete -c signify -s x -n '__fish_seen_argument -s V' -d "the signature file to verify"
 
-ccif -S -x "the signature file to create"
-ccif -V -x "the signature file to verify"
-
-ccif "-S -V" -z "sign and verify gzip archives"
-
-ccend
+complete -c signify -s z -n '__fish_seen_argument -s S -s V' -d "sign and verify gzip archives"

@@ -1,21 +1,11 @@
-ccbegin wormhole
+complete -c wormhole -x -a help
+complete -c wormhole -x -a receive -d "Receive a text message, file, or directory (from 'wormhole send')"
+complete -c wormhole -a send -d "Send a text message, file, or directory"
+complete -c wormhole -x -a ssh -d "Facilitate sending/receiving SSH public keys"
 
-ccsub help ""
-ccsub receive "Receive a text message, file, or directory (from 'wormhole send')"
-ccsub send "Send a text message, file, or directory"
-ccsub ssh "Facilitate sending/receiving SSH public keys"
-
-cconce --appid ""
-cconce --relay-url ""
-cconce --transit-helper ""
-cconce --dump-timing ""
-cconce --version ""
-cconce --help ""
-
-# Files
-ccafter help "" "" -x
-ccafter receive "" "" -x
-ccafter ssh "" "" -x
-ccsub "" "" -x
-
-ccend
+complete -c wormhole -l appid
+complete -c wormhole -l relay-url
+complete -c wormhole -l transit-helper
+complete -c wormhole -l dump-timing
+complete -c wormhole -l version
+complete -c wormhole -l help

@@ -1,1 +1,0 @@
-/home/raphael/Projects/ccutils/ccutils.fish
