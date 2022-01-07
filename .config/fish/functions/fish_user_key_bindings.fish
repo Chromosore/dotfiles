@@ -35,6 +35,14 @@ function fish_user_key_bindings
 	bind -M $insert '$' bind_dollar
 
 	if $vi
+		bind -M insert \ek history-token-search-backward
+		bind -M insert \ej history-token-search-forward
+	else
+		bind \ep history-token-search-backward
+		bind \en history-token-search-forward
+	end
+
+	if $vi
 		bind -M insert fd 'set fish_bind_mode default;
 			commandline -f backward-char repaint-mode'
 		bind -M visual fd 'set fish_bind_mode default;
