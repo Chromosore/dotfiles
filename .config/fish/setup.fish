@@ -6,8 +6,6 @@
 # abbreviations, vi like bindings
 # and more for the first use
 
-fish_vi_key_bindings
-
 function v
 	echo $argv
 	set_color normal
@@ -54,7 +52,9 @@ function prompt_colours
 end
 
 # Vi modes cursor
-function mode_cursor
+function vi_mode
+	v fish_vi_key_bindings
+
 	v set -U fish_cursor_default		block		blink
 	v set -U fish_cursor_insert		line		blink
 	v set -U fish_cursor_visual		block
@@ -145,7 +145,7 @@ function abbreviations
 end
 
 set -- options \
-	--prompt-chars --prompt-colours --mode-cursor --fish-colours \
+	--prompt-chars --prompt-colours --vi-mode --fish-colours \
 	--abbreviations --git-prompt
 
 
