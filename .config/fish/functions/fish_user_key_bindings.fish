@@ -22,18 +22,26 @@ function bind_dollar
 end
 
 function fish_user_key_bindings
+	set -l vi (test "$fish_key_bindings" = "fish_vi_key_bindings" && echo true || echo false)
+
+	$vi
+	and set -l insert insert
+	or  set -l insert default
+
 	type -q fzf_key_bindings
 	and fzf_key_bindings
 
-	bind -M insert ! bind_bang
-	bind -M insert '$' bind_dollar
+	bind -M $insert ! bind_bang
+	bind -M $insert '$' bind_dollar
 
-	bind -M insert fd 'set fish_bind_mode default;
-		commandline -f backward-char repaint-mode'
-	bind -M visual fd 'set fish_bind_mode default;
-		commandline -f end-selection repaint-mode'
-	bind -M replace fd 'set fish_bind_mode default;
-		commandline -f cancel backward-char repaint-mode'
-	bind -M replace_one fd 'set fish_bind_mode default;
-		commandline -f cancel repaint-mode'
+	if $vi
+		bind -M insert fd 'set fish_bind_mode default;
+			commandline -f backward-char repaint-mode'
+		bind -M visual fd 'set fish_bind_mode default;
+			commandline -f end-selection repaint-mode'
+		bind -M replace fd 'set fish_bind_mode default;
+			commandline -f cancel backward-char repaint-mode'
+		bind -M replace_one fd 'set fish_bind_mode default;
+			commandline -f cancel repaint-mode'
+	end
 end
