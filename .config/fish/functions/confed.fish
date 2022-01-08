@@ -53,11 +53,12 @@ function confed
 	set dir $dirs[1]
 
 	if set -q _flag_interactive && test (count $dirs) -gt 1
+		set realhome ~
 		set i 1
 
 		echo "Choose a folder:" >&2
 		for choice in $dirs
-			echo [$i]: $choice >&2
+			echo [$i]: (string replace -r '^'"$realhome" '~' $choice) >&2
 			set i (math $i + 1)
 		end
 
