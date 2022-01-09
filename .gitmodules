@@ -25,6 +25,9 @@
 [submodule "vim-devicons"]
 	path = .vim/pack/bundle/opt/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
+[submodule "vim-sandwich"]
+	path = .vim/pack/bundle/opt/vim-sandwich
+	url = https://github.com/machakann/vim-sandwich.git
 [submodule "vim-sensible"]
 	path = .vim/pack/bundle/opt/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git

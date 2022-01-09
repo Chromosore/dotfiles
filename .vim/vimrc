@@ -7,6 +7,7 @@ if has('packages')
 	packadd! vim-sensible
 
 	packadd! vim-commentary
+	packadd! vim-sandwich
 
 	if chromosore#has_nerdfont
 		packadd! vim-devicons
