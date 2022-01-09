@@ -1,40 +1,40 @@
-[submodule "vim-sensible"]
-	path = .vim/pack/bundle/opt/vim-sensible
-	url = https://github.com/tpope/vim-sensible.git
+[submodule "fzf"]
+	path = .vim/pack/bundle/opt/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "indentLine"]
+	path = .vim/pack/bundle/opt/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "indent-guides"]
+	path = .vim/pack/bundle/opt/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "nerdtree"]
+	path = .vim/pack/bundle/opt/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "nerdtree-syntax-highlight"]
+	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "terminus"]
+	path = .vim/pack/bundle/opt/terminus
+	url = https://github.com/wincent/terminus.git
+[submodule "undotree"]
+	path = .vim/pack/bundle/opt/undotree
+	url = https://github.com/mbbill/undotree.git
 [submodule "vim-commentary"]
 	path = .vim/pack/bundle/opt/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim-devicons"]
 	path = .vim/pack/bundle/opt/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
-[submodule "indentLine"]
-	path = .vim/pack/bundle/opt/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
-[submodule "vim-indent-guides"]
-	path = .vim/pack/bundle/opt/vim-indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "terminus"]
-	path = .vim/pack/bundle/opt/terminus
-	url = https://github.com/wincent/terminus.git
-[submodule "nerdtree"]
-	path = .vim/pack/bundle/opt/nerdtree
-	url = https://github.com/preservim/nerdtree.git
-[submodule "vim-nerdtree-syntax-highlight"]
-	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
-	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
-[submodule "fzf"]
-	path = .vim/pack/bundle/opt/fzf
-	url = https://github.com/junegunn/fzf.git
-[submodule "undotree"]
-	path = .vim/pack/bundle/opt/undotree
-	url = https://github.com/mbbill/undotree.git
+[submodule "vim-sensible"]
+	path = .vim/pack/bundle/opt/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
 
-[submodule "language/vim-polyglot"]
-	path = .vim/pack/languages/opt/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/tsuquyomi"]
 	path = .vim/pack/languages/opt/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
+[submodule "language/vim-polyglot"]
+	path = .vim/pack/languages/opt/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/vim-quicktask"]
 	path = .vim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
