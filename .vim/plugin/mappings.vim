@@ -23,13 +23,6 @@ nmap <expr> gm chromosore#mappings#move()
 nmap <expr> gmm chromosore#mappings#move() . '_'
 vmap <expr> gm chromosore#mappings#move_visual()
 
-" Familiar copy/cut/paste to clipboard shortcuts
-if has('clipboard')
-	nmap <C-C> "+yy
-	vmap <C-C> "+y
-	nmap <C-V> "+p
-endif
-
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
 	nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
