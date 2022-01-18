@@ -1,23 +1,10 @@
-function record_timestamp --on-event fish_preexec
-	set -e -g _prompt_ellapsed_time
-	set -g _prompt_last_timestamp (date +%s)
-end
-
 function prompt_ellapsed_time
-	set now (date +%s)
-
 	set normal (set_color normal)
 	set b_magenta (set_color -o magenta)
 
-	if set -q -g _prompt_last_timestamp
-		set -g _prompt_ellapsed_time (math $now - $_prompt_last_timestamp)
-		set -e -g _prompt_last_timestamp
-	end
-
-
-	if set -q -g _prompt_ellapsed_time
-		if test $_prompt_ellapsed_time -ge 3
-			set seconds $_prompt_ellapsed_time
+	if set -q -g CMD_DURATION
+		if test $CMD_DURATION -ge 3000
+			set seconds (math -s0 $CMD_DURATION / 1000)
 
 			if test $seconds -ge 60
 				set minutes (math -s0 $seconds / 60)
