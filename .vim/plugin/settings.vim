@@ -8,7 +8,7 @@ if has('persistent_undo')
 	let &undodir = chromosore#data . expand('/undo//')
 endif
 
-if has('viminfo')
+if has('viminfo') && &viminfofile == ''
 	let &viminfofile = chromosore#data . expand('/viminfo')
 endif
 
