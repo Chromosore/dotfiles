@@ -1,17 +1,15 @@
 " I hate these files so I throw them away :)
-let &directory = chromosore#config . expand('/swap//')
+let &directory = chromosore#data . expand('/swap//')
 
-let &backupdir = chromosore#config . expand('/backup//')
+let &backupdir = chromosore#data . expand('/backup//')
 
 if has('persistent_undo')
 	set undofile
-	let &undodir = chromosore#config . expand('/undo//')
+	let &undodir = chromosore#data . expand('/undo//')
 endif
 
 if has('viminfo')
-	let &viminfofile = chromosore#config . expand('/viminfo')
-elseif has('shada')
-	let &shadafile = chromosore#config . expand('/shada')
+	let &viminfofile = chromosore#data . expand('/viminfo')
 endif
 
 set autoread
