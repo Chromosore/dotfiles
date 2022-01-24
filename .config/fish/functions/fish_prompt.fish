@@ -1,4 +1,4 @@
-function fallback_var
+function __prompt_fallback_var
 	if functions -q $argv
 		$argv
 	else
@@ -21,8 +21,8 @@ function fish_prompt
 		(set_color $fish_color_status) \
 		$last_pipestatus)
 
-	set -l prefix (fallback_var prompt_prefix) $normal
-	set -l postfix (fallback_var prompt_postfix) $normal
+	set -l prefix (__prompt_fallback_var prompt_prefix) $normal
+	set -l postfix (__prompt_fallback_var prompt_postfix) $normal
 
 	set -l sep1 (set_color $fish_color_sep1) $prompt_sep1 $normal
 	set -l sep2 (set_color $fish_color_sep2) $prompt_sep2 $normal
