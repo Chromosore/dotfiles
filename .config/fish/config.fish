@@ -24,8 +24,9 @@ or set -l config ~/.config
 # confed is awesome
 # (I might be its creator)
 # (but whatever)
-set -gx CONFED_PATH $__fish_config_dir/functions $__fish_config_dir/completions
-set -a CONFED_PATH $HOME/.vim
+set -gx CONFED_PATH $__fish_config_dir/{conf.d,functions,completions}
+set -a CONFED_PATH $conf/kitty
+set -a CONFED_PATH ~/.vim
 
 set CONFED_SPECIAL $HOME/.profile
 set -a CONFED_SPECIAL $__fish_config_dir/setup.fish
