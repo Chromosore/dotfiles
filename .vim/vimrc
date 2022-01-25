@@ -2,7 +2,7 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-if has('packages')
+if has('packages') && &loadplugins
 	" sensible.vim : a universal set of defaults
 	packadd! vim-sensible
 
@@ -43,8 +43,8 @@ if has('packages')
 		autocmd FileType typescript ++once
 					\ packadd tsuquyomi
 	augroup END
-else
-	" Not on Vim8 {{{
+elseif &loadplugins
+	" Not using Vim8 {{{
 	let packpath_parts = split(&packpath, ',')
 	for archive in packpath_parts
 		let &rtp .= ','. join(glob(archive . '/pack/*/start/*', v:false, v:true), ',')
