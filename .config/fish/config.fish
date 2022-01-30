@@ -26,7 +26,7 @@ or set -l config ~/.config
 # (but whatever)
 set -gx CONFED_PATH $__fish_config_dir/{conf.d,functions,completions}
 set -a CONFED_PATH $config/kitty
-set -a CONFED_PATH ~/.vim
+set -a CONFED_PATH $config/nvim
 
 set CONFED_SPECIAL $HOME/.profile
 set -a CONFED_SPECIAL $__fish_config_dir/setup.fish

@@ -1,87 +1,87 @@
 [submodule "fzf"]
-	path = .vim/pack/bundle/opt/fzf
+	path = .config/nvim/pack/bundle/opt/fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "indentLine"]
-	path = .vim/pack/bundle/opt/indentLine
+	path = .config/nvim/pack/bundle/opt/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
 [submodule "indent-guides"]
-	path = .vim/pack/bundle/opt/vim-indent-guides
+	path = .config/nvim/pack/bundle/opt/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "nerdtree"]
-	path = .vim/pack/bundle/opt/nerdtree
+	path = .config/nvim/pack/bundle/opt/nerdtree
 	url = https://github.com/preservim/nerdtree.git
 [submodule "nerdtree-syntax-highlight"]
-	path = .vim/pack/bundle/opt/vim-nerdtree-syntax-highlight
+	path = .config/nvim/pack/bundle/opt/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
 [submodule "terminus"]
-	path = .vim/pack/bundle/opt/terminus
+	path = .config/nvim/pack/bundle/opt/terminus
 	url = https://github.com/wincent/terminus.git
 [submodule "undotree"]
-	path = .vim/pack/bundle/opt/undotree
+	path = .config/nvim/pack/bundle/opt/undotree
 	url = https://github.com/mbbill/undotree.git
 [submodule "vim-commentary"]
-	path = .vim/pack/bundle/opt/vim-commentary
+	path = .config/nvim/pack/bundle/opt/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim-devicons"]
-	path = .vim/pack/bundle/opt/vim-devicons
+	path = .config/nvim/pack/bundle/opt/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
 [submodule "vim-sandwich"]
-	path = .vim/pack/bundle/opt/vim-sandwich
+	path = .config/nvim/pack/bundle/opt/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich.git
 [submodule "vim-sensible"]
-	path = .vim/pack/bundle/opt/vim-sensible
+	path = .config/nvim/pack/bundle/opt/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
 
 [submodule "language/tsuquyomi"]
-	path = .vim/pack/languages/opt/tsuquyomi
+	path = .config/nvim/pack/languages/opt/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
 [submodule "language/vim-polyglot"]
-	path = .vim/pack/languages/opt/vim-polyglot
+	path = .config/nvim/pack/languages/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/vim-quicktask"]
-	path = .vim/pack/languages/opt/vim-quicktask
+	path = .config/nvim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
 
 [submodule "theme/vim-wwdc17"]
-	path = .vim/pack/themes/start/vim-wwdc17
+	path = .config/nvim/pack/themes/start/vim-wwdc17
 	url = https://github.com/lifepillar/vim-wwdc17-theme.git
 [submodule "theme/vim-inkpot-refilled"]
 	path = .vim/pack/themes/start/vim-inkpot-refilled
 	url = https://github.com/Chromosore/vim-inkpot-refilled.git
 
 [submodule "theme/vim-wwdc16"]
-	path = .vim/pack/themes/start/vim-wwdc16
+	path = .config/nvim/pack/themes/start/vim-wwdc16
 	url = https://github.com/lifepillar/vim-wwdc16-theme.git
 [submodule "theme/vim-solarized8"]
-	path = .vim/pack/themes/start/vim-solarized8
+	path = .config/nvim/pack/themes/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
 [submodule "theme/badwolf"]
-	path = .vim/pack/themes/start/badwolf
+	path = .config/nvim/pack/themes/start/badwolf
 	url = https://github.com/sjl/badwolf.git
 [submodule "theme/oceanic-next"]
-	path = .vim/pack/themes/start/oceanic-next
+	path = .config/nvim/pack/themes/start/oceanic-next
 	url = https://github.com/mhartington/oceanic-next.git
 [submodule "theme/jellybeans.vim"]
-	path = .vim/pack/themes/start/jellybeans.vim
+	path = .config/nvim/pack/themes/start/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
 [submodule "theme/challenger_deep"]
-	path = .vim/pack/themes/start/challenger_deep
+	path = .config/nvim/pack/themes/start/challenger_deep
 	url = https://github.com/challenger-deep-theme/vim.git
 [submodule "theme/gruvbox"]
-	path = .vim/pack/themes/start/gruvbox
+	path = .config/nvim/pack/themes/start/gruvbox
 	url = https://github.com/gruvbox-community/gruvbox.git
 [submodule "theme/molokai"]
-	path = .vim/pack/themes/start/molokai
+	path = .config/nvim/pack/themes/start/molokai
 	url = https://github.com/tomasr/molokai.git
 [submodule "theme/snow"]
-	path = .vim/pack/themes/start/snow
+	path = .config/nvim/pack/themes/start/snow
 	url = https://github.com/nightsense/snow.git
 [submodule "theme/vim-monokai"]
-	path = .vim/pack/themes/start/vim-monokai
+	path = .config/nvim/pack/themes/start/vim-monokai
 	url = https://github.com/sickill/vim-monokai.git
 [submodule "theme/vim-one"]
-	path = .vim/pack/themes/start/vim-one
+	path = .config/nvim/pack/themes/start/vim-one
 	url = https://github.com/rakr/vim-one.git
 [submodule "theme/seti.vim"]
-	path = .vim/pack/themes/start/seti.vim
+	path = .config/nvim/pack/themes/start/seti.vim
 	url = https://github.com/trusktr/seti.vim.git
