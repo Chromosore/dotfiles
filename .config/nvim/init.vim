@@ -63,10 +63,6 @@ endif
 filetype plugin indent on
 syntax enable
 
-" undercurl (spell)
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
-
 " Miscellaneous {{{
 " Close vim if a quickfix window is the only open buffer
 autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
