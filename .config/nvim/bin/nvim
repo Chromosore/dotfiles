@@ -11,10 +11,12 @@ import pynvim
 AUTOCMD_EVENT = 'nvim-remote-edit-bufdelete'
 
 def add_wait_autocmd(nvim, event, *, buffer=None):
-    buffer = f'<{buffer=}>' if buffer is not None else '<buffer>'
+    bufnr = buffer if buffer is not None else 0
+    aubuffer = f'<{buffer=}>' if buffer is not None else '<buffer>'
     nvim.api.exec(f'''
+        call nvim_buf_set_option({bufnr}, 'bufhidden', 'delete')
         augroup nvim-remote-edit-wait
-            autocmd BufDelete {buffer} ++once call rpcnotify({nvim.channel_id}, {event!r})
+            autocmd BufDelete {aubuffer} ++once call rpcnotify({nvim.channel_id}, {event!r})
         augroup END
         ''', False)
 
