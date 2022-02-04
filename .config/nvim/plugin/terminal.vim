@@ -19,4 +19,5 @@ tnoremap <C-W><C-N> <C-\><C-N>
 
 " Add a nvim command in the terminal which open files in the current nvim
 let $PATH = stdpath('config') .. '/bin' .. ':' .. $PATH
-let $EDITOR = 'nvim-wait'
+let $EDITOR = 'nvim'
+let $GIT_EDITOR = 'nvim-split'
