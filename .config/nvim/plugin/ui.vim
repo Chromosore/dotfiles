@@ -5,7 +5,7 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-let &statusline = "%<%f %h%m%r%=%-14.(%l/%L :%c%V%) %y %P"
+let &statusline = "%<%f %h%m%r%=%-14.(.%l/%L :%c%V%) %y %P"
 set laststatus=2 " Always display statusline
 set ruler
 
