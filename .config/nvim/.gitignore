@@ -1,0 +1,7 @@
+# Local configuration
+/plugin/local.vim
+/plugin/local/
+
+# Local autoload
+/autoload/local.vim
+/autoload/local/
