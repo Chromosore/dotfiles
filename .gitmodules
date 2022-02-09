@@ -38,6 +38,9 @@
 [submodule "language/vim-polyglot"]
 	path = .config/nvim/pack/languages/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "language/vim-kitty"]
+	path = .config/nvim/pack/languages/opt/vim-kitty
+	url = https://github.com/fladson/vim-kitty.git
 [submodule "language/vim-quicktask"]
 	path = .config/nvim/pack/languages/opt/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git

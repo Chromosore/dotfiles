@@ -26,6 +26,7 @@ if has('packages') && &loadplugins
 	endif
 
 	packadd! vim-quicktask
+	packadd! vim-kitty
 
 	augroup nerd_loader
 		autocmd!
