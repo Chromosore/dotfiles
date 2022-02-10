@@ -15,11 +15,7 @@ if has('packages') && &loadplugins
 
 	packadd! fzf
 
-	if has('conceal')
-		packadd! indentLine
-	else
-		packadd! vim-indent-guides
-	endif
+	packadd! indent-blankline.nvim
 
 	if !has('gui_running')
 		packadd! terminus

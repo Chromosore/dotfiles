@@ -1,12 +1,9 @@
 [submodule "fzf"]
 	path = .config/nvim/pack/bundle/opt/fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "indentLine"]
-	path = .config/nvim/pack/bundle/opt/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
-[submodule "indent-guides"]
-	path = .config/nvim/pack/bundle/opt/vim-indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "indent-blankline.nvim"]
+	path = .config/nvim/pack/bundle/opt/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
 [submodule "nerdtree"]
 	path = .config/nvim/pack/bundle/opt/nerdtree
 	url = https://github.com/preservim/nerdtree.git
