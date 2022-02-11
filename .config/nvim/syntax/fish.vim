@@ -16,6 +16,7 @@ syn match fishStringEscapeDouble /\\["$\\]/ contains=fishStringEscape contained
 syn region fishString start=/'/ end=/'/ contains=fishStringEscapeSingle              contained
 syn region fishString start=/"/ end=/"/ contains=fishStringEscapeDouble,fishVariable contained
 
+
 syn match fishVariable /\v\$[a-zA-Z0-9_]+%(\[%(\d+%(\.\.\d+)?)?%( \d+%(\.\.\d+)?)*\])?/ contained
 
 syn match fishEscape /\v\\%([aefnrtv $\\*?~#(){}[\]<>^&|;"']|x\x{,2}|X\x{,2}|o\o{,3}|u\x{,4}|U\x{,8}|c\a)/ contained
@@ -24,8 +25,10 @@ syn match fishToken /\%(\k\|(\)\+/ contains=fishEscape,fishVariable,fishString,f
 
 syn region fishSubcommand matchgroup=fishDelimiter start=/(/ matchgroup=fishDelimiter end=/)/ contains=@fishCommandline contained
 
-syn match fishArgument	/\%(\k\|(\)\+/	contains=fishComment,fishToken		nextgroup=@fishLine skipwhite
-syn match fishLineCont	/\\$/																							nextgroup=@fishLine skipwhite skipnl
+syn match fishRedirection /\d*\%(<\|>\|>>\)\s*&\?\k\+/ contained
+
+syn match fishArgument	/\%(\k\|(\)\+/	contains=fishComment,fishRedirection,fishToken	nextgroup=@fishLine skipwhite
+syn match fishLineCont	/\\$/																														nextgroup=@fishLine skipwhite skipnl
 syn cluster fishLine contains=fishLineCont,fishArgument
 
 syn match fishCommandError /(/ contained
@@ -48,6 +51,7 @@ hi def link fishVariable	Identifier
 hi def link fishStringEscapeSingle	fishEscape
 hi def link fishStringEscapeDouble	fishEscape
 hi def link fishEscape		Special
+hi def link fishRedirection	Operator
 hi def link fishDelimiter	Delimiter
 hi def link fishLineCont	Delimiter
 hi def link fishComment		Comment
