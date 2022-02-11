@@ -10,8 +10,11 @@ endif
 
 syn iskeyword !-~,^;,^|,^&,^(,^),192-255
 
-syn region fishString start=/'/ skip=/\\'/ end=/'/ contained
-syn region fishString start=/"/ skip=/\\"/ end=/"/ contains=fishVariable contained
+syn match fishStringEscapeSingle /\\['\\]/ contains=fishStringEscape contained
+syn match fishStringEscapeDouble /\\["$\\]/ contains=fishStringEscape contained
+
+syn region fishString start=/'/ end=/'/ contains=fishStringEscapeSingle              contained
+syn region fishString start=/"/ end=/"/ contains=fishStringEscapeDouble,fishVariable contained
 
 syn match fishVariable /\v\$[a-zA-Z0-9_]+%(\[%(\d+%(\.\.\d+)?)?%( \d+%(\.\.\d+)?)*\])?/ contained
 
@@ -42,6 +45,8 @@ syn cluster fishCommandline contains=@fishKeyword,fishComment,fishDelimiter,fish
 
 hi def link fishString		String
 hi def link fishVariable	Identifier
+hi def link fishStringEscapeSingle	fishEscape
+hi def link fishStringEscapeDouble	fishEscape
 hi def link fishEscape		Special
 hi def link fishDelimiter	Delimiter
 hi def link fishLineCont	Delimiter
