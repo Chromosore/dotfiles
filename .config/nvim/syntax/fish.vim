@@ -18,7 +18,7 @@ syn region fishString start=/"/ end=/"/ contains=fishStringEscapeDouble,fishVari
 
 syn match fishVariable /\v\$[a-zA-Z0-9_]+%(\[%(\d+%(\.\.\d+)?)?%( \d+%(\.\.\d+)?)*\])?/ contained
 
-syn match fishEscape /\v\\%([aefnrtv $\\*?~#(){}[\]<>^&|;"']|x\x{2}|X\x{2}|o\o{3}|u\x{4}|U\x{8}|c\a)/ contained
+syn match fishEscape /\v\\%([aefnrtv $\\*?~#(){}[\]<>^&|;"']|x\x{,2}|X\x{,2}|o\o{,3}|u\x{,4}|U\x{,8}|c\a)/ contained
 
 syn match fishToken /\%(\k\|(\)\+/ contains=fishEscape,fishVariable,fishString,fishSubcommand contained
 
