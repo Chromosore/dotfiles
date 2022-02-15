@@ -1,3 +1,31 @@
+# Shell Integration ##########
+
+if test -n "$KITTY_SHELL_INTEGRATION"
+	and not contains -- "no-cursor" (string split " " -- "$KITTY_SHELL_INTEGRATION")
+
+	set -l __osc '\e]133;%s\e\\\\'
+	set __prompt_mark_start    (printf $__osc A)
+	set __prompt_mark_end      (printf $__osc B)
+	set __prompt_mark_preexec  (printf $__osc C)
+	set __prompt_mark_postexec (printf $__osc 'D;%d')
+	set __prompt_mark_cancel   (printf $__osc D)
+
+	function __prompt_shell_integration_preexec --on-event fish_preexec
+		echo -sn $__prompt_mark_preexec
+	end
+
+	function __prompt_shell_integration_postexec --on-event fish_postexec
+		printf $__prompt_mark_postexec $status
+	end
+
+	function __prompt_shell_integration_cancel --on-event fish_cancel
+		echo -sn $__prompt_mark_cancel
+	end
+end
+
+##############################
+
+
 function __prompt_fallback_var
 	if functions -q $argv
 		$argv
@@ -33,5 +61,7 @@ function fish_prompt
 
 	set -l body $prompt_status $user $sep1 $host $sep2 $pwd
 
+	echo -sn $__prompt_mark_start
 	echo -sn $prefix $body $postfix
+	echo -sn $__prompt_mark_end
 end
