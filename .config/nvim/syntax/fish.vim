@@ -7,6 +7,8 @@ if exists('b:current_syntax')
 	finish
 endif
 
+let b:current_syntax = 'fish'
+
 
 syn iskeyword !-~,^;,^|,^&,^(,^),192-255
 
@@ -64,5 +66,4 @@ hi def link fishLabel			Keyword
 
 hi def link fishCommandError	Error
 
-let b:current_syntax = 'fish'
 " vim: ts=2
