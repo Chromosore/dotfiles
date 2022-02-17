@@ -1,7 +1,6 @@
 " Vim syntax file
 " Language:			fish
 " Maintainer:		Chromosore <raphi@babinux.com>
-" Last Change:	2021 Dec 3
 
 if exists('b:current_syntax')
 	finish
