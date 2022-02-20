@@ -1,0 +1,30 @@
+#!/usr/bin/env fish
+
+set options 'system' 'global' 'local' 'worktree' 'file' 'remove'
+argparse -n git-alias \
+   --exclusive system,global,local,worktree,file \
+   $options -- $argv
+or exit $status
+
+set name $argv[1]
+set -e argv[1]
+
+set command $argv
+
+# Assume that a flag is not set if it isn't specified
+set -- scope $_flag_system $_flag_global $_flag_local $_flag_worktree $_flag_file
+
+if test -z "$scope"
+	set -- scope --global
+end
+
+if set -q _flag_remove
+	# Delete the alias
+	git config $scope --unset "alias.$name" "$command"
+else if test -z "$command"
+	# Show the alias
+	git config $scope --get "alias.$name"
+else
+	# Set the alias
+	git config $scope "alias.$name" "$command"
+end
