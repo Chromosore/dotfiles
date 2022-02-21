@@ -21,6 +21,8 @@ if has('packages') && &loadplugins
 		packadd! terminus
 	endif
 
+	packadd! nvim-lspconfig
+
 	packadd! vim-quicktask
 	packadd! vim-kitty
 
