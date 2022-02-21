@@ -8,20 +8,12 @@ if !exists('g:colors_name')
 	let g:colors_name = 'solarized8_flat'
 endif
 
-execute 'colorscheme' g:colors_name
 
-
-let s:reversible_themes = [
-	\ 'solarized8',
-	\ 'solarized8_flat',
-	\ 'gruvbox',
-	\ 'snow',
-	\ 'one',
-	\ ]
 let s:dark_to_light_theme = {
 	\ 'OceanicNext': 'OceanicNextLight',
 	\ 'wwdc16': 'wwdc17',
 	\ }
+
 " {{{ Light & Dark themes setup
 let s:light_to_dark_theme = {}
 for s:key in keys(s:dark_to_light_theme)
@@ -30,22 +22,16 @@ for s:key in keys(s:dark_to_light_theme)
 endfor
 " }}}
 
-function! SetBackground(color)
-	let g:theme = a:color
-
-	if index(s:reversible_themes, g:colors_name) >= 0
-		let &background = a:color
+function! UpdateTheme()
+	if &background == 'dark'
+		let l:inverse_themes = s:light_to_dark_theme
 	else
-		if a:color == 'dark'
-			let l:inverse_themes = s:light_to_dark_theme
-		else
-			let l:inverse_themes = s:dark_to_light_theme
-		endif
+		let l:inverse_themes = s:dark_to_light_theme
+	endif
 
-		let l:themes = keys(l:inverse_themes)
-		if index(l:themes, g:colors_name) >= 0
-			execute 'colorscheme' l:inverse_themes[g:colors_name]
-		endif
+	let l:themes = keys(l:inverse_themes)
+	if index(l:themes, g:colors_name) >= 0
+		execute 'colorscheme' l:inverse_themes[g:colors_name]
 	endif
 endfunction
 
@@ -53,9 +39,9 @@ endfunction
 if has('gui_macvim')
 	function! s:MacVimSetBackground()
 		if v:os_appearance == 0
-			call SetBackground('light')
+			set background=light
 		else
-			call SetBackground('dark')
+			set background=dark
 		endif
 	endfunction
 
@@ -65,15 +51,16 @@ if has('gui_macvim')
 	augroup END
 endif
 
-if !exists('g:theme')
-	let g:theme = 'light'
-endif
 
 if &term == "linux"
-	let g:theme = 'dark'
+	set background=dark
 endif
 
+augroup chromosore_theme_switch
+	au!
+	au OptionSet background call UpdateTheme()
+augroup END
 
-if !has('gui_macvim')
-	call SetBackground(g:theme)
-endif
+
+execute 'colorscheme' g:colors_name
+call UpdateTheme()
