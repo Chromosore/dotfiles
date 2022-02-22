@@ -1,7 +1,13 @@
 # Shell Integration ##########
 
-if test -n "$KITTY_SHELL_INTEGRATION"
-	and not contains -- "no-cursor" (string split " " -- "$KITTY_SHELL_INTEGRATION")
+if begin
+		test -n "$KITTY_SHELL_INTEGRATION"
+		and not contains -- "no-cursor" (string split " " -- "$KITTY_SHELL_INTEGRATION")
+	end; or begin
+		set -q ITERM_PROFILE
+		and not functions -q -- iterm2_status
+		and test "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != screen
+	end
 
 	set -l __osc '\e]133;%s\e\\\\'
 	set __prompt_mark_start    (printf $__osc A)
