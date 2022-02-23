@@ -35,13 +35,6 @@ if has('packages') && &loadplugins
 					\|		autocmd! nerd_loader
 					\|	endif
 	augroup END
-
-
-	augroup PackLazyLoad
-		autocmd!
-		autocmd FileType typescript ++once
-					\ packadd tsuquyomi
-	augroup END
 elseif &loadplugins
 	" Not using Vim8 {{{
 	let packpath_parts = split(&packpath, ',')
