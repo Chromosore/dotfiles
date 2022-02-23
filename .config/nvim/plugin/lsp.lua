@@ -6,8 +6,8 @@ local runtime_path = vim.split(package.path, ";");
 
 -- xcrun [[[1
 local function xcrun(cmd)
-	if vim.fn.has("mac") then
-		table.insert(cmd, 0, "xcrun")
+	if vim.fn.has("mac") == 1 then
+		table.insert(cmd, 1, "xcrun")
 	end
 	return cmd
 end
