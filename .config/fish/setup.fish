@@ -135,6 +135,10 @@ function abbreviations
 	v abbr -a -U -- dotadd  'dotadd -v'
 	v abbr -a -U -- dotlink 'dotlink -v'
 
+	# use exa instead of ls
+	set -U __fish_ls_command   'exa'
+	set -U __fish_ls_color_opt '--color=auto'
+
 	# ls (exa) aliases
 	v abbr -a -U -- ls   'ls -F'
 	v abbr -a -U -- la   'ls -Fa'
