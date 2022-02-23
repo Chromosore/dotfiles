@@ -42,7 +42,7 @@ function del
 
 		if test -d $file && set -q recursive
 			set prompt (printf '%s "%s"?' (_ 'Remove recursively') $escaped_file)
-		else if test -e $file
+		else if stat &>/dev/null $file
 			set prompt (printf '%s "%s"?' (_ 'Remove') $escaped_file)
 		else
 			printf (_ '"%s" does not exists\n') $escaped_file
