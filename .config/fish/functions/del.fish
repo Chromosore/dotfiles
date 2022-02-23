@@ -1,42 +1,60 @@
-set -q __del_interactive_recursive_option
-or begin
-	switch (uname)
-		case 'Linux'
-			set -g __del_interactive_recursive_option '-I'
-		case '*'
-			set -g __del_interactive_recursive_option '-i'
-	end
-end
-
 function del
-	set options 'i/interactive' 'v/verbose' 'f/force'
-	argparse --exclusive i,f $options -- $argv
-	or return $status
-
-	set -l directory 0
-
-	for file in $argv
-		if test -d $file
-			set directory 1
-			break
+	## $argv sanitising
+	for arg in $argv
+		switch $arg
+			case '-'
+				set -a files $arg
+			case '-*'
+				if test (string sub -s2 -l1 -- $arg) = "-"
+					set -a _options $arg
+				else
+					set -a _options -(string sub -s2 -- $arg | string split -- '')
+				end
+			case '*'
+				set -a files $arg
 		end
 	end
 
-	if test "$directory" = 1
-		set -a flags '--recursive'
-
-		set -q _flag_interactive
-		and set -a flags $__del_interactive_recursive_option
-	else
-		set -q _flag_interactive
-		and set -a flags '-i'
+	## Option parsing
+	# Catch -i and -I as we are replacing them
+	# But pass -r through
+	for option in $_options
+		switch $option
+			case '-r'
+				set recursive  $option
+				set -a options $option
+			case '-i'
+				continue
+			case '-I'
+				continue
+			case '*'
+				set -a options $option
+		end
 	end
 
-	set -q _flag_verbose
-	and set -a flags '-v'
+	if not contains -- '-f' $options
+		set -p options '-f'
+	end
 
-	set -q _flag_force
-	and set -a flags '-f'
 
-	command rm $flags $argv
+	for file in $files
+		set escaped_file (string replace -a '"' '\"' $file)
+
+		if test -d $file && set -q recursive
+			set prompt (printf '%s "%s"?' (_ 'Remove recursively') $escaped_file)
+		else if test -e $file
+			set prompt (printf '%s "%s"?' (_ 'Remove') $escaped_file)
+		else
+			printf (_ '"%s" does not exists\n') $escaped_file
+			return 1
+		end
+
+		read answer -P (printf '%s %s ' $prompt '[y/N]')
+
+		if test (string lower "$answer") = y
+			command rm $options $file
+		else
+			printf (_ 'Skipping "%s"...\n') $escaped_file
+		end
+	end
 end

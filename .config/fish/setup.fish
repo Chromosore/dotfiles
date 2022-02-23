@@ -129,7 +129,7 @@ function abbreviations
 	v abbr -a -U -- cpio 'cpio -v'
 	v abbr -a -U -- pax 'pax -v'
 
-	v abbr -a -U -- rm 'del -iv'
+	v abbr -a -U -- rm 'del -v'
 	v abbr -a -U -- rmdir 'rmdir -v'
 
 	v abbr -a -U -- dotadd  'dotadd -v'
