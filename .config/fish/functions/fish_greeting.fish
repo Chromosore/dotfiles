@@ -4,6 +4,12 @@ or set -U FISH_DATA_FILES $HOME/.local/share/fish
 function fish_greeting
 	echo $fish_greeting
 
+	if test -n "$fish_private_mode"
+		printf 'You are in %sprivate%s mode.\n' \
+		   (set_color -o red) \
+		   (set_color normal)
+	end
+
 	if test -e /usr/share/misc/birthtoken.gz && test (date +%d) = '01'
 		if not test -e $FISH_DATA_FILES/new_month
 			set -l month (date +%-m)
