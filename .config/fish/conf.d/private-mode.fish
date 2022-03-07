@@ -23,10 +23,10 @@ if test -n "$fish_private_mode"
 	set -g fish_color_status -o
 	set -g fish_color_status_brackets normal
 
-	set -g fish_color_pager_color_completion normal
-	set -g fish_color_pager_color_description -o
-	set -g fish_color_pager_color_prefix -o -u
-	set -g fish_color_pager_color_progress brwhite --background=brblack
+	set -g fish_pager_color_completion normal
+	set -g fish_pager_color_description -o
+	set -g fish_pager_color_prefix -o -u
+	set -g fish_pager_color_progress brwhite --background=brblack
 
 	set colorfile $__fish_config_dir/black-and-white.dircolors
 	if test -e $colorfile
