@@ -37,6 +37,9 @@ function del
 	end
 
 
+	# Clear the sudo cache to make sure that the password is asked
+	sudo -k
+
 	for file in $files
 		set escaped_file (string replace -a '"' '\"' $file)
 
@@ -53,6 +56,15 @@ function del
 
 		if test (string lower "$answer") = y
 			command rm $options $file
+
+			# If the rm command failed...
+			or begin
+				if not test -w (dirname $file)
+					# Try escalating privileges to delete the file
+					printf (_ 'Retrying as root...\n')
+					sudo rm $options $file
+				end
+			end
 		else
 			printf (_ 'Skipping "%s"...\n') $escaped_file
 		end
