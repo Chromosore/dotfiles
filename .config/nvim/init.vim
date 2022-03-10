@@ -62,3 +62,6 @@ autocmd BufEnter * if winnr("$") == 1 && &buftype == "quickfix" |
 
 autocmd BufWritePre /tmp/* setlocal noundofile
 " }}}
+
+" Load my lua module as a global
+lua _G.chromosore = require("chromosore")
