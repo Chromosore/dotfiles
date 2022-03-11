@@ -1,3 +1,8 @@
+local status_modified = {
+	[false] = "×";
+	[true]  = "•";
+}
+
 local function label(tabnr)
 	local buflist = vim.fn.tabpagebuflist(tabnr)
 	local winnr = vim.fn.tabpagewinnr(tabnr)
@@ -12,7 +17,10 @@ local function label(tabnr)
 		bufname = "[No Name]"
 	end
 
-	return string.format(" %s ", bufname)
+	local close_button = string.format("%%%dX%s%%X",
+		tabnr, status_modified[vim.bo[curbuf].modified])
+
+	return " " .. table.concat({ bufname, close_button }, " ") .. " "
 end
 
 return label
