@@ -17,6 +17,8 @@ local function label(tabnr)
 		bufname = "[No Name]"
 	end
 
+	bufname = bufname:gsub("%%", "%%%%")
+
 	local close_button = string.format("%%%dX%s%%X",
 		tabnr, status_modified[vim.bo[curbuf].modified])
 
