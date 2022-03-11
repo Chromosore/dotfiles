@@ -9,7 +9,7 @@ let &statusline = "%<%f %h%m%r%=%-14.(.%l/%L :%c%V%) %y %P"
 set laststatus=2 " Always display statusline
 set ruler
 
-set tabline=%!v:lua.chromosore.tabline()
+set tabline=%!v:lua.chromosore.tabline.render()
 set showtabline=2
 
 " Whitespaces
