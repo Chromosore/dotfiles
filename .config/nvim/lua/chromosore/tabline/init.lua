@@ -1,20 +1,4 @@
-local function tablabel(tabnr)
-	local buflist = vim.fn.tabpagebuflist(tabnr)
-	local winnr = vim.fn.tabpagewinnr(tabnr)
-	local curbuf = buflist[winnr]
-	local bufname = vim.fn.bufname(curbuf)
-
-	if #bufname ~= 0 then
-		bufname =
-			vim.fn.pathshorten(
-			vim.fn.fnamemodify(bufname, ":~:."))
-	else
-		bufname = "[No Name]"
-	end
-
-	return string.format(" %s ", bufname)
-end
-
+local tablabel = require("chromosore.tabline.label")
 
 local function tabline()
 	local curtab = vim.fn.tabpagenr()
@@ -39,6 +23,5 @@ local function tabline()
 
 	return table.concat(parts)
 end
-
 
 return tabline
