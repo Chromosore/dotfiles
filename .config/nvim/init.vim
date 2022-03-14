@@ -17,11 +17,12 @@ if has('packages') && &loadplugins
 
 	packadd! indent-blankline.nvim
 
-	if !has('gui_running')
+	if !has('gui_running') && !has('nvim')
 		packadd! terminus
 	endif
 
 	packadd! nvim-lspconfig
+	packadd! editorconfig.nvim
 
 	packadd! vim-quicktask
 	packadd! vim-kitty

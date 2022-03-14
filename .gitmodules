@@ -29,6 +29,9 @@
 	path = .config/nvim/pack/bundle/opt/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
 
+[submodule "language/editorconfig.nvim"]
+	path = .config/nvim/pack/languages/opt/editorconfig.nvim
+	url = https://github.com/gpanders/editorconfig.nvim.git
 [submodule "language/nvim-lspconfig"]
 	path = .config/nvim/pack/languages/opt/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
