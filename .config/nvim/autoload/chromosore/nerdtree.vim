@@ -49,6 +49,8 @@ function! chromosore#nerdtree#go_up()
 				\})
 
 	set winhighlight=FloatBorder:NormalFloat
+	set winblend=10
+	au WinLeave * ++once quit
 
 	if !isdirectory(directory)
 		edit .
