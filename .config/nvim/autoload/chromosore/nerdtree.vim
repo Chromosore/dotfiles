@@ -13,6 +13,7 @@ function chromosore#nerdtree#load()
 	packadd nerdtree
 endfunction
 
+
 function! chromosore#nerdtree#focus_and_toggle()
 	call chromosore#nerdtree#load()
 
@@ -23,24 +24,27 @@ function! chromosore#nerdtree#focus_and_toggle()
 	endif
 endfunction
 
+
 function! chromosore#nerdtree#go_up()
 	if exists('b:NERDTree')
 		normal u
-	else
-		let file = expand('%:p')
-		let directory = fnamemodify(file, ':h')
-
-		if !isdirectory(directory)
-			edit .
-			return
-		endif
-
-		execute 'edit' directory
-		try
-			let node = b:NERDTree.root.reveal(g:NERDTreePath.New(file))
-			call b:NERDTree.render()
-			call node.putCursorHere(1, 0)
-		catch /^NERDTree.InvalidArgumentsError: .*$/
-		endtry
+		return
 	endif
-endfun
+
+	let file = expand('%:p')
+	let directory = fnamemodify(file, ':h')
+
+	if !isdirectory(directory)
+		edit .
+		return
+	endif
+
+	execute 'edit' fnameescape(directory)
+
+	try
+		let node = b:NERDTree.root.reveal(g:NERDTreePath.New(file))
+		call b:NERDTree.render()
+		call node.putCursorHere(1, 0)
+	catch /^NERDTree.InvalidArgumentsError: .*$/
+	endtry
+endfunction
