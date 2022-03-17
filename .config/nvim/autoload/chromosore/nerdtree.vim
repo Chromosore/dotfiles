@@ -50,6 +50,7 @@ function! chromosore#nerdtree#go_up()
 
 	set winhighlight=FloatBorder:NormalFloat
 	set winblend=10
+	set fillchars+=eob:\ 
 	au WinLeave * ++once quit
 
 	if !isdirectory(directory)
