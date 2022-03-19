@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import os
-from os.path import abspath
 import sys
-from types import CellType as Cell
 
 import pynvim
 
@@ -18,7 +16,7 @@ def add_wait_autocmd(nvim, event, *, buffer=None):
         augroup nvim-remote-edit-wait
             autocmd BufDelete {aubuffer} ++once call rpcnotify({nvim.channel_id}, {event!r})
         augroup END
-        ''', False)
+    ''', False)
 
 
 def main():
@@ -40,7 +38,6 @@ def main():
         help="Don't wait for the edited buffer to be deleted")
 
     args = parser.parse_args()
-    args.edit = not (args.tabs or args.vsplit or args.hsplit)
 
     if sum((args.hsplit, args.vsplit, args.tabs)) > 1:
         print('Only one of -o, -O and -p must be specified')
@@ -50,14 +47,13 @@ def main():
     try:
         nvim_address = os.environ['NVIM_LISTEN_ADDRESS']
     except KeyError:
-        print('nvim-remote-edit must be run '
-              'with $NVIM_LISTEN_ADDRESS defined',
+        print('nvim.py must be run with $NVIM_LISTEN_ADDRESS defined',
               file=sys.stderr)
         return
 
     nvim = pynvim.attach('socket', path=nvim_address)
     nvim.command('lcd '
-        + nvim.funcs.fnameescape(os.getcwd()))
+                 + nvim.funcs.fnameescape(os.getcwd()))
     event = f'{AUTOCMD_EVENT}-{nvim.channel_id}'
 
     command = ('tabedit' if args.tabs else
