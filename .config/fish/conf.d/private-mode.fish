@@ -23,6 +23,9 @@ if test -n "$fish_private_mode"
 	set -g fish_color_status -o
 	set -g fish_color_status_brackets normal
 
+	set -g fish_color_clock -o
+	set -g fish_color_clock_brackets normal
+
 	set -g fish_pager_color_completion normal
 	set -g fish_pager_color_description -o
 	set -g fish_pager_color_prefix -o -u

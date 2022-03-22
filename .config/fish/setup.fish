@@ -47,8 +47,11 @@ function prompt_colours
 	v set -U fish_color_host	-o blue
 	v set -U fish_color_host_remote yellow
 	v set -U fish_color_cwd	-u brmagenta
+
 	v set -U fish_color_status -o red
 	v set -U fish_color_status_brackets normal
+	v set -U fish_color_clock  brmagenta
+	v set -U fish_color_clock_brackets  normal
 end
 
 # Vi modes cursor
