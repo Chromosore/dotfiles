@@ -1,5 +1,3 @@
-set -gx __LAST_CATCH
-
 function fish_hooks
 	fish_unhook
 
@@ -9,45 +7,41 @@ function fish_hooks
 	end
 
 	set -gx $catched
+	set -gx __LAST_CATCH $PWD
 
-	if test -e $PWD/.fish_hooks
-		source $PWD/.fish_hooks
+	if test -e $PWD/.hook.fish
+		source $PWD/.hook.fish
 	end
 
-	if test -d $PWD/.fish_hooks.d
-		for hook in (find $PWD/.fish_hooks.d/ -type f -mindepth 1 -maxdepth 1)
+	if test -d $PWD/.hook.fish.d
+		for hook in $PWD/.hook.fish.d/*.fish
 			source $hook
 		end
 	end
-
-	set __LAST_CATCH $PWD
 end
 
 function fish_unhook
-	test -z $__LAST_CATCH
-	and return 1
+	set -l catched __CATCHED(string escape --style=var $__LAST_CATCH)
+
+	set -q __LAST_CATCH
+	and set -q $catched
+	or return 1
 
 	test $__LAST_CATCH = $PWD
 	and return 1
 
-	if test -e $__LAST_CATCH/.fish_unhook
-		source $__LAST_CATCH/.fish_unhook
-		set found_hook
+	if test -e $__LAST_CATCH/.unhook.fish || test -d $__LAST_CATCH/.unhook.fish.d
+		set -q $catched
+		and set -g -e $catched
 	end
 
-	if test -d $__LAST_CATCH/.fish_unhook.d
-		for hook in (find $__LAST_CATCH/.fish_unhook.d/ -type f -mindepth 1 -maxdepth 1)
+	if test -e $__LAST_CATCH/.unhook.fish
+		source $__LAST_CATCH/.unhook.fish
+	end
+
+	if test -d $__LAST_CATCH/.unhook.fish.d
+		for hook in $__LAST_CATCH/.unhook.fish.d/*.fish
 			source $hook
 		end
-		set found_hook
-	end
-
-	if set -q found_hook
-		set -l catched __CATCHED(string escape --style=var $__LAST_CATCH)
-		if set -q $catched
-			set -e $catched
-		end
-
-		set __LAST_CATCH ''
 	end
 end
