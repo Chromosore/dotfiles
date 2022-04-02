@@ -21,6 +21,8 @@ function __right_prompt_refresh_vcs_status
 		commandline -f repaint
 		functions -e $funcname
 	end
+
+	echo $pid
 end
 
 
@@ -31,9 +33,13 @@ function fish_right_prompt
 		echo -sn $__right_prompt_vcs_status
 		set -g __right_prompt_vcs_status_shadow $__right_prompt_vcs_status
 		set -g -e __right_prompt_vcs_status
+		set -g -e __right_prompt_job_pid
 	else
+		if not set -q -g __right_prompt_job_pid
+			set -g __right_prompt_job_pid (__right_prompt_refresh_vcs_status)
+		end
+
 		echo -sn $__right_prompt_vcs_status_shadow
-		__right_prompt_refresh_vcs_status
 	end
 
 	printf ' '
