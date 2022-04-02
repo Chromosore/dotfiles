@@ -5,8 +5,8 @@
 
 [alias]
 	committed = diff HEAD^ HEAD --
-	ahead = log origin..HEAD
-	behind = log HEAD..origin
+	ahead  = log @{upstream}..
+	behind = log ..@{upstream}
 
 
 [pull]
