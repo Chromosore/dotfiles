@@ -39,7 +39,9 @@ function fish_right_prompt
 			set -g __right_prompt_job_pid (__right_prompt_refresh_vcs_status)
 		end
 
-		echo -sn $__right_prompt_vcs_status_shadow
+		if __fish_is_git_repository
+			echo -sn $__right_prompt_vcs_status_shadow
+		end
 	end
 
 	printf ' '
