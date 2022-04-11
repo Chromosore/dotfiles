@@ -54,8 +54,7 @@ function! chromosore#nerdtree#go_up()
 	au WinLeave * ++once quit
 
 	if !isdirectory(directory)
-		edit .
-		return
+		let directory = '.'
 	endif
 
 	execute 'edit' fnameescape(directory)
