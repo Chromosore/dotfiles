@@ -3,9 +3,6 @@ scriptencoding utf-8
 set encoding=utf-8
 
 if has('packages') && &loadplugins
-	" sensible.vim : a universal set of defaults
-	packadd! vim-sensible
-
 	packadd! vim-commentary
 	packadd! vim-sandwich
 

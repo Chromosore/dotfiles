@@ -28,9 +28,6 @@
 [submodule "vim-sandwich"]
 	path = .config/nvim/pack/bundle/opt/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich.git
-[submodule "vim-sensible"]
-	path = .config/nvim/pack/bundle/opt/vim-sensible
-	url = https://github.com/tpope/vim-sensible.git
 
 [submodule "language/editorconfig.nvim"]
 	path = .config/nvim/pack/languages/opt/editorconfig.nvim
