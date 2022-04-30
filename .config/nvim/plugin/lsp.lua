@@ -21,17 +21,20 @@ lspconfig.clangd.setup{
 lspconfig.tsserver.setup{}
 
 lspconfig.sumneko_lua.setup{
-	root_dir = function(filename)
-		return util.search_ancestors(filename, function(path)
-			if util.path.is_dir(util.path.join(path, '.git')) or util.path.is_file(util.path.join(path, '.git')) then
+	root_dir = function(filename) -- [[[1
+		local root = util.search_ancestors(filename, function(path)
+			local gitpath = util.path.join(path, '.git')
+			if util.path.is_dir(gitpath) or util.path.is_file(gitpath) then
 				return path
 			elseif vim.fn.fnamemodify(path, ":t") == "lua" then
 				return path
 			end
-		end) or util.path.dirname(filename)
+		end)
+
+		return root or util.path.dirname(filename)
 	end;
 
-	settings = {
+	settings = { -- [[[1
 		Lua = {
 			runtime = {
 				version = "LuaJIT";
@@ -54,7 +57,7 @@ lspconfig.sumneko_lua.setup{
 				enable = false;
 			};
 		};
-	};
+	} -- ]]];
 }
 
 -- vim: fdm=marker fmr=[[[,]]]
