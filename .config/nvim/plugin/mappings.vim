@@ -24,6 +24,7 @@ nmap <expr> gmm chromosore#mappings#move() . '_'
 vmap <expr> gm chromosore#mappings#move_visual()
 
 nmap s   <Plug>(sandwich-add)
+xmap s   <Plug>(sandwich-add)
 
 nmap cs  <Plug>(sandwich-replace)
 xmap cs  <Plug>(sandwich-replace)
