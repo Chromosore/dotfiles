@@ -63,6 +63,13 @@ function del
 					# Try escalating privileges to delete the file
 					printf (_ 'Retrying as root...\n')
 					sudo rm $options $file
+				else if not test -d $file || set -q recursive
+					set prompt (_ 'Retry as root?')
+					read answer -P (printf '%s %s ' $prompt '[y/N]')
+
+					test (string lower "$answer") = y
+					and printf (_ 'Retrying as root...\n')
+					and sudo rm $options $file
 				end
 			end
 		else
