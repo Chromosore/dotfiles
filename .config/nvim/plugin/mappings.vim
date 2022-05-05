@@ -42,7 +42,11 @@ nnoremap gT <nop>
 
 " And the new way of doing this
 nnoremap GG G
+onoremap GG G
+xnoremap GG G
 nnoremap G <nop>
+onoremap G <nop>
+xnoremap G <nop>
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
