@@ -34,20 +34,6 @@ nmap ds  <Plug>(sandwich-delete)
 xmap ds  <Plug>(sandwich-delete)
 nmap dss <Plug>(sandwich-delete-auto)
 
-nnoremap gd gt
-nnoremap GD gT
-" And the tombstones
-nnoremap gt <nop>
-nnoremap gT <nop>
-
-" And the new way of doing this
-nnoremap GG G
-onoremap GG G
-xnoremap GG G
-nnoremap G <nop>
-onoremap G <nop>
-xnoremap G <nop>
-
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
 	nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
