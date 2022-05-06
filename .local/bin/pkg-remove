@@ -32,8 +32,10 @@ and set root (realpath -s $_flag_install_root)
 or set root ''
 
 
-test (string sub -s -4 -- "$package") = ".pkg"
-or set package {$package}.pkg
+if not pkgutil --volume $root/ --pkg-info $package &>/dev/null
+	test (string sub -s -4 -- "$package") = ".pkg"
+	or set package {$package}.pkg
+end
 
 if not pkgutil --volume $root/ --pkg-info $package &>/dev/null
 	echo  "No such package: '$package'" >&2
