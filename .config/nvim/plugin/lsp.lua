@@ -13,14 +13,36 @@ local function xcrun(cmd)
 end
 -- ]]]
 
+local function lsp_attach()
+	local nnoremap = function(lhs, rhs) chromosore.vim.nnoremap(lhs, rhs, { buffer = true }) end
+	-- vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
+	-- keys
+	nnoremap("K",     vim.lsp.buf.hover)
+	-- TODO: [d and ]d souldn't be here, because they're not LSP
+	nnoremap("[d",    vim.diagnostic.goto_prev)
+	nnoremap("]d",    vim.diagnostic.goto_next)
+	nnoremap("<C-]>", vim.lsp.buf.definition)
+	nnoremap("<F2>",  vim.lsp.buf.rename)
+	vim.cmd [[
+		autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+		autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+	]]
+end
+
 
 lspconfig.clangd.setup{
 	cmd = xcrun({ "clangd" });
+	on_attach = lsp_attach;
 }
 
-lspconfig.tsserver.setup{}
+lspconfig.tsserver.setup{
+	on_attach = lsp_attach;
+}
 
 lspconfig.sumneko_lua.setup{
+	on_attach = lsp_attach;
+
 	root_dir = function(filename) -- [[[1
 		local root = util.search_ancestors(filename, function(path)
 			local gitpath = util.path.join(path, '.git')
