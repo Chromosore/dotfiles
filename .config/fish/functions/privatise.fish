@@ -4,6 +4,6 @@ function privatise
 	end
 
 	function nvim
-		command nvim -c 'runtime! macros/private.vim'
+		command nvim -c 'runtime! macros/private.vim' $argv
 	end
 end
