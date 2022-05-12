@@ -17,7 +17,7 @@ function expand-token
 		(string escape --style=var -- $token))
 
 	if test $position -eq 1 && set -q $abbr
-		commandline -t $$abbr
+		commandline -t -- $$abbr
 	end
 
 
@@ -28,7 +28,7 @@ function expand-token
 
 
 	if set -q $cmd_abbr
-		commandline -t $$cmd_abbr
+		commandline -t -- $$cmd_abbr
 	end
 
 
