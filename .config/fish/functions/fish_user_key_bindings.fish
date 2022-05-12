@@ -52,4 +52,7 @@ function fish_user_key_bindings
 		bind -M replace_one fd 'set fish_bind_mode default;
 			commandline -f cancel repaint-mode'
 	end
+
+	bind ' ' "expand-token ' '"
+	bind \r  'expand-token -f execute'
 end
