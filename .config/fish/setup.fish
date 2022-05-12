@@ -166,7 +166,7 @@ function usage
 	printf 'usage: %s [ options... ]
 
 %sOptions:%s\n' \
-	   (status current-filename) \
+	   (basename (status current-filename)) \
 	   (set_color -o) (set_color normal) \
 
 	string join -- \n --all $options
