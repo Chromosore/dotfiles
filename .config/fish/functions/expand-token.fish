@@ -1,7 +1,7 @@
 set wrappers sudo and or time if
 
 function expand-token
-	argparse 'f/function=+' -- $argv
+	argparse 'f/function=+' 'a/no-abbr' -- $argv
 
 	set -l tokens (commandline -pc -o) (commandline -tc)
 
@@ -16,7 +16,7 @@ function expand-token
 	set -l abbr (printf '_fish_abbr_%s' \
 		(string escape --style=var -- $token))
 
-	if test $position -eq 1 && set -q $abbr
+	if not set -q _flag_no_abbr && test $position -eq 1 && set -q $abbr
 		commandline -t -- $$abbr
 	end
 

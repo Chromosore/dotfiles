@@ -54,5 +54,5 @@ function fish_user_key_bindings
 	end
 
 	bind ' ' "expand-token ' '"
-	bind \r  'expand-token -f execute'
+	bind \r  'expand-token --no-abbr -f execute'
 end
