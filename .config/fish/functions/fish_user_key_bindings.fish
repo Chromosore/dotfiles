@@ -1,4 +1,4 @@
-function bind_bang
+function bind-bang
 	switch (commandline -t)[-1]
 		case "!"
 			commandline -t -- $history[1]
@@ -8,7 +8,7 @@ function bind_bang
 	end
 end
 
-function bind_dollar
+function bind-dollar
 	switch (commandline -t)[-1]
 		case "!"
 			commandline -t ""
@@ -31,8 +31,8 @@ function fish_user_key_bindings
 	type -q fzf_key_bindings
 	and fzf_key_bindings
 
-	bind -M $insert ! bind_bang
-	bind -M $insert '$' bind_dollar
+	bind -M $insert ! bind-bang
+	bind -M $insert '$' bind-dollar
 
 	if $vi
 		bind -M insert \ek history-token-search-backward
