@@ -10,11 +10,11 @@ endfun
 
 " runed ::1
 fun! s:runed(filename)
-	call chromosore#pathed#edit(split(&rtp, ','), a:filename)
+	call chromosore#pathed#edit(nvim_list_runtime_paths(), a:filename)
 endfun
 
 fun! s:c_runed(ArgLead, CmdLine, CursorPos)
-	return chromosore#pathed#complete(split(&rtp, ','), a:ArgLead)
+	return chromosore#pathed#complete(nvim_list_runtime_paths(), a:ArgLead)
 endfun
 
 " ---
