@@ -1,9 +1,9 @@
 nmap <C-n>	<Cmd>call chromosore#nerdtree#focus_and_toggle()<CR>
 nmap -			<Cmd>call chromosore#nerdtree#go_up()<CR>
 
-imap fd <esc>
-vmap fd <esc>
-omap fd <esc>
+imap fq <esc>
+xmap fq <esc>
+omap fq <esc>
 
 " Stay in visual mode when you indent
 vmap < <gv
