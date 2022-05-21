@@ -17,6 +17,12 @@ tnoremap <C-W>N     <C-\><C-N>
 tnoremap <C-W><C-N> <C-\><C-N>
 
 
+" Disable spell in the terminal emulators
+augroup SetTermSpell
+	autocmd TermOpen * setlocal nospell
+augroup END
+
+
 " Add a nvim command in the terminal which open files in the current nvim
 let $PATH = stdpath('config') .. '/bin' .. ':' .. $PATH
 let $EDITOR = 'nvim'

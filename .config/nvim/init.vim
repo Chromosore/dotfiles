@@ -24,6 +24,7 @@ if has('packages') && &loadplugins
 	packadd! nvim-luapad
 
 	packadd! nvim-treesitter
+	packadd! spellsitter.nvim
 	packadd! vim-quicktask
 	packadd! vim-kitty
 

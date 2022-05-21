@@ -38,6 +38,9 @@
 [submodule "language/nvim-treesitter"]
 	path = .config/nvim/pack/languages/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "language/spellsitter.nvim"]
+	path = .config/nvim/pack/languages/opt/spellsitter.nvim
+	url = https://github.com/lewis6991/spellsitter.nvim.git
 [submodule "language/vim-polyglot"]
 	path = .config/nvim/pack/languages/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git

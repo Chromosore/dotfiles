@@ -42,6 +42,9 @@ augroup FormatOption
 	autocmd VimEnter  * set formatoptions-=o formatoptions+=r
 augroup END
 
+" Thanks to spellsitter it spellchecking comments also works with tree-sitter
+set spell
+
 " Dictionnaries for completion with CTRL-X CTRL-K and CTRL-X CTRL-T
 set dictionary+=/usr/share/dict/words
 set thesaurus+=/usr/share/dict/thesaurus
