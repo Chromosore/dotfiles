@@ -1,0 +1,13 @@
+# Top Level Directories
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_DOWNLOAD_DIR="$HOME/Downloads"
+
+# Libraries
+XDG_PUBLICSHARE_DIR="$HOME/Documents/Public"
+XDG_TEMPLATES_DIR="$HOME/Documents/Templates"
+XDG_PICTURES_DIR="$HOME/Documents/Pictures"
+
+# Disabled Directories
+XDG_DESKTOP_DIR="$HOME/"
+XDG_VIDEOS_DIR="$HOME/"
+XDG_MUSIC_DIR="$HOME/"
