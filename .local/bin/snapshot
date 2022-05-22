@@ -1,0 +1,91 @@
+#!/usr/bin/env fish
+
+# Creates a new snapshot in my backup drive
+#
+# Steps:
+# 1. Rotate existing snapshots
+# 2. Create a new snapshot
+
+set -l script (basename (status current-filename))
+argparse -n $script \
+	'n/dry-run' 'h/help' 'v/verbose' -- $argv
+or exit $status
+
+if set -q _flag_help
+	echo "$script [options]
+Creates a new snapshot in my backup drive
+
+-h, --help       Print this help message
+-n, --dry-run    Print each command instead of executing it
+-v, --verbose    Print each command before executing it"
+	exit 0
+end
+
+
+set -g  BACKUP_ROOT   '/home/raphael/'
+set -g  SNAPSHOT_ROOT '/mnt/Sauvegardes'
+set -g  CONFIG_DIR    '/mnt/Sauvegardes/config'
+
+
+
+function __print
+	set -l newargs
+	for arg in $argv
+		if string match -qr -- ' ' $arg
+			set -a newargs "'"(string replace -a -- "'" "\\'" $arg)"'"
+		else
+			set -a newargs $arg
+		end
+	end
+	echo $newargs
+end
+
+if set -q _flag_dry_run
+	function do; __print $argv; end
+else
+	set -q _flag_verbose
+	and function do; __print $argv; $argv; end
+	or  function do; $argv; end
+end
+
+
+
+## Rotate existing snapshots ##
+
+set -g MAX_SNAPSHOT
+
+set i 0
+while true
+	set -l snapshot "$SNAPSHOT_ROOT/snapshot.$i"
+	if not test -d $snapshot
+		set MAX_SNAPSHOT (math $i - 1)
+		break
+	end
+	set i (math $i + 1)
+end
+
+for i in (seq $MAX_SNAPSHOT -1 0)
+	set -l      snapshot "$SNAPSHOT_ROOT/snapshot.$i"
+	set -l next_snapshot "$SNAPSHOT_ROOT/snapshot."(math $i + 1)
+	do mv $snapshot $next_snapshot
+end
+
+
+
+## Create a new snapshot ##
+
+set -l      snapshot "$SNAPSHOT_ROOT/snapshot.0"
+set -l prev_snapshot "$SNAPSHOT_ROOT/snapshot.1"
+do mkdir $snapshot
+
+if not set -q _flag_dry_run
+	printf '%s = %s\n%s = %s' > $snapshot/manifest.toml \
+		date (date -Iminutes) \
+		config (git -C "$CONFIG_DIR/" rev-parse HEAD)
+end
+
+do rsync -v --archive \
+	--link-dest $prev_snapshot \
+	--filter ". $CONFIG_DIR/filters" \
+	$DRY_RUN \
+	$BACKUP_ROOT $snapshot
