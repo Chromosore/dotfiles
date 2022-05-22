@@ -41,7 +41,7 @@ syn keyword fishRepeat for in while					nextgroup=@fishLine skipwhite
 syn keyword fishLabel case									nextgroup=@fishLine skipwhite
 
 syn match fishDelimiter /[;|&]/
-syn match fishComment /\<#.*/
+syn match fishComment /\<#.*/ contains=@Spell
 
 syn cluster fishKeyword			contains=fishLogic,fishConditional,fishRepeat,fishLabel
 syn cluster fishCommandline contains=@fishKeyword,fishComment,fishDelimiter,fishCommand,fishLineCont,fishArgument
