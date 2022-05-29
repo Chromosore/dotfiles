@@ -21,8 +21,10 @@ set gitcommands \
 	s- 'stash pop' \
 	o+ 'push' \
 	o- 'pull' \
+	o\? 'fetch' \
 	a+ 'log @{upstream}..' \
-	b- 'log ..@{upstream}'
+	b- 'log ..@{upstream}' \
+	sm 'submodule'
 
 for index in (seq 1 2 (count $gitcommands))
 	set short $gitcommands[$index]
