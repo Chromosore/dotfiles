@@ -3,11 +3,6 @@
 	name = Chromosore
 	email = konrad.blanchard@gmail.com
 
-[alias]
-	committed = diff HEAD^ HEAD --
-	ahead  = log @{upstream}..
-	behind = log ..@{upstream}
-
 
 [pull]
 	ff = only
