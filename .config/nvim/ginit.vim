@@ -1,8 +1,18 @@
 let s:gui = 'default'
 if has('gui_gtk') | let s:gui = 'gtk' | endif
 
-let g:font = { 'family': chromosore#local#guifont, 'size': 12 }
+let g:font = { 'family': chromosore#local#guifont, 'size': 12, 'format': s:gui }
 let &guifont = chromosore#guifont#{s:gui}(g:font)
+
+" refresh {{{
+fun! s:refresh(op)
+	let g:font.size = a:op(g:font.size)
+	let &guifont = chromosore#guifont#{g:font.format}(g:font)
+endfun
+" }}}
+
+nmap <C-+>   <Cmd>call <SID>refresh({ s -> s + 1 })<CR>
+nmap <C-S-_> <Cmd>call <SID>refresh({ s -> s - 1 })<CR>
 
 set mousefocus
 
@@ -19,3 +29,4 @@ set guioptions-=l
 set guioptions-=L
 
 unlet s:gui
+" vim: fdm=marker
