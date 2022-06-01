@@ -3,5 +3,5 @@
 /plugin/local/
 
 # Local autoload
-/autoload/local.vim
-/autoload/local/
+/autoload/chromosore/local.vim
+/autoload/chromosore/local/

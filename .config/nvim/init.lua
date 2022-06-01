@@ -18,7 +18,7 @@ pack.add "vim-kitty"
 pack.add "nvim-luapad"
 
 -- ui
-if vim.g["chromosore#has_nerdfont"] == 1 then
+if vim.g["chromosore#local#nerdfont"] == 1 then
 	pack.add "vim-devicons"
 end
 
