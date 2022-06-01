@@ -22,9 +22,11 @@ for s:key in keys(s:dark_to_light_theme)
 endfor
 " }}}
 
+let s:colors_name_save = ''
+
 function! UpdateTheme()
-	if !exists('g:colors_name') && exists('g:colors_name_save')
-		let g:colors_name = g:colors_name_save
+	if !exists('g:colors_name') && s:colors_name_save != ''
+		let g:colors_name = s:colors_name_save
 	endif
 
 	if &background == 'dark'
@@ -62,7 +64,7 @@ endif
 
 augroup chromosore_theme_switch
 	au!
-	au ColorScheme * let g:colors_name_save = g:colors_name
+	au ColorScheme * let s:colors_name_save = g:colors_name
 	au OptionSet background call UpdateTheme()
 augroup END
 
