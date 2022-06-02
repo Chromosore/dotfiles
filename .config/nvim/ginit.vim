@@ -1,7 +1,8 @@
 let s:gui = 'default'
 if has('gui_gtk') | let s:gui = 'gtk' | endif
 
-let g:font = { 'family': chromosore#local#guifont, 'size': 12, 'format': s:gui }
+let g:font = deepcopy(chromosore#local#font)
+let g:font.format = s:gui
 let &guifont = chromosore#guifont#{s:gui}(g:font)
 
 " refresh {{{
