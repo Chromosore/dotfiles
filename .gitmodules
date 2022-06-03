@@ -73,24 +73,6 @@
 [submodule "theme/jellybeans.vim"]
 	path = .config/nvim/pack/themes/start/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
-[submodule "theme/challenger_deep"]
-	path = .config/nvim/pack/themes/start/challenger_deep
-	url = https://github.com/challenger-deep-theme/vim.git
-[submodule "theme/gruvbox"]
-	path = .config/nvim/pack/themes/start/gruvbox
-	url = https://github.com/gruvbox-community/gruvbox.git
-[submodule "theme/molokai"]
-	path = .config/nvim/pack/themes/start/molokai
-	url = https://github.com/tomasr/molokai.git
-[submodule "theme/snow"]
-	path = .config/nvim/pack/themes/start/snow
-	url = https://github.com/nightsense/snow.git
-[submodule "theme/vim-monokai"]
-	path = .config/nvim/pack/themes/start/vim-monokai
-	url = https://github.com/sickill/vim-monokai.git
 [submodule "theme/vim-one"]
 	path = .config/nvim/pack/themes/start/vim-one
 	url = https://github.com/rakr/vim-one.git
-[submodule "theme/seti.vim"]
-	path = .config/nvim/pack/themes/start/seti.vim
-	url = https://github.com/trusktr/seti.vim.git
