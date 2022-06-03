@@ -19,6 +19,9 @@ cmap <C-N> <Down>
 " Logical Y
 nmap Y y$
 
+nnoremap U <C-R>
+nnoremap <C-R> <Nop>
+
 nmap <expr> gm chromosore#mappings#move()
 nmap <expr> gmm chromosore#mappings#move() . '_'
 vmap <expr> gm chromosore#mappings#move_visual()
