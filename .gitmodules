@@ -1,8 +1,8 @@
 [submodule "fzf"]
-	path = .config/nvim/pack/bundle/opt/fzf
+	path = .config/nvim/pack/bundle/start/fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "indent-blankline.nvim"]
-	path = .config/nvim/pack/bundle/opt/indent-blankline.nvim
+	path = .config/nvim/pack/bundle/start/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
 [submodule "nerdtree"]
 	path = .config/nvim/pack/bundle/opt/nerdtree
@@ -11,41 +11,41 @@
 	path = .config/nvim/pack/bundle/opt/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
 [submodule "nvim-luapad"]
-	path = .config/nvim/pack/bundle/opt/nvim-luapad
+	path = .config/nvim/pack/bundle/start/nvim-luapad
 	url = https://github.com/rafcamlet/nvim-luapad.git
 [submodule "undotree"]
 	path = .config/nvim/pack/bundle/opt/undotree
 	url = https://github.com/mbbill/undotree.git
 [submodule "vim-commentary"]
-	path = .config/nvim/pack/bundle/opt/vim-commentary
+	path = .config/nvim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim-devicons"]
 	path = .config/nvim/pack/bundle/opt/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
 [submodule "vim-sandwich"]
-	path = .config/nvim/pack/bundle/opt/vim-sandwich
+	path = .config/nvim/pack/bundle/start/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich.git
 
 [submodule "language/editorconfig.nvim"]
-	path = .config/nvim/pack/languages/opt/editorconfig.nvim
+	path = .config/nvim/pack/languages/start/editorconfig.nvim
 	url = https://github.com/gpanders/editorconfig.nvim.git
 [submodule "language/nvim-lspconfig"]
-	path = .config/nvim/pack/languages/opt/nvim-lspconfig
+	path = .config/nvim/pack/languages/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
 [submodule "language/nvim-treesitter"]
-	path = .config/nvim/pack/languages/opt/nvim-treesitter
+	path = .config/nvim/pack/languages/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "language/spellsitter.nvim"]
-	path = .config/nvim/pack/languages/opt/spellsitter.nvim
+	path = .config/nvim/pack/languages/start/spellsitter.nvim
 	url = https://github.com/lewis6991/spellsitter.nvim.git
 [submodule "language/vim-polyglot"]
 	path = .config/nvim/pack/languages/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/vim-kitty"]
-	path = .config/nvim/pack/languages/opt/vim-kitty
+	path = .config/nvim/pack/languages/start/vim-kitty
 	url = https://github.com/fladson/vim-kitty.git
 [submodule "language/vim-quicktask"]
-	path = .config/nvim/pack/languages/opt/vim-quicktask
+	path = .config/nvim/pack/languages/start/vim-quicktask
 	url = https://github.com/aaronbieber/vim-quicktask.git
 
 [submodule "theme/vim-wwdc17"]
