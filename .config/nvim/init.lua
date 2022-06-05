@@ -1,13 +1,13 @@
 _G.chromosore = require("chromosore")
-local pack = chromosore.pack
+local lazily = require("lazily")
 
 -- conditionnaly loaded plugins
 if vim.g["chromosore#local#nerdfont"] == 1 then
-	pack.add "vim-devicons"
+	lazily.packadd "vim-devicons"
 end
 
 -- lazily loaded plugins
-pack.lazy("nerdtree", {
+lazily.use("nerdtree", {
 	autocmd = {
 		event = {"BufEnter", "BufNew"};
 		pattern = "*";

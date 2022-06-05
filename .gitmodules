@@ -73,3 +73,6 @@
 [submodule "theme/vim-one"]
 	path = .config/nvim/pack/themes/start/vim-one
 	url = https://github.com/rakr/vim-one.git
+[submodule ".config/nvim/pack/bundle/start/lazily-nvim"]
+	path = .config/nvim/pack/bundle/start/lazily-nvim
+	url = git@github.com:Chromosore/lazily-nvim.git
