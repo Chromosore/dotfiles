@@ -1,3 +1,5 @@
+let mapleader = ' '
+
 nmap <C-n>	<Cmd>call chromosore#nerdtree#focus_and_toggle()<CR>
 nmap -			<Cmd>call chromosore#nerdtree#go_up()<CR>
 
@@ -25,6 +27,10 @@ nnoremap <C-R> <Nop>
 nmap <expr> gm chromosore#mappings#move()
 nmap <expr> gmm chromosore#mappings#move() . '_'
 vmap <expr> gm chromosore#mappings#move_visual()
+
+nmap <leader>;  <plug>Commentary
+nmap <leader>;; <plug>CommentaryLine
+vmap <leader>;  <plug>Commentary
 
 nmap s   <Plug>(sandwich-add)
 xmap s   <Plug>(sandwich-add)
