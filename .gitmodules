@@ -1,6 +1,3 @@
-[submodule "fzf"]
-	path = .config/nvim/pack/bundle/start/fzf
-	url = https://github.com/junegunn/fzf.git
 [submodule "indent-blankline.nvim"]
 	path = .config/nvim/pack/bundle/start/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
