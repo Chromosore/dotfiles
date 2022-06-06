@@ -1,5 +1,5 @@
 function! chromosore#nerdtree#focus_and_toggle()
-	lua chromosore.pack.add("nerdtree")
+	lua require("lazily").load("nerdtree")
 
 	if g:NERDTree.IsOpen() && !exists('b:NERDTree')
 		call g:NERDTree.CursorToTreeWin(0)
