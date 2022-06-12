@@ -14,7 +14,7 @@ end
 -- ]]]
 
 local function lsp_attach()
-	local nnoremap = function(lhs, rhs) chromosore.vim.nnoremap(lhs, rhs, { buffer = true }) end
+	local nnoremap = function(lhs, rhs) vim.keymap.set("n", lhs, rhs, { buffer = true }) end
 	-- vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 	-- keys
 	nnoremap("K",     vim.lsp.buf.hover)
