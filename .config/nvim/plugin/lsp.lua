@@ -43,19 +43,6 @@ lspconfig.tsserver.setup{
 lspconfig.sumneko_lua.setup{
 	on_attach = lsp_attach;
 
-	root_dir = function(filename) -- [[[1
-		local root = util.search_ancestors(filename, function(path)
-			local gitpath = util.path.join(path, '.git')
-			if util.path.is_dir(gitpath) or util.path.is_file(gitpath) then
-				return path
-			elseif vim.fn.fnamemodify(path, ":t") == "lua" then
-				return path
-			end
-		end)
-
-		return root or util.path.dirname(filename)
-	end;
-
 	settings = { -- [[[1
 		Lua = {
 			runtime = {
