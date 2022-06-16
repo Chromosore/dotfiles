@@ -21,7 +21,5 @@ lazily.use("nerdtree", {
 })
 
 
-vim.cmd [[
-	filetype plugin indent on
-	syntax enable
-]]
+vim.g.did_load_filetypes = 0
+vim.g.do_filetype_lua = 1
