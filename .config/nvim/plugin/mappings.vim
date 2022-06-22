@@ -32,6 +32,8 @@ nmap <leader>;  <plug>Commentary
 nmap <leader>;; <plug>CommentaryLine
 vmap <leader>;  <plug>Commentary
 
+nnoremap <leader><Tab> <C-^>
+
 nmap s   <Plug>(sandwich-add)
 xmap s   <Plug>(sandwich-add)
 
