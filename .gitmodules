@@ -44,9 +44,6 @@
 [submodule "language/vim-kitty"]
 	path = .config/nvim/pack/languages/start/vim-kitty
 	url = https://github.com/fladson/vim-kitty.git
-[submodule "language/vim-quicktask"]
-	path = .config/nvim/pack/languages/start/vim-quicktask
-	url = https://github.com/aaronbieber/vim-quicktask.git
 
 [submodule "theme/vim-wwdc17"]
 	path = .config/nvim/pack/themes/start/vim-wwdc17
