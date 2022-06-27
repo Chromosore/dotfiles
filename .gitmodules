@@ -38,9 +38,6 @@
 [submodule "language/spellsitter.nvim"]
 	path = .config/nvim/pack/languages/start/spellsitter.nvim
 	url = https://github.com/lewis6991/spellsitter.nvim.git
-[submodule "language/vim-polyglot"]
-	path = .config/nvim/pack/languages/opt/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "language/vim-kitty"]
 	path = .config/nvim/pack/languages/start/vim-kitty
 	url = https://github.com/fladson/vim-kitty.git
