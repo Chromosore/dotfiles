@@ -26,11 +26,6 @@ if has('linebreak')
 	set linebreak
 endif
 
-" Search
-set hlsearch
-set incsearch
-set shortmess-=S
-
 set showcmd
 
 " Panes split

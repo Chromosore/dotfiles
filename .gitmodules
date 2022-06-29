@@ -1,3 +1,6 @@
+[submodule "highlight-current-n.nvim"]
+	path = .config/nvim/pack/bundle/start/highlight-current-n.nvim
+	url = https://github.com/rktjmp/highlight-current-n.nvim.git
 [submodule "indent-blankline.nvim"]
 	path = .config/nvim/pack/bundle/start/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
