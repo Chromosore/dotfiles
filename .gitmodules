@@ -16,6 +16,9 @@
 [submodule "undotree"]
 	path = .config/nvim/pack/bundle/start/undotree
 	url = https://github.com/mbbill/undotree.git
+[submodule "vim-chimera"]
+	path = .config/nvim/pack/bundle/start/vim-chimera
+	url = https://github.com/Chromosore/vim-chimera.git
 [submodule "vim-commentary"]
 	path = .config/nvim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
