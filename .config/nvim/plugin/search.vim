@@ -10,8 +10,10 @@ nnoremap <Plug>(himatch-next) <Cmd>lua require("highlight_current_n")["/,?"]()<C
 
 
 " / and ?
-nmap / <Plug>(chimera-skip)<Plug>(chimera-/)
-nmap ? <Plug>(chimera-skip)<Plug>(chimera-?)
+for m in ["n", "o", "x"]
+	exec m.."map" "/" "<Plug>(chimera-skip)<Plug>(chimera-/)"
+	exec m.."map" "?" "<Plug>(chimera-skip)<Plug>(chimera-?)"
+endfor
 
 augroup kmz-highlight-match
 	au!
@@ -20,12 +22,13 @@ augroup end
 
 
 " The other mappings
-nmap n  <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-n)
-nmap N  <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-N)
-nmap *  <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-*)
-nmap #  <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-#)
-nmap g* <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-g*)
-nmap g# <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-g#)
+for m in ["n", "o", "x"]
+	for key in ["n", "N", "*", "#", "g*", "g#"]
+		exec printf(
+					\ "%smap %s <Plug>(chimera-skip)<Plug>(himatch-next)<Plug>(chimera-%s)",
+					\ m, key, key)
+	endfor
+endfor
 
 
 " Just in case
