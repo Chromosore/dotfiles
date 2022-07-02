@@ -32,8 +32,8 @@ function! chromosore#nerdtree#go_up()
 				\ border: 'rounded',
 				\})
 
-	set winhighlight=FloatBorder:NormalFloat
-	set winblend=10
+	set winhighlight+=NormalFloat:Normal,FloatBorder:Normal
+	set winblend=5
 	set fillchars+=eob:\ 
 	au WinLeave * ++once quit
 
