@@ -29,15 +29,7 @@ set -g  CONFIG_DIR    '/mnt/Sauvegardes/config'
 
 
 function __print
-	set -l newargs
-	for arg in $argv
-		if string match -qr -- ' ' $arg
-			set -a newargs "'"(string replace -a -- "'" "\\'" $arg)"'"
-		else
-			set -a newargs $arg
-		end
-	end
-	echo $newargs
+	echo (string escape -- $argv)
 end
 
 if set -q _flag_dry_run
