@@ -1,0 +1,78 @@
+#!/usr/bin/env fish
+
+set script (basename (status current-filename) .fish)
+
+switch (count $argv)
+	case 0
+		set remote origin
+	case 1
+		set remote $argv[1]
+	case '*'
+		echo "Usage: $script [<remote>]"
+end
+
+
+set url (git remote get-url $remote)
+or exit $status
+
+
+begin
+	set -l alpha      'a-zA-Z'
+	set -l alphadigit "$alpha"0-9
+
+	set -l toplabel    "[$alpha](?:[$alphadigit-]*[$alphadigit])?"
+	set -l domainlabel "[$alphadigit](?:[$alphadigit-]*[$alphadigit])?"
+	set -l hostname_   "(?:$domainlabel\.)*$toplabel"
+
+	set -l hostnumber  '(?:[0-9]+\.){3}[0-9]+'
+
+	set -l scheme '[a-z0-9+.-]+'
+	set -l user   '[a-zA-Z0-9$_.+!*\'(),;?&=-]*'
+	set -l host   "$hostname_|$hostnumber"
+	set -l port   '[0-9]+'
+	set -l path   '.*'
+
+	# This regexp was made according to the RFC 1738.
+	# Its only deviance from the paper is that it doesn't handle escapes
+	# (and also the path matches anything instead of select characters)
+	set -g url_regexp "^($scheme)://(?:($user)@|())($host(?::$port)?)/($path)\$"
+
+	# This scp regexp is only a ripoff of the first one
+	set -g scp_regexp "(?:($user)@|())($host(?::$port)?):($path)\$"
+end
+
+
+if set captures (string match -r $url_regexp $url)
+	set scheme $captures[2]
+	set user   $captures[3]
+	set host   $captures[4]
+	set path   $captures[5]
+else if set captures (string match -r $scp_regexp $url)
+	set scheme ssh
+	set user   $captures[2]
+	set host   $captures[3]
+	set path   $captures[4]
+else
+	echo "$script: not a remote url: $remote" >&2
+end
+
+
+switch $scheme
+	case http{,s}
+		set scheme ssh
+		set user   git
+
+	case ssh
+		set scheme https
+		set user   ''
+end
+
+
+if test -n "$user"
+	set url $scheme://$user@$host/$path
+else
+	set url $scheme://$host/$path
+end
+
+echo "Set url of $remote to $url"
+git remote set-url $remote $url
