@@ -7,10 +7,6 @@ imap fq <esc>
 xmap fq <esc>
 omap fq <esc>
 
-" Stay in visual mode when you indent
-vmap < <gv
-vmap > >gv
-
 " Store relative line number jumps in the jumplist if they exceed a threshold.
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
@@ -23,10 +19,6 @@ nmap Y y$
 
 nnoremap U <C-R>
 nnoremap <C-R> <Nop>
-
-nmap <expr> gm chromosore#mappings#move()
-nmap <expr> gmm chromosore#mappings#move() . '_'
-vmap <expr> gm chromosore#mappings#move_visual()
 
 nmap <leader>;  <plug>Commentary
 nmap <leader>;; <plug>CommentaryLine
