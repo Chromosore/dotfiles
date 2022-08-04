@@ -22,9 +22,9 @@ function expand-token
 
 
 	set -l cmd_abbr (printf '_cmd_abbr_%s_%d_%s' \
-		(string escape --style=var -- $tokens[1]) \
+		(string escape --style=var -- "$tokens[1]") \
 		(string escape --style=var -- $position) \
-		(string escape --style=var -- $token))
+		(string escape --style=var -- "$token"))
 
 
 	if set -q $cmd_abbr
