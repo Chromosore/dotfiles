@@ -14,17 +14,21 @@ set gitcommands \
 	ca 'commit --amend' \
 	c  'clone' \
 	d  'diff' \
-	dc 'diff --cached' \
+	dc 'diff --staged' \
+	st 'stash' \
 	ss 'stash show' \
 	sd 'stash drop' \
 	s+ 'stash push' \
 	s- 'stash pop' \
-	o+ 'push' \
-	o- 'pull' \
+	p  'push' \
+	m  'merge' \
+	mu 'merge @{upstream}' \
 	o\? 'fetch' \
-	a+ 'log @{upstream}..' \
-	b- 'log ..@{upstream}' \
-	sm 'submodule'
+	o+ 'log ^@{upstream} @' \
+	o- 'log ^@ @{upstream}' \
+	sm 'submodule' \
+	rb 'rebase' \
+	co 'checkout'
 
 for index in (seq 1 2 (count $gitcommands))
 	set short $gitcommands[$index]
