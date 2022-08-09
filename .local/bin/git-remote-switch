@@ -38,7 +38,7 @@ begin
 	set -g url_regexp "^($scheme)://(?:($user)@|())($host(?::$port)?)/($path)\$"
 
 	# This scp regexp is only a ripoff of the first one
-	set -g scp_regexp "(?:($user)@|())($host(?::$port)?):($path)\$"
+	set -g scp_regexp "^(?:($user)@|())($host(?::$port)?):($path)\$"
 end
 
 
