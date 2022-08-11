@@ -4,7 +4,8 @@ set gitcommands \
 	s  'status' \
 	s. 'status .' \
 	sw 'switch' \
-	l  'log' \
+	l  'log-1' \
+	ll 'log' \
 	a  'add' \
 	ap 'add --patch' \
 	r  'reset' \
@@ -24,8 +25,8 @@ set gitcommands \
 	m  'merge' \
 	mu 'merge @{upstream}' \
 	o\? 'fetch' \
-	o+ 'log ^@{upstream} @' \
-	o- 'log ^@ @{upstream}' \
+	o+ 'log-1 ^@{upstream} @ --no-decorate' \
+	o- 'log-1 ^@ @{upstream} --no-decorate' \
 	sm 'submodule' \
 	rb 'rebase' \
 	co 'checkout'

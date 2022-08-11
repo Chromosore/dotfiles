@@ -3,6 +3,9 @@
 	name = Chromosore
 	email = konrad.blanchard@gmail.com
 
+[alias]
+	log-1 = log --pretty=oneline
+
 
 [pull]
 	ff = only
@@ -13,9 +16,6 @@
 
 [pager]
 	log = less -X
-
-[format]
-	pretty = oneline
 
 [status]
 	short = true
