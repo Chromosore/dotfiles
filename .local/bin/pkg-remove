@@ -60,9 +60,10 @@ if not set -q _flag_force
 	or exit 1
 end
 
-set files $root/(pkgutil --volume $root/ --only-files --files $package)
 set counter 0
-for file in $files
+pkgutil --volume $root/ --only-files --files $package |
+while read file
+	set file $root/$file
 	if test -f $file
 		sudo rm -f $file
 		and verbose "Removed $file"
@@ -81,8 +82,8 @@ and if not set -q _flag_force
 end
 
 if set -q _flag_prune
-	set directories (printf '%s\n' $files | string replace -r '/[^/]+/*$' '' | sort | uniq)
-	for dir in $directories
+	printf '%s\n' $files | string replace -r '/[^/]+/*$' '' | sort | uniq |
+	while read dir
 		if test -d $dir
 			sudo rmdir -p $dir 2>/dev/null
 			and verbose "Removed $dir"
