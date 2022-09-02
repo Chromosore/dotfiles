@@ -9,6 +9,7 @@ switch (count $argv)
 		set remote $argv[1]
 	case '*'
 		echo "Usage: $script [<remote>]"
+		exit 1
 end
 
 
