@@ -73,3 +73,6 @@
 [submodule "theme/vim-one"]
 	path = .config/nvim/pack/themes/start/vim-one
 	url = https://github.com/rakr/vim-one.git
+[submodule "theme/atlas.vim"]
+	path = .config/nvim/pack/themes/start/atlas.vim
+	url = https://github.com/huyvohcmc/atlas.vim.git
