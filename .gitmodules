@@ -25,9 +25,6 @@
 [submodule "vim-commentary"]
 	path = .config/nvim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim-devicons"]
-	path = .config/nvim/pack/bundle/opt/vim-devicons
-	url = https://github.com/ryanoasis/vim-devicons.git
 [submodule "vim-sandwich"]
 	path = .config/nvim/pack/bundle/start/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich.git
@@ -41,9 +38,6 @@
 [submodule "language/nvim-treesitter"]
 	path = .config/nvim/pack/languages/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-[submodule "language/spellsitter.nvim"]
-	path = .config/nvim/pack/languages/start/spellsitter.nvim
-	url = https://github.com/lewis6991/spellsitter.nvim.git
 [submodule "language/vim-kitty"]
 	path = .config/nvim/pack/languages/start/vim-kitty
 	url = https://github.com/fladson/vim-kitty.git
