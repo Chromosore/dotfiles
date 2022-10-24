@@ -10,7 +10,4 @@ lazily.use("nerdtree", {
 			return vim.fn.isdirectory(event.match) == 1
 		end;
 	},
-	requires = {
-		"vim-nerdtree-syntax-highlight",
-	},
 })

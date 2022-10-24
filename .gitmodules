@@ -10,9 +10,6 @@
 [submodule "nerdtree"]
 	path = .config/nvim/pack/bundle/opt/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "nerdtree-syntax-highlight"]
-	path = .config/nvim/pack/bundle/opt/vim-nerdtree-syntax-highlight
-	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
 [submodule "nvim-luapad"]
 	path = .config/nvim/pack/bundle/start/nvim-luapad
 	url = https://github.com/rafcamlet/nvim-luapad.git
