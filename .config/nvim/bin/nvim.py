@@ -44,16 +44,16 @@ def main():
         return
 
 
-    try:
-        nvim_address = os.environ['NVIM_LISTEN_ADDRESS']
-    except KeyError:
+    nvim_address = (os.environ.get('NVIM')
+        or os.environ.get('NVIM_LISTEN_ADDRESS'))
+
+    if nvim_address is None:
         print('nvim.py must be run with $NVIM_LISTEN_ADDRESS defined',
               file=sys.stderr)
         return
 
     nvim = pynvim.attach('socket', path=nvim_address)
-    nvim.command('lcd '
-                 + nvim.funcs.fnameescape(os.getcwd()))
+    nvim.command('lcd ' + nvim.funcs.fnameescape(os.getcwd()))
     event = f'{AUTOCMD_EVENT}-{nvim.channel_id}'
 
     command = ('tabedit' if args.tabs else
@@ -62,9 +62,9 @@ def main():
                'argedit')
 
     if len(args.filenames) == 0:
-        command = ('tabedit' if args.tabs else
+        command = ('tabedit'  if args.tabs else
                    'vert new' if args.vsplit else
-                   'new' if args.hsplit else
+                   'new'      if args.hsplit else
                    'enew')
         args.filenames.append('')
 
