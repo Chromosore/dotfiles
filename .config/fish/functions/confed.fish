@@ -39,10 +39,10 @@ function confed
 
 	if not set -q _flag_create
 		set dirs $existing
-		set err_msg "No such config file found\nTry `confed -a $argv`\n"
+		set err_msg "No such config file found\nTry `confed -a %s`\n" "$argv"
 	else
 		set dirs $missing
-		set err_msg "All possible config files exist.\nTry `confed $file`\n"
+		set err_msg "All possible config files exist.\nTry `confed %s`\n" "$file"
 	end
 
 	if test (count $dirs) -eq 0
@@ -62,7 +62,10 @@ function confed
 			set i (math $i + 1)
 		end
 
-		set choice (read -p 'echo "> "')
+		if not set choice (read -p 'echo "> "')
+			echo (_ "Abort")
+			return 1
+		end
 		if test $choice -lt 1 || test $choice -gt (count $dirs)
 			echo "You must choose a number between 1 and "(count $dirs) >&2
 			return 1
