@@ -1,0 +1,74 @@
+#!/usr/bin/env fish
+
+set script (basename (status current-filename) .fish)
+set help "$script [options] [new <name>]
+Create & run migrations
+
+-h, --help        Print this help message
+-n, --dry-run     Only show which migrations would be executed
+-d, --dot-home    Look for migrations under \$dothome/migrations/"
+
+argparse -n $script \
+	'd/dot-home=' 'n/dry-run' 'h/help' -- $argv
+or echo $help && exit $status
+
+if set -q _flag_help
+	echo $help
+	exit 0
+end
+
+set -q _flag_dot_home
+	and set dothome $_flag_dot_home
+	or  set dothome ~/dotfiles
+
+switch (count $argv)
+	case 0
+		set -g mode apply
+	case 2
+		if not test "$argv[1]" = "new"
+			echo $help && exit 1
+		end
+		set -g mode create
+		set -g name $argv[2]
+	case "*"
+		echo $help && exit 1
+end
+
+
+if [ $mode = "create" ]
+	set file $dothome/migrations/(date -u +"%Y%m%d%H%M%S")_$name.sh
+	echo "#!/bin/sh" >$file
+	chmod +x $file
+	$EDITOR $file
+else
+	# Apply
+	set stampfile $dothome/migrations/.stamp
+	test -f $stampfile
+		and read stamp <$stampfile
+		or  set stamp 00000000000000
+
+	set migrations (begin
+		echo $stamp
+		ls -1 $dothome/migrations/
+	end |
+		sort -t_ -k1 |
+		sed --sandbox -n "/^$stamp/,\$p")
+
+	if test (count $migrations) = 1
+		echo "Nothing to do."
+		exit 0
+	end
+
+	# The stamp should always be first so ignore it
+	for migration in $migrations[2..]
+		if set -q _flag_dry_run
+			echo "Would run $migration"
+		else
+			echo "Running $migration"
+			$dothome/migrations/$migration
+		end
+	end
+
+	# Write the last migration's stamp + 1 to avoid running it twice
+	math 1 + (string split -f1 -m1 _ $migrations[-1]) >$stampfile
+end
