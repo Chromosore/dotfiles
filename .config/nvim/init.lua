@@ -1,6 +1,7 @@
 _G.chromosore = require("chromosore")
 local lazily = require("lazily")
 local set = chromosore.util.set
+local autocmd = chromosore.util.autocmd
 
 -- lazily loaded plugins
 lazily.use("nerdtree", {
@@ -12,6 +13,11 @@ lazily.use("nerdtree", {
 		end;
 	},
 })
+
+-- New 0.8 treesitter highlight
+autocmd("FileType", "*", function(event)
+	pcall(vim.treesitter.start, event.buf, vim.bo[event.buf].filetype)
+end)
 
 set{
 	undofile = true;
