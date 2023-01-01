@@ -39,7 +39,7 @@ set{
 	splitright = true;
 	fillchars = { vert = "│" };
 
-	statusline = "%<%f %{&ft!=''?'('..&ft..') ':''}%m%r%=%-14(.%l/%L :%c%V%) %P";
+	statusline = "%<%f %{&ft!=''?'('..&ft..') ':''}%m%r%=%-14(.%l/%L :%c%) %P";
 	tabline = "%!v:lua.chromosore.tabline.render()";
 	showtabline = 2;
 
