@@ -52,7 +52,7 @@ else
 		ls -1 $dothome/migrations/
 	end |
 		sort -t_ -k1 |
-		sed --sandbox -n "/^$stamp/,\$p")
+		sed -n "/^$stamp/,\$p")
 
 	if test (count $migrations) = 1
 		echo "Nothing to do."
