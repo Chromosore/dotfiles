@@ -1,6 +1,6 @@
 abbr -a -g g git
 
-set gitcommands \
+set -l gitcommands \
 	s  'status' \
 	s. 'status .' \
 	sw 'switch' \
@@ -32,9 +32,14 @@ set gitcommands \
 	co 'checkout'
 
 for index in (seq 1 2 (count $gitcommands))
-	set short $gitcommands[$index]
-	set long  $gitcommands[(math $index + 1)]
+	set -l short $gitcommands[$index]
+	set -l long  $gitcommands[(math $index + 1)]
 
-	abbr -a -g g$short git $long
-	set -g _cmd_abbr_git_2_(string escape --style=var $short) "$long"
+	abbr -a g$short git $long
+
+	set -l name git_(string escape --style=var -- $short)
+	function _expand_$name -V long -V short
+		_lga_define_subcommand_expansion $long git $short
+	end
+	abbr -a _$name --regex (string escape --style=regex $short) --position anywhere --function _expand_$name
 end
