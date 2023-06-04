@@ -52,17 +52,6 @@ function prompt_colours
 	v set -U fish_color_clock_brackets  normal
 end
 
-# Vi modes cursor
-function vi_mode
-	v fish_vi_key_bindings
-
-	v set -U fish_cursor_default		block		blink
-	v set -U fish_cursor_insert		line		blink
-	v set -U fish_cursor_visual		block
-	v set -U fish_cursor_replace_one	underscore
-	v set -U fish_cursor_replace		underscore	blink
-end
-
 # Colours
 function fish_colours
 	v set -U fish_color_normal normal
@@ -92,7 +81,7 @@ function fish_colours
 end
 
 set -- options \
-	--prompt-chars --prompt-colours --vi-mode --fish-colours --git-prompt
+	--prompt-chars --prompt-colours --fish-colours --git-prompt
 
 
 function error
