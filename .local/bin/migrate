@@ -60,7 +60,7 @@ else
 	end
 
 	# The stamp should always be first so ignore it
-	for migration in $migrations[2..]
+	for migration in $migrations[2..-1]
 		if set -q _flag_dry_run
 			echo "Would run $migration"
 		else
@@ -70,5 +70,5 @@ else
 	end
 
 	# Write the last migration's stamp + 1 to avoid running it twice
-	math 1 + (string split -f1 -m1 _ $migrations[-1]) >$stampfile
+	math 1 + (string split -m1 _ $migrations[-1])[1] >$stampfile
 end
